@@ -4,4 +4,9 @@
     <style name="Theme.CinemaSearcher" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
+
+    <!-- Splash Screen -->
+    <style name="Theme.CinemaSearcher.SplashScreen" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/logo</item>
+    </style>
 </resources>
