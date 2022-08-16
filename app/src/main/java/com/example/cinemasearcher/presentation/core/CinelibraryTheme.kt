@@ -13,40 +13,40 @@ import androidx.compose.ui.unit.sp
 import com.example.cinemasearcher.R
 
 @Composable
-fun CSTheme(
+fun CLBTheme(
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
-        LocalCSExtraColors provides csExtraColors,
-        LocalCSExtraTypography provides csExtraTypography,
+        LocalCLBExtraColors provides clbExtraColors,
+        LocalCLBExtraTypography provides clbExtraTypography,
     ) {
         MaterialTheme(
-            colors = CSColors,
-            typography = CSTypography,
-            shapes = CSShapes,
+            colors = CLBColors,
+            typography = CLBTypography,
+            shapes = CLBShapes,
             content = content
         )
     }
 }
 
-object CSTheme {
-    val colors: CSExtraColors
+object CLBTheme {
+    val colors: CLBExtraColors
         @Composable
         @ReadOnlyComposable
-        get() = LocalCSExtraColors.current
+        get() = LocalCLBExtraColors.current
 
-    val typography: CSExtraTypography
+    val typography: CLBExtraTypography
         @Composable
         @ReadOnlyComposable
-        get() = LocalCSExtraTypography.current
+        get() = LocalCLBExtraTypography.current
 }
 
-val LocalCSExtraColors = staticCompositionLocalOf {
-    CSExtraColors()
+val LocalCLBExtraColors = staticCompositionLocalOf {
+    CLBExtraColors()
 }
 
 @Immutable
-data class CSExtraColors(
+data class CLBExtraColors(
     val Dark: Color = Color.Unspecified,
     val Soft: Color = Color.Unspecified,
     val BlueAccent: Color = Color.Unspecified,
@@ -54,29 +54,29 @@ data class CSExtraColors(
     val Orange: Color = Color.Unspecified,
     val Red: Color = Color.Unspecified,
     val Black: Color = Color.Unspecified,
-    val DarkGrey: Color = Color.Unspecified,
-    val Grey: Color = Color.Unspecified,
+    val DarkGray: Color = Color.Unspecified,
+    val Gray: Color = Color.Unspecified,
     val WhiteGrey: Color = Color.Unspecified,
     val Whiter: Color = Color.Unspecified,
     val LineDark: Color = Color.Unspecified,
 )
 
-val LocalCSExtraTypography = staticCompositionLocalOf {
-    CSExtraTypography()
+val LocalCLBExtraTypography = staticCompositionLocalOf {
+    CLBExtraTypography()
 }
 
 @Immutable
-data class CSExtraTypography(
+data class CLBExtraTypography(
     val buttonSmall: TextStyle = TextStyle.Default,
     val numpad: TextStyle = TextStyle.Default,
 )
 
-val CSColors: Colors
+val CLBColors: Colors
     @Composable
     @ReadOnlyComposable
-    get() = cstLightColors
+    get() = clbtLightColors
 
-val cstLightColors = lightColors(
+val clbtLightColors = lightColors(
     primary =           Color(0xFF007CBA),
     onPrimary =         Color.White,
     primaryVariant =    Color(0xFF397ED0),
@@ -88,24 +88,24 @@ val cstLightColors = lightColors(
     onError =           Color.White,
 )
 
-val csExtraColors: CSExtraColors
+val clbExtraColors: CLBExtraColors
     @Composable
     @ReadOnlyComposable
-    get() = csLightExtraColors
+    get() = clbLightExtraColors
 
-val csLightExtraColors = CSExtraColors(
-    Dark  =                 Color(0xFF34C759),
-    Soft =              Color(0xFFF7F8FA),
-    BlueAccent =             Color(0xFFD6D6D6),
-    Green =              Color(0xFFA6A6AE),
-    Orange =             Color(0xFFDDDDDF),
-    Red =             Color(0xFFDDDDDF),
-    Black =               Color(0x14212114),
-    DarkGrey =             Color(0xFFDDDDDF),
-    Grey =               Color(0x14212114),
-    WhiteGrey =             Color(0xFFDDDDDF),
-    Whiter =               Color(0x14212114),
-    LineDark = Color(0x14212114),
+val clbLightExtraColors = CLBExtraColors(
+    Dark  =                 Color(0xFF1F1D2B),
+    Soft =              Color(0xFF252836),
+    BlueAccent =             Color(0xFF12CDD9),
+    Green =              Color(0xFF22B07D),
+    Orange =             Color(0xFFFF8700),
+    Red =             Color(0xFFFF7256),
+    Black =               Color(0xFF171725),
+    DarkGray =             Color(0xFF696974),
+    Gray =               Color(0xFF92929D),
+    WhiteGrey =             Color(0xFFF1F1F5),
+    Whiter =               Color(0xFFFFFFFF),
+    LineDark = Color(0xFFEAEAEA),
 )
 
 val montserrat = FontFamily(
@@ -118,12 +118,12 @@ val baseTextStyle: TextStyle
     @Composable
     @ReadOnlyComposable
     get() = TextStyle(
-        color = CSColors.onSurface,
+        color = CLBColors.onSurface,
         fontFamily = montserrat,
         fontWeight = FontWeight.Normal
     )
 
-val CSTypography: Typography
+val CLBTypography: Typography
     @Composable
     @ReadOnlyComposable
     get() = MaterialTheme.typography.copy(
@@ -137,7 +137,7 @@ val CSTypography: Typography
             fontSize = 18.sp, lineHeight = 22.sp, fontWeight = FontWeight.Medium,
         ),
         h4 = baseTextStyle.copy(
-            fontSize = 16.sp, lineHeight = 20.sp, fontWeight = FontWeight.Medium,
+            fontSize = 16.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium,
         ),
         h5 = baseTextStyle.copy(
             fontSize = 14.sp, lineHeight = 18.sp, fontWeight = FontWeight.Medium,
@@ -162,10 +162,10 @@ val CSTypography: Typography
         )
     )
 
-val csExtraTypography: CSExtraTypography
+val clbExtraTypography: CLBExtraTypography
     @Composable
     @ReadOnlyComposable
-    get() = CSExtraTypography(
+    get() = CLBExtraTypography(
         buttonSmall = baseTextStyle.copy(
             fontSize = 14.sp, lineHeight = 17.sp, fontWeight = FontWeight.Bold
         ),
@@ -174,7 +174,7 @@ val csExtraTypography: CSExtraTypography
         )
     )
 
-val CSShapes: Shapes
+val CLBShapes: Shapes
     @Composable
     @ReadOnlyComposable
     get() = MaterialTheme.shapes.copy(
