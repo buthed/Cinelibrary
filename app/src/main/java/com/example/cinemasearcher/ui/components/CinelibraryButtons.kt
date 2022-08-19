@@ -1,4 +1,4 @@
-package com.example.cinemasearcher.presentation.core
+package com.example.cinemasearcher.ui.core
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

@@ -1,27 +1,64 @@
-package com.example.cinemasearcher.presentation.core
+package com.example.cinemasearcher.ui.core
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.R
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cinemasearcher.R
+import com.example.cinemasearcher.ui.NavItem
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
+import org.intellij.lang.annotations.JdkConstants
 
 @Preview
 @Composable
 fun ComposablePlaceholdersPreview() {
     Column() {
-        CustomTextField(input = "", onValueChange = {}, label = "PlaceHolder")
+        CustomTextField(input = "123", onValueChange = {}, label = "PlaceHolder")
         AppealDropDownMenu(input = "", onValueChange = {}, label = "Dropdown")
+        SearchField(input = "", onValueChange = {}, label = "Dropdown")
+    }
+}
+
+@Composable
+fun SearchField(
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp),
+    input: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+){
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(100)
+    ){
+        Row(
+            Modifier.background(LocalCLBExtraColors.current.Soft).padding(horizontal = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = "", tint = Color.Gray)
+            CustomTextField(
+                modifier = Modifier
+                    .height(50.dp),
+                input = input,
+                onValueChange = onValueChange,
+                label = label
+            )
+            Icon(painter = painterResource(id = R.drawable.ic_filter), contentDescription = "", tint = Color.White)
+        }
     }
 }
 
@@ -41,10 +78,20 @@ fun CustomTextField(
         value = inputs,
         onValueChange = onValueChange,
         shape = RoundedCornerShape(100),
-        label = { Text(label) },
+        textStyle = TextStyle(color = LocalCLBExtraColors.current.Gray,),
+        placeholder = { Text(label) },
         colors = TextFieldDefaults.textFieldColors(
+            textColor = LocalCLBExtraColors.current.Gray,
+            disabledTextColor = LocalCLBExtraColors.current.Gray,
             backgroundColor = LocalCLBExtraColors.current.Soft,
-            focusedLabelColor = LocalCLBExtraColors.current.WhiteGrey,
+            placeholderColor = LocalCLBExtraColors.current.Gray,
+            disabledPlaceholderColor = LocalCLBExtraColors.current.Gray,
+            cursorColor = LocalCLBExtraColors.current.Gray,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            leadingIconColor = LocalCLBExtraColors.current.Gray,
+            trailingIconColor = LocalCLBExtraColors.current.Gray,
+            focusedLabelColor = LocalCLBExtraColors.current.Gray,
             unfocusedLabelColor = LocalCLBExtraColors.current.Gray,
         ),
     )
