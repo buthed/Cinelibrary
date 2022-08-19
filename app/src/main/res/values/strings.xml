@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Cinelibrary</string>
+
+    // Categories
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="downloads">Downloads</string>
+    <string name="profile">Profile</string>
 </resources>
