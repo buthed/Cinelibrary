@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.cinemasearcher.ui.NavItem
-import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
 
 @Composable
 fun AppBottomNavigation(

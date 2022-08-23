@@ -56,7 +56,7 @@ data class CLBExtraColors(
     val Black: Color = Color.Unspecified,
     val DarkGray: Color = Color.Unspecified,
     val Gray: Color = Color.Unspecified,
-    val WhiteGrey: Color = Color.Unspecified,
+    val WhiteGray: Color = Color.Unspecified,
     val Whiter: Color = Color.Unspecified,
     val LineDark: Color = Color.Unspecified,
 )
@@ -103,7 +103,7 @@ val clbLightExtraColors = CLBExtraColors(
     Black =               Color(0xFF171725),
     DarkGray =             Color(0xFF696974),
     Gray =               Color(0xFF92929D),
-    WhiteGrey =             Color(0xFFF1F1F5),
+    WhiteGray =             Color(0xFFF1F1F5),
     Whiter =               Color(0xFFFFFFFF),
     LineDark = Color(0xFFEAEAEA),
 )
@@ -128,7 +128,7 @@ val CLBTypography: Typography
     @ReadOnlyComposable
     get() = MaterialTheme.typography.copy(
         h1 = baseTextStyle.copy(
-            fontSize = 28.sp, lineHeight = 32.sp, fontWeight = FontWeight.Bold
+            fontSize = 28.sp, lineHeight = 32.sp, fontWeight = FontWeight.Bold,
         ),
         h2 = baseTextStyle.copy(
             fontSize = 24.sp, lineHeight = 28.sp, fontWeight = FontWeight.Medium
@@ -137,7 +137,7 @@ val CLBTypography: Typography
             fontSize = 18.sp, lineHeight = 22.sp, fontWeight = FontWeight.Medium,
         ),
         h4 = baseTextStyle.copy(
-            fontSize = 16.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium,
+            fontSize = 16.sp, lineHeight = 20.sp, fontWeight = FontWeight.Medium, color = Color.White
         ),
         h5 = baseTextStyle.copy(
             fontSize = 14.sp, lineHeight = 18.sp, fontWeight = FontWeight.Medium,
@@ -146,13 +146,13 @@ val CLBTypography: Typography
             fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.SemiBold
         ),
         body2 = baseTextStyle.copy(
-            fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium
+            fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium, color = Color.White
         ),
         subtitle1 = baseTextStyle.copy(
             fontSize = 12.sp, lineHeight = 16.sp
         ),
         subtitle2 = baseTextStyle.copy(
-            fontSize = 10.sp, lineHeight = 14.sp, fontWeight = FontWeight.Medium
+            fontSize = 10.sp, lineHeight = 14.sp, fontWeight = FontWeight.Medium, color = LocalCLBExtraColors.current.Gray
         ),
         button = baseTextStyle.copy(
             fontSize = 16.sp, lineHeight = 21.sp, fontWeight = FontWeight.Medium
