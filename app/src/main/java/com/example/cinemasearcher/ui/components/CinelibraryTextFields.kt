@@ -2,24 +2,19 @@ package com.example.cinemasearcher.ui.core
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cinemasearcher.R
-import com.example.cinemasearcher.ui.NavItem
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
-import org.intellij.lang.annotations.JdkConstants
 
 @Preview
 @Composable
@@ -35,7 +30,7 @@ fun ComposablePlaceholdersPreview() {
 fun SearchField(
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .height(50.dp),
+        .height(35.dp),
     input: String,
     onValueChange: (String) -> Unit,
     label: String,
@@ -137,7 +132,7 @@ fun AppealDropDownMenu(modifier: Modifier = Modifier
             },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = LocalCLBExtraColors.current.Soft,
-                focusedLabelColor = LocalCLBExtraColors.current.WhiteGrey,
+                focusedLabelColor = LocalCLBExtraColors.current.WhiteGray,
                 unfocusedLabelColor = LocalCLBExtraColors.current.Gray
             ),
             textStyle = TextStyle(fontSize = 16.sp )
@@ -161,3 +156,5 @@ fun AppealDropDownMenu(modifier: Modifier = Modifier
         }
     }
 }
+
+//TODO Add Icon for searchfield

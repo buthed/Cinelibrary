@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.cinemasearcher.AppScreen
 import com.example.cinemasearcher.ui.NavItem
-import com.example.cinemasearcher.ui.fragments.home.HomeScreen
+import com.example.cinemasearcher.ui.screens.home.HomeScreen
 
 @Composable
 fun BottomNavGraph(
