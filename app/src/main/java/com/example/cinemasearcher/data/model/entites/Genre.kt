@@ -1,4 +1,4 @@
-package com.example.cinemasearcher.data.models
+package com.example.cinemasearcher.data.model.entites
 
 data class Genre(
     val id: Int,
