@@ -22,11 +22,11 @@ import androidx.navigation.NavController
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.ui.NavItem
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
-import com.example.cinemasearcher.viewmodel.MainViewModel
+import com.example.cinemasearcher.viewmodel.HomeViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController, viewModel: MainViewModel) {
+fun SplashScreen(navController: NavController, viewModel: HomeViewModel) {
     var startAnimate by remember {
         mutableStateOf(false)
     }

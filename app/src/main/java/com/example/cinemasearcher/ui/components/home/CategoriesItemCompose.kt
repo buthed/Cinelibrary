@@ -9,15 +9,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.cinemasearcher.data.model.entites.Genre
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
 
 @Composable
-fun CategoriesItem(){
+fun CategoriesItem(item: Genre) {
     Card(backgroundColor = LocalCLBExtraColors.current.Soft,
         shape = RoundedCornerShape(8.dp)) {
         Text(
-            text = "Comedy",
+            text = item.name,
             Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
             style = CLBTypography.body2,
             fontWeight = FontWeight.Medium,
@@ -29,5 +30,6 @@ fun CategoriesItem(){
 @Preview
 @Composable
 fun CategoriesItemPreview(){
-    CategoriesItem()
+    val item = Genre(1, "Comedy", false)
+    CategoriesItem(item)
 }

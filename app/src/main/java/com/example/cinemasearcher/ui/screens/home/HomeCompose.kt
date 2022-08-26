@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -22,16 +23,19 @@ import com.example.cinemasearcher.ui.core.SearchField
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
 import com.example.cinemasearcher.ui.theme.clbLightExtraColors
-import com.example.cinemasearcher.viewmodel.MainViewModel
+import com.example.cinemasearcher.viewmodel.HomeViewModel
 
 @Composable
-fun HomeScreen(viewModel: MainViewModel) {
-//    val popularMovies = viewModel.popularMovies.observeAsState(listOf()).value
-//    popularMovies.forEach{ Log.d("checkData","ID: ${it.id} name: ${it.original_title}")}
+fun HomeScreen(viewModel: HomeViewModel) {
     val movie = viewModel.movie.observeAsState().value
-    val popMovies = viewModel.popularMovies.observeAsState().value
+    val genres = viewModel.genres.observeAsState().value
+    val popularMovies = viewModel.popularMovies.observeAsState().value
+    val upcomingMovies = viewModel.upcomingMovies.observeAsState().value
+
     Log.d("checkDataM", "ID: ${movie?.id} title: ${movie?.original_title}" )
-    Log.d("checkDataM", "LIST: ${popMovies.toString()} title: ${movie?.original_title}" )
+    Log.d("checkDataM", "popularMovies: ${popularMovies?.results?.get(0)}" )
+    Log.d("checkDataM", "upcomingMovies: ${upcomingMovies?.results?.get(0)}" )
+
     Box(
         Modifier
             .fillMaxSize()
@@ -59,9 +63,11 @@ fun HomeScreen(viewModel: MainViewModel) {
                     color = Color.White
                     )
                 LazyRow(Modifier.padding(top = 15.dp)) {
-                    items(5){item->
-                        CategoriesItem()
-                        Spacer(Modifier.width(8.dp))
+                    if (genres!=null) {
+                        items(genres.genres) { item ->
+                            CategoriesItem(item)
+                            Spacer(Modifier.width(8.dp))
+                        }
                     }
                 }
                 Row(
@@ -78,9 +84,11 @@ fun HomeScreen(viewModel: MainViewModel) {
                         color = clbLightExtraColors.BlueAccent)
                 }
                 LazyRow(Modifier.padding(top = 16.dp)){
-                    items(5){item->
-                        MovieDefaultItem()
-                        Spacer(Modifier.width(12.dp))
+                    if (popularMovies != null) {
+                        items(popularMovies.results) { item->
+                            MovieDefaultItem(item)
+                            Spacer(Modifier.width(12.dp))
+                        }
                     }
                 }
             }
@@ -95,3 +103,6 @@ fun HomeScreenPreview() {
 }
 
 //TODO Add scroll HomeScreen
+//TODO Add All button for categories
+//TODO Add ViewPager on Upcoming Movies
+

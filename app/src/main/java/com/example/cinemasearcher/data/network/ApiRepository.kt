@@ -6,7 +6,9 @@ class ApiRepository @Inject constructor(private val apiService: ApiService) {
 
     suspend fun getMovie() = apiService.getMovie()
 
+    suspend fun getGenres() = apiService.getGenres()
+
     suspend fun getPopularMovies() = apiService.getPopularMovies()
 
-//    suspend fun getUpcomingMovies() = apiService.getUpcomingMovies()
+    suspend fun getUpcomingMovies() = apiService.getUpcomingMovies()
 }
