@@ -1,4 +1,6 @@
-package com.example.cinemasearcher.data.models
+package com.example.cinemasearcher.data.model.entites
+
+import android.os.Parcelable
 
 data class Movie(
     val adult: Boolean,
@@ -26,4 +28,4 @@ data class Movie(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+) 
