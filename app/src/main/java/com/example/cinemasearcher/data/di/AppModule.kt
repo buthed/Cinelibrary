@@ -1,6 +1,6 @@
 package com.example.cinemasearcher.data.di
 
-import com.example.cinemasearcher.data.models.TMDB_API_CINEMA_URL
+import com.example.cinemasearcher.data.model.ApiConstants
 import com.example.cinemasearcher.data.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -15,13 +15,10 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
-    fun baseUrl() = TMDB_API_CINEMA_URL
-
-    @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String) : ApiService =
+    fun provideRetrofit() : ApiService =
         Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(ApiConstants.TMDB_API_CINEMA_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)

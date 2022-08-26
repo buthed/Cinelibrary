@@ -9,8 +9,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
-import com.example.cinemasearcher.ui.components.MainScreen
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.cinemasearcher.navigation.BottomNavGraph
 import com.example.cinemasearcher.ui.theme.CLBTheme
+import com.example.cinemasearcher.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,8 +21,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val viewModel = hiltViewModel<MainViewModel>()
+            val navController = rememberNavController()
             CLBTheme {
-                MainScreen()
+                BottomNavGraph(navController, viewModel)
             }
         }
     }

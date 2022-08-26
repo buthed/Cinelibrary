@@ -1,10 +1,12 @@
 package com.example.cinemasearcher.ui.screens.home
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,9 +22,16 @@ import com.example.cinemasearcher.ui.core.SearchField
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
 import com.example.cinemasearcher.ui.theme.clbLightExtraColors
+import com.example.cinemasearcher.viewmodel.MainViewModel
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: MainViewModel) {
+//    val popularMovies = viewModel.popularMovies.observeAsState(listOf()).value
+//    popularMovies.forEach{ Log.d("checkData","ID: ${it.id} name: ${it.original_title}")}
+    val movie = viewModel.movie.observeAsState().value
+    val popMovies = viewModel.popularMovies.observeAsState().value
+    Log.d("checkDataM", "ID: ${movie?.id} title: ${movie?.original_title}" )
+    Log.d("checkDataM", "LIST: ${popMovies.toString()} title: ${movie?.original_title}" )
     Box(
         Modifier
             .fillMaxSize()
@@ -32,7 +41,10 @@ fun HomeScreen() {
             Box(Modifier.padding(horizontal = 24.dp)){
                 SearchField(input = "", onValueChange = {}, label = "Search a title")
             }
-            Column(Modifier.fillMaxWidth().padding(vertical = 24.dp),
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 24.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ){
@@ -52,7 +64,10 @@ fun HomeScreen() {
                         Spacer(Modifier.width(8.dp))
                     }
                 }
-                Row(Modifier.fillMaxWidth().padding(top = 21.dp), Arrangement.SpaceBetween, Alignment.CenterVertically, ) {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 21.dp), Arrangement.SpaceBetween, Alignment.CenterVertically, ) {
                     Text(
                         text = stringResource(id = R.string.home_most_popular),
                         style = CLBTypography.h4,
@@ -76,7 +91,7 @@ fun HomeScreen() {
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+  //  HomeScreen(viewModel)
 }
 
 //TODO Add scroll HomeScreen
