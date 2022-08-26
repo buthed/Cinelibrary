@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.cinemasearcher.navigation.BottomNavGraph
+import com.example.cinemasearcher.navigation.NavHost
 import com.example.cinemasearcher.ui.theme.CLBTheme
-import com.example.cinemasearcher.viewmodel.MainViewModel
+import com.example.cinemasearcher.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,10 +21,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel = hiltViewModel<MainViewModel>()
+            val viewModel = hiltViewModel<HomeViewModel>()
             val navController = rememberNavController()
             CLBTheme {
-                BottomNavGraph(navController, viewModel)
+                NavHost(navController, viewModel)
             }
         }
     }

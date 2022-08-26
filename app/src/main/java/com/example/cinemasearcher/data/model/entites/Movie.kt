@@ -1,7 +1,5 @@
 package com.example.cinemasearcher.data.model.entites
 
-import android.os.Parcelable
-
 data class Movie(
     val adult: Boolean,
     val backdrop_path: String,

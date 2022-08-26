@@ -9,10 +9,10 @@ import com.example.cinemasearcher.ui.NavItem
 import com.example.cinemasearcher.ui.screens.SplashScreen
 import com.example.cinemasearcher.ui.screens.home.HomeScreen
 import com.example.cinemasearcher.ui.screens.main.MainScreen
-import com.example.cinemasearcher.viewmodel.MainViewModel
+import com.example.cinemasearcher.viewmodel.HomeViewModel
 
 @Composable
-fun BottomNavGraph(navController: NavHostController, viewModel: MainViewModel) {
+fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
 
     NavHost(
         navController = navController,
@@ -28,13 +28,13 @@ fun BottomNavGraph(navController: NavHostController, viewModel: MainViewModel) {
             HomeScreen(viewModel)
         }
         composable(NavItem.Search.navRoute) {
-            AppScreen(text = "Home Screen")
+            AppScreen(text = "Search Screen")
         }
         composable(NavItem.Downloads.navRoute){
-            AppScreen(text = "Home Screen")
+            AppScreen(text = "Downloads Screen")
         }
         composable(NavItem.Profile.navRoute) {
-            AppScreen(text = "Home Screen")
+            AppScreen(text = "Profile Screen")
         }
     }
 }
