@@ -15,7 +15,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
+import com.example.cinemasearcher.data.model.ApiConstants
 import com.example.cinemasearcher.data.model.entites.Result
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -64,22 +66,23 @@ fun UpcomingViewPager(data: List<Result>) {
 }
 
 @Composable
-fun UpcomingItem(modifier: Modifier,data: Result) {
+fun UpcomingItem(modifier: Modifier, movie: Result) {
     Card(modifier = modifier) {
-        Image(
-            painter = painterResource(id = R.drawable.backdropsexample),
-            contentDescription = "",
+        AsyncImage(
+            model = ApiConstants.TMDB_IMAGE_PATH+movie.backdrop_path,
+            contentDescription = movie.title,
             Modifier.fillMaxWidth(),
-            contentScale = ContentScale.FillWidth)
+            contentScale = ContentScale.FillWidth,
+        )
         Box(
             Modifier.fillMaxWidth().heightIn(min = 150.dp).padding(16.dp),
             contentAlignment = Alignment.BottomStart){
             Column(
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.Start,) {
-                Text(text = data.title, style = CLBTypography.h4)
+                Text(text = movie.title, style = CLBTypography.h4)
                 Spacer(Modifier.height(4.dp))
-                Text(text = data.release_date, style = CLBTypography.body2)
+                Text(text = movie.release_date, style = CLBTypography.body2)
             }
         }
     }

@@ -15,7 +15,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cinemasearcher.R
-import com.example.cinemasearcher.ui.components.home.*
+import com.example.cinemasearcher.ui.components.home.CategoriesItem
+import com.example.cinemasearcher.ui.components.home.MovieDefaultItem
+import com.example.cinemasearcher.ui.components.home.NewsSelector
+import com.example.cinemasearcher.ui.components.home.UpcomingViewPager
 import com.example.cinemasearcher.ui.core.SearchField
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors

@@ -102,4 +102,7 @@ dependencies {
     // Google Accompanist
     implementation "com.google.accompanist:accompanist-pager:0.23.1"
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.18.0"
+
+    // Coil
+    implementation "io.coil-kt:coil-compose:2.2.0"
 }
