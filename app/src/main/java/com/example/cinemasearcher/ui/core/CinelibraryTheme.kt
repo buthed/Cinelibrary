@@ -11,15 +11,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cinemasearcher.R
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun CLBTheme(
     content: @Composable () -> Unit
 ) {
+    val systemUiController = rememberSystemUiController()
     CompositionLocalProvider(
         LocalCLBExtraColors provides clbExtraColors,
         LocalCLBExtraTypography provides clbExtraTypography,
     ) {
+        SideEffect {
+            systemUiController.setSystemBarsColor(
+                color = Color(0xFF1f1d2b),
+            )
+        }
+
         MaterialTheme(
             colors = CLBColors,
             typography = CLBTypography,
