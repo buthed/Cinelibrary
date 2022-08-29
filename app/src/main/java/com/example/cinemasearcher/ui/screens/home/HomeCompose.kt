@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.ui.components.home.CategoriesItem
 import com.example.cinemasearcher.ui.components.home.MovieDefaultItem
-import com.example.cinemasearcher.ui.components.home.NewsItem
 import com.example.cinemasearcher.ui.components.home.NewsSelector
+import com.example.cinemasearcher.ui.components.home.UpcomingViewPager
 import com.example.cinemasearcher.ui.core.SearchField
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
@@ -52,7 +52,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ){
-                NewsItem()
+                if (upcomingMovies!=null) UpcomingViewPager(upcomingMovies.results)
                 Spacer(Modifier.height(12.dp))
                 NewsSelector()
             }

@@ -17,22 +17,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
+import com.example.cinemasearcher.data.model.ApiConstants
 import com.example.cinemasearcher.data.model.entites.Result
 import com.example.cinemasearcher.ui.theme.CLBTypography
 import com.example.cinemasearcher.ui.theme.LocalCLBExtraColors
 
 @Composable
-fun MovieDefaultItem(data: Result) {
+fun MovieDefaultItem(movie: Result) {
     Box(Modifier.width(150.dp).clip(RoundedCornerShape(8.dp))) {
         Column() {
-            AsyncImage(model = R.drawable.posterexample, contentDescription = "")
+            AsyncImage(model = ApiConstants.TMDB_IMAGE_PATH +movie.poster_path,
+                contentDescription = movie.title)
             Column(
                 Modifier
                     .fillMaxWidth()
                     .background(LocalCLBExtraColors.current.Soft)
                     .padding(8.dp)
             ){
-                Text(text = data.title,
+                Text(text = movie.title,
                     style = CLBTypography.h4,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis)
@@ -45,15 +47,12 @@ fun MovieDefaultItem(data: Result) {
                 .padding(8.dp)
         ) {
             Card(
-                Modifier
-                    .width(55.dp)
-                    .height(24.dp),
+                Modifier.padding(top = 8.dp),
                 backgroundColor = LocalCLBExtraColors.current.Soft,
                 contentColor = LocalCLBExtraColors.current.Soft,
-                shape = RoundedCornerShape(10.dp)
-            ){
-                Row(
-                    Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Row(Modifier.width(55.dp).height(24.dp),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -65,7 +64,7 @@ fun MovieDefaultItem(data: Result) {
                     )
                     Spacer(Modifier.width(5.dp))
                     Text(
-                        text = data.vote_average.toString(),
+                        text = movie.vote_average.toString(),
                         textAlign = TextAlign.End,
                         style = CLBTypography.body2,
                         color = LocalCLBExtraColors.current.Orange,
@@ -99,3 +98,4 @@ fun MovieDefaultItemPreview(){
 }
 
 //TODO Add transparency to grades
+//TODO Mistake on scroll upcoming movies

@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.CinemaSearcher" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+
     </style>
 
     <!-- Splash Screen -->
