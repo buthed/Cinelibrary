@@ -157,7 +157,7 @@ val CLBTypography: Typography
             fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium, color = Color.White
         ),
         subtitle1 = baseTextStyle.copy(
-            fontSize = 12.sp, lineHeight = 16.sp
+            fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium, color = LocalCLBExtraColors.current.Gray
         ),
         subtitle2 = baseTextStyle.copy(
             fontSize = 10.sp, lineHeight = 14.sp, fontWeight = FontWeight.Medium, color = LocalCLBExtraColors.current.Gray

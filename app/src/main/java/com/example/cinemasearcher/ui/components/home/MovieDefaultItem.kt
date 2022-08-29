@@ -47,15 +47,12 @@ fun MovieDefaultItem(movie: Result) {
                 .padding(8.dp)
         ) {
             Card(
-                Modifier
-                    .width(55.dp)
-                    .height(24.dp),
+                Modifier.padding(top = 8.dp),
                 backgroundColor = LocalCLBExtraColors.current.Soft,
                 contentColor = LocalCLBExtraColors.current.Soft,
-                shape = RoundedCornerShape(10.dp)
-            ){
-                Row(
-                    Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Row(Modifier.width(55.dp).height(24.dp),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
