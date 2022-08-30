@@ -10,6 +10,7 @@ import com.example.cinemasearcher.presentation.ui.SplashScreen
 import com.example.cinemasearcher.presentation.ui.home.HomeScreen
 import com.example.cinemasearcher.presentation.ui.main.MainScreen
 import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
+import com.example.cinemasearcher.presentation.ui.movieDetails.MovieDetailsScreen
 
 @Composable
 fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
@@ -25,7 +26,7 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
             SplashScreen(navController = navController,viewModel)
         }
         composable(NavItem.Home.navRoute) {
-            HomeScreen(viewModel)
+            HomeScreen(navController = navController,viewModel)
         }
         composable(NavItem.Search.navRoute) {
             AppScreen(text = "Search Screen")
@@ -35,6 +36,9 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
         }
         composable(NavItem.Profile.navRoute) {
             AppScreen(text = "Profile Screen")
+        }
+        composable(NavItem.MovieDetails.navRoute+"{movieId}") { backStackEntry ->
+            MovieDetailsScreen(viewModel, backStackEntry.arguments?.getInt("movieId")?: 555)
         }
     }
 }

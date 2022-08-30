@@ -8,12 +8,14 @@ import com.example.cinemasearcher.domain.models.entites.GenresResult
 import com.example.cinemasearcher.domain.models.entites.Movie
 import com.example.cinemasearcher.domain.models.entites.PopularMoviesResult
 import com.example.cinemasearcher.domain.models.entites.UpcomingMoviesResult
+import kotlinx.coroutines.flow.MutableStateFlow
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiTMDBService {
 
-    @GET("/3/movie/550?api_key=1cdc07942d44ead0f1079d449b6760a3")
+    @GET("/3/movie/550?api_key=$TMDB_API_KEY")
     suspend fun getMovie(): Response<Movie>
 
     @GET(TMDB_API_GENRES+TMDB_API_KEY)

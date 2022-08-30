@@ -1,10 +1,13 @@
 package com.example.cinemasearcher.presentation.components.home
 
+import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -13,20 +16,26 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.domain.models.ApiConstants
 import com.example.cinemasearcher.domain.models.entites.Result
+import com.example.cinemasearcher.presentation.NavItem
 import com.example.cinemasearcher.presentation.theme.CLBTypography
+import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun UpcomingViewPager(data: List<Result>) {
+fun UpcomingViewPager(data: List<Result>, viewModel: HomeViewModel, navController: NavController) {
+
     val pageCount = data.size
     val startIndex = data.size / 2
     val pagerState = rememberPagerState(initialPage = startIndex)
@@ -37,27 +46,35 @@ fun UpcomingViewPager(data: List<Result>) {
         contentPadding = PaddingValues(horizontal = 40.dp),
     ) { page ->
 
-        UpcomingItem(Modifier.fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .graphicsLayer {
-                val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
+        UpcomingItem(
+            Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp))
+                .graphicsLayer {
+                    val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
 
-                lerp(
-                    start = 0.85f,
-                    stop = 1f,
-                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                ).also { scale ->
-                    scaleX = scale
-                    scaleY = scale
+                    lerp(
+                        start = 0.85f,
+                        stop = 1f,
+                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                    ).also { scale ->
+                        scaleX = scale
+                        scaleY = scale
+                    }
+
+                    alpha = lerp(
+                        start = 0.5f,
+                        stop = 1f,
+                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                    )
                 }
+                .clickable {
+                    Log.d("checkDataM", "ID: ${data[page].id} title: ${data[page].original_title}")
 
-                alpha = lerp(
-                    start = 0.5f,
-                    stop = 1f,
-                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                )
-            },
-            data[page]
+
+                    navController.navigate(NavItem.MovieDetails.navRoute + "${data[page].id}")
+                },
+            data[page],
         )
     }
 }
@@ -72,7 +89,10 @@ fun UpcomingItem(modifier: Modifier, movie: Result) {
             contentScale = ContentScale.FillWidth,
         )
         Box(
-            Modifier.fillMaxWidth().heightIn(min = 150.dp).padding(16.dp),
+            Modifier
+                .fillMaxWidth()
+                .heightIn(min = 150.dp)
+                .padding(16.dp),
             contentAlignment = Alignment.BottomStart){
             Column(
                 verticalArrangement = Arrangement.Bottom,
@@ -103,8 +123,10 @@ fun UpcomingItemPreview() {
         video=false,
         vote_average=6.8,
         vote_count=2034)
-    UpcomingItem(Modifier.fillMaxWidth()
-        .clip(RoundedCornerShape(16.dp)), item)
+    UpcomingItem(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp)), item)
 }
 
 

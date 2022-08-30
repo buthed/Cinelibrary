@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.presentation.components.home.CategoriesItem
 import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
@@ -25,14 +27,14 @@ import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 import com.example.cinemasearcher.presentation.theme.clbLightExtraColors
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     val movie = viewModel.movie.observeAsState().value
     val genres = viewModel.genres.observeAsState().value
     val popularMovies = viewModel.popularMovies.observeAsState().value
     val upcomingMovies = viewModel.upcomingMovies.observeAsState().value
 
     Log.d("checkDataM", "ID: ${movie?.id} title: ${movie?.original_title}" )
-    Log.d("checkDataM", "popularMovies: ${popularMovies?.results?.get(0)}" )
+//    Log.d("checkDataM", "popularMovies: ${popularMovies?.results?.get(0)}" )
     Log.d("checkDataM", "upcomingMovies: ${upcomingMovies?.results?.get(0)}" )
 
     Box(
@@ -51,7 +53,12 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ){
-                if (upcomingMovies!=null) UpcomingViewPager(upcomingMovies.results)
+                if (upcomingMovies!=null) {
+                    UpcomingViewPager(upcomingMovies.results,
+                        viewModel,
+                        navController
+                    )
+                }
                 Spacer(Modifier.height(12.dp))
                 NewsSelector()
             }
