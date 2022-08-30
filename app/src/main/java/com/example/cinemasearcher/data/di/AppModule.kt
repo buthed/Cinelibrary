@@ -1,7 +1,7 @@
 package com.example.cinemasearcher.data.di
 
-import com.example.cinemasearcher.data.model.ApiConstants
-import com.example.cinemasearcher.data.network.ApiService
+import com.example.cinemasearcher.domain.models.ApiConstants
+import com.example.cinemasearcher.data.network.ApiTMDBService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,10 +16,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit() : ApiService =
+    fun provideRetrofit() : ApiTMDBService =
         Retrofit.Builder()
             .baseUrl(ApiConstants.TMDB_API_CINEMA_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiService::class.java)
+            .create(ApiTMDBService::class.java)
 }

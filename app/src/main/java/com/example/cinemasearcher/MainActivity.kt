@@ -12,8 +12,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.cinemasearcher.navigation.NavHost
-import com.example.cinemasearcher.ui.theme.CLBTheme
-import com.example.cinemasearcher.viewmodel.HomeViewModel
+import com.example.cinemasearcher.presentation.theme.CLBTheme
+import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
