@@ -1,6 +1,8 @@
 package com.example.cinemasearcher.presentation.ui.movieDetails
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
@@ -20,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_IMAGE_PATH
+import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
 import com.example.cinemasearcher.presentation.components.movieDetails.ButtonsTab
 import com.example.cinemasearcher.presentation.components.movieDetails.CastAndCrewRow
 import com.example.cinemasearcher.presentation.components.movieDetails.InfoTab
@@ -33,6 +36,8 @@ fun MovieDetailsScreen(movieId: String) {
     viewModel.init(movieId.toInt())
     val movie =  viewModel.movie.observeAsState().value
     val credits = viewModel.credits.observeAsState().value
+    val similar = viewModel.similar.observeAsState().value
+
     if (movie!= null) {
        Surface(Modifier.fillMaxSize()) {
            MovieDetailsBackground(movie)
@@ -79,6 +84,17 @@ fun MovieDetailsScreen(movieId: String) {
                Text(text = stringResource(id = R.string.movie_gallery),
                    Modifier.padding(top = 24.dp),
                    style = CLBTypography.h4)
+               if (similar!=null) {
+                   Text(text = stringResource(id = R.string.movie_similar_movies),
+                       Modifier.padding(top = 24.dp),
+                       style = CLBTypography.h4)
+                   LazyRow(Modifier.padding(top = 16.dp)){
+                       items(similar.results) { item->
+                           MovieDefaultItem(item)
+                           Spacer(Modifier.width(12.dp))
+                       }
+                   }
+               }
            }
        }
     }

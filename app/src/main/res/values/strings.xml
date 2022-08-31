@@ -21,5 +21,6 @@
     <string name="movie_gallery">Gallery</string>
     <string name="movie_distribution">Distribution</string>
     <string name="movie_play">Play</string>
+    <string name="movie_similar_movies">Similar movies</string>
 
 </resources>

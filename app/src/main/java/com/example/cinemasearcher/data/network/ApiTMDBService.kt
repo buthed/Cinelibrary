@@ -6,6 +6,7 @@ import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_GENRES
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_KEY
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_MOVIE
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_POPULAR
+import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_SIMILAR_MOVIES
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_UPCOMING
 import com.example.cinemasearcher.domain.models.entites.*
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,6 +28,9 @@ interface ApiTMDBService {
     @GET(TMDB_API_UPCOMING+TMDB_API_KEY)
     suspend fun getUpcomingMovies(): UpcomingMoviesResult
 
-    @GET(TMDB_API_CAST+ TMDB_API_KEY)
+    @GET(TMDB_API_CAST+TMDB_API_KEY)
     suspend fun getCredits(@Path("movie_id") movie_id: Int): Credits
+
+    @GET(TMDB_API_SIMILAR_MOVIES+TMDB_API_KEY)
+    suspend fun getSimilarMovies(@Path("movie_id") movie_id: Int): PopularMoviesResult
 }

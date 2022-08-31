@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemasearcher.domain.models.entites.Credits
 import com.example.cinemasearcher.domain.models.entites.Movie
+import com.example.cinemasearcher.domain.models.entites.PopularMoviesResult
 import com.example.cinemasearcher.domain.repositories.movie.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flow
@@ -26,12 +27,20 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
     val credits: LiveData<Credits>
         get() = _credits
 
+    private val _similar = MutableLiveData<PopularMoviesResult>()
+    val similar: LiveData<PopularMoviesResult>
+        get() = _similar
+
     private suspend fun fetchMovie(movieId: Int) = flow {
         emit(repository.getMovie(movieId))
     }
 
     private suspend fun fetchCredits(movieId: Int) = flow {
         emit(repository.getCredits(movieId))
+    }
+
+    private suspend fun fetchSimilar(movieId: Int) = flow {
+        emit(repository.getSimilarMovies(movieId))
     }
 
 
@@ -51,9 +60,18 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
         }
     }
 
+    private fun getSimilar(movieId: Int) {
+        viewModelScope.launch {
+            fetchSimilar(movieId).collect{
+                _similar.postValue(it)
+            }
+        }
+    }
+
     fun init(movieId: Int){
         this.movieId = movieId
         getMovie(movieId)
         getCredits(movieId)
+        getSimilar(movieId)
     }
 }
