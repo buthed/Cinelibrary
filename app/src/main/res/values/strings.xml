@@ -7,6 +7,7 @@
     <string name="search">Search</string>
     <string name="downloads">Downloads</string>
     <string name="profile">Profile</string>
+    <string name="movieDetails">movieDetails/$movieId</string>
 
     // Home
     <string name="home_categories">Categories</string>
@@ -20,5 +21,6 @@
     <string name="movie_gallery">Gallery</string>
     <string name="movie_distribution">Distribution</string>
     <string name="movie_play">Play</string>
+    <string name="movie_similar_movies">Similar movies</string>
 
 </resources>

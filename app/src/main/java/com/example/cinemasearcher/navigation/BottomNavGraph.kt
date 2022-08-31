@@ -5,11 +5,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.cinemasearcher.AppScreen
-import com.example.cinemasearcher.ui.NavItem
-import com.example.cinemasearcher.ui.screens.SplashScreen
-import com.example.cinemasearcher.ui.screens.home.HomeScreen
-import com.example.cinemasearcher.ui.screens.main.MainScreen
-import com.example.cinemasearcher.viewmodel.HomeViewModel
+import com.example.cinemasearcher.presentation.NavItem
+import com.example.cinemasearcher.presentation.ui.SplashScreen
+import com.example.cinemasearcher.presentation.ui.home.HomeScreen
+import com.example.cinemasearcher.presentation.ui.main.MainScreen
+import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
+import com.example.cinemasearcher.presentation.ui.movieDetails.MovieDetailsScreen
 
 @Composable
 fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
@@ -25,7 +26,7 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
             SplashScreen(navController = navController,viewModel)
         }
         composable(NavItem.Home.navRoute) {
-            HomeScreen(viewModel)
+            HomeScreen(navController = navController,viewModel)
         }
         composable(NavItem.Search.navRoute) {
             AppScreen(text = "Search Screen")
@@ -35,6 +36,10 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
         }
         composable(NavItem.Profile.navRoute) {
             AppScreen(text = "Profile Screen")
+        }
+        composable(route = "MovieDetails/{movieId}") { backStackEntry ->
+            MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
+                navController = navController)
         }
     }
 }
