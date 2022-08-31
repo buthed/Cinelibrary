@@ -34,7 +34,7 @@ import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun UpcomingViewPager(data: List<Result>, viewModel: HomeViewModel, navController: NavController) {
+fun UpcomingViewPager(data: List<Result>, navController: NavController) {
 
     val pageCount = data.size
     val startIndex = data.size / 2

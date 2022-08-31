@@ -19,8 +19,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
+import com.example.cinemasearcher.domain.models.ApiConstants
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
 import com.example.cinemasearcher.presentation.components.movieDetails.ButtonsTab
@@ -31,12 +33,13 @@ import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun MovieDetailsScreen(movieId: String) {
+fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
     val viewModel = hiltViewModel<MovieDetailsViewModel>()
     viewModel.init(movieId.toInt())
     val movie =  viewModel.movie.observeAsState().value
     val credits = viewModel.credits.observeAsState().value
     val similar = viewModel.similar.observeAsState().value
+    val gallery = viewModel.gallery.observeAsState().value
 
     if (movie!= null) {
        Surface(Modifier.fillMaxSize()) {
@@ -84,13 +87,25 @@ fun MovieDetailsScreen(movieId: String) {
                Text(text = stringResource(id = R.string.movie_gallery),
                    Modifier.padding(top = 24.dp),
                    style = CLBTypography.h4)
+               if (gallery!=null) {
+                   LazyRow(Modifier.padding(top = 16.dp)){
+                       items(gallery.backdrops) { item ->
+                           AsyncImage(
+                               modifier = Modifier.height(90.dp),
+                               model = TMDB_IMAGE_PATH+item.file_path,
+                               contentDescription = "",
+                               contentScale = ContentScale.FillWidth)
+                           Spacer(Modifier.width(10.dp))
+                       }
+                   }
+               }
                if (similar!=null) {
                    Text(text = stringResource(id = R.string.movie_similar_movies),
                        Modifier.padding(top = 24.dp),
                        style = CLBTypography.h4)
                    LazyRow(Modifier.padding(top = 16.dp)){
                        items(similar.results) { item->
-                           MovieDefaultItem(item)
+                           MovieDefaultItem(item, navController)
                            Spacer(Modifier.width(12.dp))
                        }
                    }

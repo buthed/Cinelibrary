@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,7 +52,6 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
             ){
                 if (upcomingMovies!=null) {
                     UpcomingViewPager(upcomingMovies.results,
-                        viewModel,
                         navController
                     )
                 }
@@ -90,7 +88,9 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
                 LazyRow(Modifier.padding(top = 16.dp)){
                     if (popularMovies != null) {
                         items(popularMovies.results) { item->
-                            MovieDefaultItem(item)
+                            MovieDefaultItem(item,
+                                navController
+                            )
                             Spacer(Modifier.width(12.dp))
                         }
                     }
@@ -109,4 +109,5 @@ fun HomeScreenPreview() {
 //TODO Add scroll HomeScreen
 //TODO Add All button for categories
 //TODO Add ViewPager on Upcoming Movies
+//TODO Optimize titles
 

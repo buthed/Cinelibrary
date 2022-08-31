@@ -1,6 +1,8 @@
 package com.example.cinemasearcher.presentation.components.home
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -15,16 +17,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants
 import com.example.cinemasearcher.domain.models.entites.Result
 import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
+import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 
 @Composable
-fun MovieDefaultItem(movie: Result) {
-    Box(Modifier.width(150.dp).clip(RoundedCornerShape(8.dp))) {
+fun MovieDefaultItem(movie: Result, navController: NavController) {
+    Box(Modifier.width(150.dp).clip(RoundedCornerShape(8.dp)).clickable {
+        Log.d("checkDataM", "ID: ${movie.id} title: ${movie.original_title}")
+        navController.navigate("MovieDetails/${movie.id}")
+    }) {
         Column() {
             AsyncImage(model = ApiConstants.TMDB_IMAGE_PATH +movie.poster_path,
                 contentDescription = movie.title)
@@ -75,27 +82,27 @@ fun MovieDefaultItem(movie: Result) {
     }
 }
 
-@Preview
-@Composable
-fun MovieDefaultItemPreview(){
-    val item = Result(
-        adult=false,
-        backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
-        genre_ids= listOf(28, 12, 14),
-        id=616037,
-        original_language="en",
-        original_title="Thor: Love and Thunder, overview=After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor Odinson enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Relatively Mighty Girl Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.",
-        overview = "",
-        popularity=7172.102,
-        poster_path="/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
-        release_date= "2022-07-06",
-        title="Thor: Love and Thunder",
-        video=false,
-        vote_average=6.8,
-        vote_count=2034)
-
-    MovieDefaultItem(item)
-}
+//@Preview
+//@Composable
+//fun MovieDefaultItemPreview(){
+//    val item = Result(
+//        adult=false,
+//        backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
+//        genre_ids= listOf(28, 12, 14),
+//        id=616037,
+//        original_language="en",
+//        original_title="Thor: Love and Thunder, overview=After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor Odinson enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Relatively Mighty Girl Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.",
+//        overview = "",
+//        popularity=7172.102,
+//        poster_path="/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
+//        release_date= "2022-07-06",
+//        title="Thor: Love and Thunder",
+//        video=false,
+//        vote_average=6.8,
+//        vote_count=2034)
+//
+//    MovieDefaultItem(item, viewModel, navController)
+//}
 
 //TODO Add transparency to grades
 //TODO Mistake on scroll upcoming movies

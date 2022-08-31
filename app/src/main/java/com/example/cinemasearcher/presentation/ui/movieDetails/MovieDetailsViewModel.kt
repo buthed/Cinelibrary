@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemasearcher.domain.models.entites.Credits
+import com.example.cinemasearcher.domain.models.entites.Gallery
 import com.example.cinemasearcher.domain.models.entites.Movie
-import com.example.cinemasearcher.domain.models.entites.PopularMoviesResult
+import com.example.cinemasearcher.domain.models.entites.MoviesListResult
 import com.example.cinemasearcher.domain.repositories.movie.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flow
@@ -27,9 +28,13 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
     val credits: LiveData<Credits>
         get() = _credits
 
-    private val _similar = MutableLiveData<PopularMoviesResult>()
-    val similar: LiveData<PopularMoviesResult>
+    private val _similar = MutableLiveData<MoviesListResult>()
+    val similar: LiveData<MoviesListResult>
         get() = _similar
+
+    private val _gallery =MutableLiveData<Gallery>()
+    val gallery: LiveData<Gallery>
+        get() = _gallery
 
     private suspend fun fetchMovie(movieId: Int) = flow {
         emit(repository.getMovie(movieId))
@@ -43,6 +48,9 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
         emit(repository.getSimilarMovies(movieId))
     }
 
+    private suspend fun fetchGallery(movieId: Int) = flow {
+        emit(repository.getGallery(movieId))
+    }
 
     private fun getMovie(movieId: Int) {
         viewModelScope.launch {
@@ -68,10 +76,19 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
         }
     }
 
+    private fun getGallery(movieId: Int) {
+        viewModelScope.launch {
+            fetchGallery(movieId).collect{
+                _gallery.postValue(it)
+            }
+        }
+    }
+
     fun init(movieId: Int){
         this.movieId = movieId
         getMovie(movieId)
         getCredits(movieId)
         getSimilar(movieId)
+        getGallery(movieId)
     }
 }

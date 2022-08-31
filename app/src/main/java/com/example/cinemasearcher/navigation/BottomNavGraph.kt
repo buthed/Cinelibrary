@@ -38,7 +38,8 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
             AppScreen(text = "Profile Screen")
         }
         composable(route = "MovieDetails/{movieId}") { backStackEntry ->
-            MovieDetailsScreen(backStackEntry.arguments?.getString("movieId")?: "555")
+            MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
+                navController = navController)
         }
     }
 }

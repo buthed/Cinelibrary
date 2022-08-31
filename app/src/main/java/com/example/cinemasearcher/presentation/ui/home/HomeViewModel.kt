@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemasearcher.domain.models.entites.GenresResult
-import com.example.cinemasearcher.domain.models.entites.PopularMoviesResult
-import com.example.cinemasearcher.domain.models.entites.UpcomingMoviesResult
+import com.example.cinemasearcher.domain.models.entites.MoviesListResult
 import com.example.cinemasearcher.domain.repositories.home.HomeRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,12 +20,12 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
     val genres: LiveData<GenresResult>
         get() = _genres
 
-    private val _upcomingMovies = MutableLiveData<UpcomingMoviesResult>()
-    val upcomingMovies: LiveData<UpcomingMoviesResult>
+    private val _upcomingMovies = MutableLiveData<MoviesListResult>()
+    val upcomingMovies: LiveData<MoviesListResult>
         get() = _upcomingMovies
 
-    private val _popularMovies = MutableLiveData<PopularMoviesResult>()
-    val popularMovies: LiveData<PopularMoviesResult>
+    private val _popularMovies = MutableLiveData<MoviesListResult>()
+    val popularMovies: LiveData<MoviesListResult>
         get() = _popularMovies
 
     init {

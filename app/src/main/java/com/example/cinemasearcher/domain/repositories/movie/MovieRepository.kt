@@ -10,4 +10,6 @@ class MovieRepository @Inject constructor(private val apiService: ApiTMDBService
     suspend fun getCredits(movie_id: Int) = apiService.getCredits(movie_id)
 
     suspend fun getSimilarMovies(movie_id: Int) = apiService.getSimilarMovies(movie_id)
+
+    suspend fun getGallery(movie_id: Int) = apiService.getGallery(movie_id)
 }
