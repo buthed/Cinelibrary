@@ -70,9 +70,7 @@ fun UpcomingViewPager(data: List<Result>, viewModel: HomeViewModel, navControlle
                 }
                 .clickable {
                     Log.d("checkDataM", "ID: ${data[page].id} title: ${data[page].original_title}")
-
-
-                    navController.navigate(NavItem.MovieDetails.navRoute + "${data[page].id}")
+                    navController.navigate("MovieDetails/${data[page].id}")
                 },
             data[page],
         )

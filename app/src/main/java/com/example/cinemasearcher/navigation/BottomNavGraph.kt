@@ -37,8 +37,8 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
         composable(NavItem.Profile.navRoute) {
             AppScreen(text = "Profile Screen")
         }
-        composable(NavItem.MovieDetails.navRoute+"{movieId}") { backStackEntry ->
-            MovieDetailsScreen(viewModel, backStackEntry.arguments?.getInt("movieId")?: 555)
+        composable(route = "MovieDetails/{movieId}") { backStackEntry ->
+            MovieDetailsScreen(backStackEntry.arguments?.getString("movieId")?: "555")
         }
     }
 }

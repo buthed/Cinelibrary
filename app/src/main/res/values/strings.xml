@@ -7,6 +7,7 @@
     <string name="search">Search</string>
     <string name="downloads">Downloads</string>
     <string name="profile">Profile</string>
+    <string name="movieDetails">movieDetails/$movieId</string>
 
     // Home
     <string name="home_categories">Categories</string>

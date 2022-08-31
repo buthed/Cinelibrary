@@ -15,5 +15,5 @@ sealed class NavItem(
     object Search: NavItem(R.string.search,R.drawable.ic_search, NAV_SEARCH)
     object Downloads: NavItem(R.string.downloads,R.drawable.ic_download, NAV_DOWNLOADS)
     object Profile: NavItem(R.string.profile,R.drawable.ic_profile, NAV_PROFILE)
-    object MovieDetails: NavItem(R.string.profile,navRoute = NAV_MOVIE)
+    object MovieDetails: NavItem(R.string.movieDetails,navRoute = NAV_MOVIE)
 }

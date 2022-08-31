@@ -18,10 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: ApiRepository): ViewModel() {
 
-    private val _movie = MutableLiveData<Movie>()
-    val movie: LiveData<Movie>
-        get() = _movie
-
     private val _genres = MutableLiveData<GenresResult>()
     val genres: LiveData<GenresResult>
         get() = _genres
@@ -35,14 +31,9 @@ class HomeViewModel @Inject constructor(private val repository: ApiRepository): 
         get() = _popularMovies
 
     init {
-        getMovie()
         getGenres()
         getUpcomingMovies()
         getPopularMovies()
-    }
-
-    private suspend fun fetchMovie() = flow {
-        emit(repository.getMovie())
     }
 
     private suspend fun fetchGenres() = flow {
@@ -57,14 +48,6 @@ class HomeViewModel @Inject constructor(private val repository: ApiRepository): 
         emit(repository.getPopularMovies())
     }
 
-
-    private fun getMovie() {
-        viewModelScope.launch {
-            fetchMovie().collect{
-                _movie.postValue(it.body())
-            }
-        }
-    }
 
     private fun getGenres() {
         viewModelScope.launch {

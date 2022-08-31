@@ -1,5 +1,6 @@
 package com.example.cinemasearcher.data.network
 
+import androidx.lifecycle.MutableLiveData
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_GENRES
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_KEY
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_API_POPULAR
@@ -15,8 +16,8 @@ import retrofit2.http.Path
 
 interface ApiTMDBService {
 
-    @GET("/3/movie/550?api_key=$TMDB_API_KEY")
-    suspend fun getMovie(): Response<Movie>
+    @GET("/3/movie/{movie_id}?api_key=$TMDB_API_KEY")
+    suspend fun getMovie(@Path("movie_id") movie_id: Int): Response<Movie>
 
     @GET(TMDB_API_GENRES+TMDB_API_KEY)
     suspend fun getGenres(): GenresResult

@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class ApiRepository @Inject constructor(private val apiService: ApiTMDBService) {
 
-    suspend fun getMovie() = apiService.getMovie()
+    suspend fun getMovie(movie_id: Int) = apiService.getMovie(movie_id)
 
     suspend fun getGenres() = apiService.getGenres()
 

@@ -28,13 +28,11 @@ import com.example.cinemasearcher.presentation.theme.clbLightExtraColors
 
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
-    val movie = viewModel.movie.observeAsState().value
     val genres = viewModel.genres.observeAsState().value
     val popularMovies = viewModel.popularMovies.observeAsState().value
     val upcomingMovies = viewModel.upcomingMovies.observeAsState().value
 
-    Log.d("checkDataM", "ID: ${movie?.id} title: ${movie?.original_title}" )
-//    Log.d("checkDataM", "popularMovies: ${popularMovies?.results?.get(0)}" )
+    Log.d("checkDataM", "popularMovies: ${popularMovies?.results?.get(0)}" )
     Log.d("checkDataM", "upcomingMovies: ${upcomingMovies?.results?.get(0)}" )
 
     Box(
