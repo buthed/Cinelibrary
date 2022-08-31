@@ -1,6 +1,5 @@
 package com.example.cinemasearcher.presentation.ui.movieDetails
 
-import android.os.Bundle
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -16,29 +15,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_IMAGE_PATH
-import com.example.cinemasearcher.domain.models.entites.*
 import com.example.cinemasearcher.presentation.components.movieDetails.ButtonsTab
 import com.example.cinemasearcher.presentation.components.movieDetails.CastAndCrewRow
 import com.example.cinemasearcher.presentation.components.movieDetails.InfoTab
 import com.example.cinemasearcher.presentation.components.movieDetails.MovieDetailsBackground
-import com.example.cinemasearcher.presentation.theme.CLBTheme
 import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
-import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 
 @Composable
 fun MovieDetailsScreen(movieId: String) {
     val viewModel = hiltViewModel<MovieDetailsViewModel>()
     viewModel.init(movieId.toInt())
-    val movie =      viewModel.movie.observeAsState().value
-   if (movie!= null) {
+    val movie =  viewModel.movie.observeAsState().value
+    val credits = viewModel.credits.observeAsState().value
+    if (movie!= null) {
        Surface(Modifier.fillMaxSize()) {
            MovieDetailsBackground(movie)
            Column(
@@ -80,13 +75,13 @@ fun MovieDetailsScreen(movieId: String) {
                Text(text = stringResource(id = R.string.movie_cast_and_crew),
                    Modifier.padding(top = 24.dp),
                    style = CLBTypography.h4)
-               CastAndCrewRow(Modifier.padding(top = 16.dp))
+               if (credits!=null) CastAndCrewRow(Modifier.padding(top = 16.dp), credits.cast)
                Text(text = stringResource(id = R.string.movie_gallery),
                    Modifier.padding(top = 24.dp),
                    style = CLBTypography.h4)
            }
        }
-   }
+    }
 }
 
 //@Preview

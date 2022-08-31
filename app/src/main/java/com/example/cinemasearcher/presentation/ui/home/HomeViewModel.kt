@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemasearcher.domain.models.entites.GenresResult
-import com.example.cinemasearcher.domain.models.entites.Movie
 import com.example.cinemasearcher.domain.models.entites.PopularMoviesResult
 import com.example.cinemasearcher.domain.models.entites.UpcomingMoviesResult
-import com.example.cinemasearcher.domain.repositories.home.ApiRepository
+import com.example.cinemasearcher.domain.repositories.home.HomeRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flow
@@ -16,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: ApiRepository): ViewModel() {
+class HomeViewModel @Inject constructor(private val repository: HomeRepository): ViewModel() {
 
     private val _genres = MutableLiveData<GenresResult>()
     val genres: LiveData<GenresResult>
