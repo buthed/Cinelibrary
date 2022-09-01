@@ -30,7 +30,7 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
             HomeScreen(navController = navController,viewModel)
         }
         composable(NavItem.Search.navRoute) {
-            SearchScreen()
+            SearchScreen(navController = navController)
         }
         composable(NavItem.Downloads.navRoute){
             AppScreen(text = "Downloads Screen")
