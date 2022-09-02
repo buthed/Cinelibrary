@@ -16,7 +16,7 @@ import com.example.cinemasearcher.presentation.theme.CLBColors
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun ButtonsTab(modifier: Modifier = Modifier) {
+fun ButtonsTab(modifier: Modifier = Modifier, share: () -> Unit = {}) {
     Row(modifier = modifier,
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -39,7 +39,7 @@ fun ButtonsTab(modifier: Modifier = Modifier) {
         }
         Spacer(Modifier.width(16.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = share,
             Modifier.size(48.dp),
             shape = CircleShape,
             colors = ButtonDefaults.buttonColors(

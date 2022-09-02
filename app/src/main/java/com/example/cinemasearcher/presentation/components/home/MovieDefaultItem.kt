@@ -17,7 +17,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants
@@ -25,6 +27,7 @@ import com.example.cinemasearcher.domain.models.entites.Result
 import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
+import com.example.cinemasearcher.presentation.ui.movieDetails.MovieDetailsViewModel
 
 @Composable
 fun MovieDefaultItem(movie: Result, navController: NavController) {
@@ -82,27 +85,28 @@ fun MovieDefaultItem(movie: Result, navController: NavController) {
     }
 }
 
-//@Preview
-//@Composable
-//fun MovieDefaultItemPreview(){
-//    val item = Result(
-//        adult=false,
-//        backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
-//        genre_ids= listOf(28, 12, 14),
-//        id=616037,
-//        original_language="en",
-//        original_title="Thor: Love and Thunder, overview=After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor Odinson enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Relatively Mighty Girl Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.",
-//        overview = "",
-//        popularity=7172.102,
-//        poster_path="/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
-//        release_date= "2022-07-06",
-//        title="Thor: Love and Thunder",
-//        video=false,
-//        vote_average=6.8,
-//        vote_count=2034)
-//
-//    MovieDefaultItem(item, viewModel, navController)
-//}
+@Preview
+@Composable
+fun MovieDefaultItemPreview(){
+    val navController = rememberNavController()
+    val item = Result(
+        adult=false,
+        backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
+        genre_ids= listOf(28, 12, 14),
+        id=616037,
+        original_language="en",
+        original_title="Thor: Love and Thunder, overview=After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor Odinson enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Relatively Mighty Girl Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.",
+        overview = "",
+        popularity=7172.102,
+        poster_path="/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
+        release_date= "2022-07-06",
+        title="Thor: Love and Thunder",
+        video=false,
+        vote_average=6.8,
+        vote_count=2034)
+
+    MovieDefaultItem(item, navController)
+}
 
 //TODO Add transparency to grades
 //TODO Mistake on scroll upcoming movies
