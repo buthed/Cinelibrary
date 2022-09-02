@@ -28,6 +28,7 @@ fun InfoTab(movie: Movie){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Spacer(Modifier.height(8.dp))
         Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
             InfoTabIcon(painterResource(id = R.drawable.ic_calendar), "")
             InfoTabText(text = movie.release_date.dropLast(6))
@@ -44,7 +45,10 @@ fun InfoTab(movie: Movie){
             contentColor = LocalCLBExtraColors.current.Soft,
             shape = RoundedCornerShape(10.dp)
         ) {
-            Row(Modifier.width(55.dp).height(24.dp),
+            Row(
+                Modifier
+                    .width(55.dp)
+                    .height(24.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -56,7 +60,7 @@ fun InfoTab(movie: Movie){
                 )
                 Spacer(Modifier.width(5.dp))
                 Text(
-                    text = movie.vote_average.toString(),
+                    text = movie.vote_average.toString().take(3),
                     textAlign = TextAlign.End,
                     style = CLBTypography.body2,
                     color = LocalCLBExtraColors.current.Orange,

@@ -33,6 +33,7 @@ import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
 import com.example.cinemasearcher.presentation.components.movieDetails.*
 import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
+import com.example.cinemasearcher.presentation.theme.clbLightExtraColors
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -88,13 +89,29 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                     color = LocalCLBExtraColors.current.Gray,
                     maxLines = 5,
                     overflow = TextOverflow.Clip)
-                Text(text = stringResource(id = R.string.movie_cast_and_crew),
-                    Modifier.padding(top = 24.dp),
-                    style = CLBTypography.h4)
+                Row(Modifier.fillMaxWidth().padding(top = 24.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(text = stringResource(id = R.string.movie_cast_and_crew),
+                        style = CLBTypography.h4)
+                    Text(
+                        text = stringResource(id = R.string.home_see_all),
+                        style = CLBTypography.h4,
+                        color = clbLightExtraColors.BlueAccent)
+                }
                 if (credits!=null) CastAndCrewRow(Modifier.padding(top = 16.dp), credits.cast)
-                Text(text = stringResource(id = R.string.movie_gallery),
-                    Modifier.padding(top = 24.dp),
-                    style = CLBTypography.h4)
+                Row(Modifier.fillMaxWidth().padding(top = 24.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(text = stringResource(id = R.string.movie_gallery),
+                        style = CLBTypography.h4)
+                    Text(
+                        text = stringResource(id = R.string.home_see_all),
+                        style = CLBTypography.h4,
+                        color = clbLightExtraColors.BlueAccent)
+                }
                 if (gallery!=null) {
                     LazyRow(Modifier.padding(top = 16.dp)){
                         items(gallery.backdrops) { item ->
