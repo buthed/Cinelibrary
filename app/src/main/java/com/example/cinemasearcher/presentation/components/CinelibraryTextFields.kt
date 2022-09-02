@@ -20,9 +20,9 @@ import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 @Composable
 fun ComposablePlaceholdersPreview() {
     Column() {
-        CustomTextField(input = "123", onValueChange = {}, label = "PlaceHolder")
+        CustomTextField(input = "123", onValueChange = {}, label = "PlaceHolder", value = "")
         AppealDropDownMenu(input = "", onValueChange = {}, label = "Dropdown")
-        SearchField(input = "", onValueChange = {}, label = "Dropdown")
+        SearchField(input = "", onValueChange = {}, label = "Dropdown", value = "")
     }
 }
 
@@ -32,6 +32,7 @@ fun SearchField(
         .fillMaxWidth()
         .height(35.dp),
     input: String,
+    value: String,
     onValueChange: (String) -> Unit,
     label: String,
 ){
@@ -49,6 +50,7 @@ fun SearchField(
                 modifier = Modifier
                     .height(50.dp),
                 input = input,
+                value = value,
                 onValueChange = onValueChange,
                 label = label
             )
@@ -63,6 +65,7 @@ fun CustomTextField(
         .fillMaxWidth()
         .height(50.dp),
     input: String,
+    value: String,
     onValueChange: (String) -> Unit,
     label: String,
 ) {
@@ -70,11 +73,12 @@ fun CustomTextField(
 
     TextField(
         modifier = modifier,
-        value = inputs,
+        value = value,
         onValueChange = onValueChange,
         shape = RoundedCornerShape(100),
         textStyle = TextStyle(color = LocalCLBExtraColors.current.Gray,),
         placeholder = { Text(label) },
+        maxLines = 1,
         colors = TextFieldDefaults.textFieldColors(
             textColor = LocalCLBExtraColors.current.Gray,
             disabledTextColor = LocalCLBExtraColors.current.Gray,
