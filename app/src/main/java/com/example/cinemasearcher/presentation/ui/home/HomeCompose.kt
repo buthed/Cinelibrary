@@ -41,7 +41,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     ) {
         Column(Modifier.padding(top = 24.dp)) {
             Box(Modifier.padding(horizontal = 24.dp)){
-                SearchField(input = "", onValueChange = {}, label = "Search a title")
+                SearchField(input = "", onValueChange = {}, label = "Search a title", value = "")
             }
             Column(
                 Modifier

@@ -29,8 +29,8 @@ import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun SearchItem(navController: NavHostController) {
-    val movie = Movie(
+fun SearchItem(navController: NavHostController, movie: Result) {
+    val movie1 = Movie(
         adult=false,
         backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
         belongs_to_collection = "1",
@@ -116,24 +116,24 @@ fun SearchItem(navController: NavHostController) {
                 InfoTabText(text = movie.release_date.dropLast(6))
             }
             Spacer(Modifier.height(12.dp))
-            Row() {
-                InfoTabIcon(painterResource(id = R.drawable.ic_clock), "")
-                InfoTabText(text = movie.runtime.toString() + " Minutes")
-            }
-            Spacer(Modifier.height(12.dp))
-            Row() {
-                InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
-                InfoTabText(text = movie.genres[0].name)
-                InfoTabSeparator()
-                InfoTabText(text = "Movie")
-            }
+//            Row() {
+//                InfoTabIcon(painterResource(id = R.drawable.ic_clock), "")
+//                InfoTabText(text = movie.runtime.toString() + " Minutes")
+//            }
+//            Spacer(Modifier.height(12.dp))
+//            Row() {
+//                InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
+//                InfoTabText(text = movie.genres[0].name)
+//                InfoTabSeparator()
+//                InfoTabText(text = "Movie")
+//            }
         }
     }
 }
 
-@Preview
-@Composable
-fun SearchItemPreview() {
-    val navController = rememberNavController()
-    SearchItem(navController)
-}
+//@Preview
+//@Composable
+//fun SearchItemPreview() {
+//    val navController = rememberNavController()
+//    SearchItem(navController, item)
+//}
