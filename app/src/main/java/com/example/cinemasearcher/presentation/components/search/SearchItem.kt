@@ -56,7 +56,7 @@ fun SearchItem(navController: NavHostController, movie: Result) {
         video=false,
         vote_average=6.8,
         vote_count=2034)
-    Row(Modifier.clickable {
+    Row(Modifier.fillMaxWidth().clickable {
         Log.d("checkDataM", "ID: ${movie.id} title: ${movie.original_title}")
         navController.navigate("MovieDetails/${movie.id}")
     }) {
@@ -113,7 +113,7 @@ fun SearchItem(navController: NavHostController, movie: Result) {
             Spacer(Modifier.height(12.dp))
             Row() {
                 InfoTabIcon(painterResource(id = R.drawable.ic_calendar), "")
-                InfoTabText(text = movie.release_date.dropLast(6))
+                if (movie.release_date!=null) InfoTabText(text = movie.release_date.dropLast(6))
             }
             Spacer(Modifier.height(12.dp))
 //            Row() {

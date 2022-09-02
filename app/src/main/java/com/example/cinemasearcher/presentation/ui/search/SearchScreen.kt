@@ -45,7 +45,7 @@ fun SearchScreen(navController: NavHostController) {
                 input = query,
                 onValueChange = {
                     query = it
-                    viewModel.init(query)
+                    if (query.isNotEmpty()) viewModel.init(query)
                 }, label = stringResource(
                     id = R.string.search_input_label
                 ))
@@ -64,7 +64,7 @@ fun SearchScreen(navController: NavHostController) {
                     onClick ={ chosenCategory = R.string.search_category_actors.toString()})
             }
             Spacer(Modifier.height(32.dp))
-            if (searchResult!=null) {
+            if (searchResult!=null && query.isNotEmpty()) {
                 LazyColumn{
                     items(searchResult.results) {item ->
                         SearchItem(navController,item)
