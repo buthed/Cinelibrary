@@ -29,4 +29,6 @@
     <string name="search_category_all">All</string>
     <string name="search_category_movies">Movies</string>
     <string name="search_category_actors">Actors</string>
+    <string name="search_not_found_title">We are sorry, we can \nnot find the movie :(</string>
+    <string name="search_not_found_description">Find your movie by Type title, \ncategories, years, etc</string>
 </resources>

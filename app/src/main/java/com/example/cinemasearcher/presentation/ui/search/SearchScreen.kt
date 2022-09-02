@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.cinemasearcher.R
+import com.example.cinemasearcher.presentation.components.search.MovieNotFound
 import com.example.cinemasearcher.presentation.components.search.SearchCategory
 import com.example.cinemasearcher.presentation.components.search.SearchItem
 import com.example.cinemasearcher.presentation.core.SearchField
@@ -64,15 +65,17 @@ fun SearchScreen(navController: NavHostController) {
                     onClick ={ chosenCategory = R.string.search_category_actors.toString()})
             }
             Spacer(Modifier.height(32.dp))
-            if (searchResult!=null && query.isNotEmpty()) {
-                LazyColumn{
-                    items(searchResult.results) {item ->
-                        SearchItem(navController,item)
-                        Spacer(Modifier.height(16.dp))
+            if (searchResult != null && query.isNotEmpty() ) {
+                if (searchResult.results.isEmpty())  MovieNotFound()
+                else {
+                    LazyColumn{
+                        items(searchResult.results) {item ->
+                            SearchItem(navController,item)
+                            Spacer(Modifier.height(16.dp))
+                        }
                     }
                 }
             }
-
         }
 
     }
