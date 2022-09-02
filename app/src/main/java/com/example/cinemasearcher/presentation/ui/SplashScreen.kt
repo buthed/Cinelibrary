@@ -54,7 +54,7 @@ fun Splash(alpha: Float) {
         ) {
             Image(painter = painterResource(id = R.drawable.logo),
                 contentDescription = stringResource(id = R.string.app_name),
-                Modifier.width(150.dp).padding(bottom = 20.dp)
+                Modifier.width(170.dp).padding(bottom = 20.dp)
             )
             Text(
                 text = stringResource(id = R.string.app_name),

@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +23,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.cinemasearcher.presentation.NavItem
+import com.example.cinemasearcher.presentation.theme.CLBColors
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 
 @Composable
@@ -36,23 +38,24 @@ fun BottomBar(navController: NavHostController) {
     val navStackBackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navStackBackEntry?.destination
 
-    Row(
-        modifier = Modifier
-            .padding(start = 10.dp, end = 10.dp, top = 8.dp, bottom = 8.dp)
-            .background(Color.Transparent)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navController = navController
-            )
+    Box(Modifier.background(LocalCLBExtraColors.current.Dark)) {
+        Row(
+            modifier = Modifier
+                .padding(start = 10.dp, end = 10.dp, top = 8.dp, bottom = 8.dp)
+                .background(Color.Transparent)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            screens.forEach { screen ->
+                AddItem(
+                    screen = screen,
+                    currentDestination = currentDestination,
+                    navController = navController
+                )
+            }
         }
     }
-
 }
 
 @Composable
@@ -62,8 +65,8 @@ fun RowScope.AddItem(
     navController: NavHostController
 ) {
     val selected = currentDestination?.hierarchy?.any { it.route == screen.navRoute } == true
-    val color = if (selected) LocalCLBExtraColors.current.Soft
-    else Color.Black.copy(alpha = 0f)
+    val color = if (selected) LocalCLBExtraColors.current.Soft else Color.Black.copy(alpha = 0f)
+    val textAndIconColor = if (selected) LocalCLBExtraColors.current.BlueAccent else LocalCLBExtraColors.current.Gray
 
     Box(
         modifier = Modifier
@@ -83,16 +86,16 @@ fun RowScope.AddItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp),
 
-        ) {
+            ) {
             Icon(
                 painter = painterResource(id = if (selected) screen.icon else screen.icon),
                 contentDescription = "icon",
-                tint = LocalCLBExtraColors.current.Gray
+                tint = textAndIconColor
             )
             AnimatedVisibility(visible = selected) {
                 Text(
                     text = stringResource(id = screen.title),
-                    color = LocalCLBExtraColors.current.Gray
+                    color = textAndIconColor
                 )
             }
         }
