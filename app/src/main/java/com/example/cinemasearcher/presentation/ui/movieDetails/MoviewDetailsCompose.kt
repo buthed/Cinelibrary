@@ -1,14 +1,13 @@
 package com.example.cinemasearcher.presentation.ui.movieDetails
 
-import android.util.Log
 import androidx.compose.animation.*
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -28,7 +27,6 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_IMAGE_PATH
-import com.example.cinemasearcher.domain.models.entites.Result
 import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
 import com.example.cinemasearcher.presentation.components.movieDetails.*
 import com.example.cinemasearcher.presentation.theme.CLBTypography
@@ -58,10 +56,13 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
             ) {
                 Row(
                     Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(painter = painterResource(id = R.drawable.ic_arrow_back), contentDescription = "", tint = Color.White)
+                    Icon(painter = painterResource(id = R.drawable.ic_arrow_back),
+                        contentDescription = "",
+                        Modifier.clickable(onClick = {navController.popBackStack()}),
+                        tint = Color.White,)
                     Text(text = movie.title, style = CLBTypography.h4)
                     Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "", tint = Color.Red)
                 }
@@ -75,13 +76,9 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                     contentScale = ContentScale.FillWidth,
                     alignment = Alignment.TopCenter)
                 InfoTab(movie)
-                ButtonsTab(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 24.dp),
-                    share = {
-                        shareLinksVisibility = true
-                    })
+                ButtonsTab(Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                    share = { shareLinksVisibility = true }
+                )
                 Text(text = stringResource(id = R.string.movie_story_line), style = CLBTypography.h4)
                 Text(text = movie.overview,
                     Modifier.padding(top = 8.dp),
@@ -141,8 +138,10 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
             enter = fadeIn() + scaleIn(),
             exit = fadeOut() + scaleOut()
         ) {
-            ShareLinkToSocialMedia {
-                shareLinksVisibility = false
+            movie?.let {
+                ShareLinkToSocialMedia(closeAction = { shareLinksVisibility = false },
+                    it.homepage
+                )
             }
         }
     }

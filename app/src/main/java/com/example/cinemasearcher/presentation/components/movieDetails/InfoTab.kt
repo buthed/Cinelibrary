@@ -34,7 +34,7 @@ fun InfoTab(movie: Movie){
             InfoTabText(text = movie.release_date.dropLast(6))
             InfoTabSeparator()
             InfoTabIcon(painterResource(id = R.drawable.ic_clock), "")
-            InfoTabText(text = movie.runtime.toString() + " Minutes")
+            InfoTabText(text = movie.runtime.toString() +" " + R.string.movie_minutes)
             InfoTabSeparator()
             InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
             InfoTabText(text = movie.genres[0].name)
