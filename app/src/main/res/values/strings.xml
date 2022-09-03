@@ -23,9 +23,11 @@
     <string name="movie_play">Play</string>
     <string name="movie_similar_movies">Similar movies</string>
     <string name="movie_share_to">Share to</string>
+    <string name="movie_minutes">Minutes</string>
+
 
     // Search
-    <string name="search_input_label">Input title, category, years...</string>
+    <string name="search_input_label">Input title, category, years…</string>
     <string name="search_category_all">All</string>
     <string name="search_category_movies">Movies</string>
     <string name="search_category_actors">Actors</string>

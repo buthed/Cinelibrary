@@ -74,7 +74,7 @@ fun MovieDefaultItem(movie: Result, navController: NavController) {
                     )
                     Spacer(Modifier.width(5.dp))
                     Text(
-                        text = movie.vote_average.toString(),
+                        text = movie.vote_average.toString().take(3),
                         textAlign = TextAlign.End,
                         style = CLBTypography.body2,
                         color = LocalCLBExtraColors.current.Orange,

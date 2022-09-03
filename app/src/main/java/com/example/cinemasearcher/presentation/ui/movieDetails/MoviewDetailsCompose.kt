@@ -1,6 +1,7 @@
 package com.example.cinemasearcher.presentation.ui.movieDetails
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -55,10 +56,13 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
             ) {
                 Row(
                     Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(painter = painterResource(id = R.drawable.ic_arrow_back), contentDescription = "", tint = Color.White)
+                    Icon(painter = painterResource(id = R.drawable.ic_arrow_back),
+                        contentDescription = "",
+                        Modifier.clickable(onClick = {navController.popBackStack()}),
+                        tint = Color.White,)
                     Text(text = movie.title, style = CLBTypography.h4)
                     Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "", tint = Color.Red)
                 }
