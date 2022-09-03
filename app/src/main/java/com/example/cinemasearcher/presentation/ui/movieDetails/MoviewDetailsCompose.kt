@@ -48,87 +48,99 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
     Surface(Modifier.fillMaxSize()) {
         if (movie!= null) {
             MovieDetailsBackground(movie)
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(24.dp)
-                    .verticalScroll(rememberScrollState())
-            ) {
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(painter = painterResource(id = R.drawable.ic_arrow_back),
-                        contentDescription = "",
-                        Modifier.clickable(onClick = {navController.popBackStack()}),
-                        tint = Color.White,)
-                    Text(text = movie.title, style = CLBTypography.h4)
-                    Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "", tint = Color.Red)
-                }
-                Spacer(Modifier.height(24.dp))
-                AsyncImage(
-                    model = TMDB_IMAGE_PATH+movie.poster_path,
-                    contentDescription = movie.title,
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 70.dp),
-                    contentScale = ContentScale.FillWidth,
-                    alignment = Alignment.TopCenter)
-                InfoTab(movie)
-                ButtonsTab(Modifier.fillMaxWidth().padding(vertical = 24.dp),
-                    share = { shareLinksVisibility = true }
-                )
-                Text(text = stringResource(id = R.string.movie_story_line), style = CLBTypography.h4)
-                Text(text = movie.overview,
-                    Modifier.padding(top = 8.dp),
-                    style = CLBTypography.h5,
-                    color = LocalCLBExtraColors.current.Gray,
-                    maxLines = 5,
-                    overflow = TextOverflow.Clip)
-                Row(Modifier.fillMaxWidth().padding(top = 24.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(text = stringResource(id = R.string.movie_cast_and_crew),
-                        style = CLBTypography.h4)
-                    Text(
-                        text = stringResource(id = R.string.home_see_all),
-                        style = CLBTypography.h4,
-                        color = clbLightExtraColors.BlueAccent)
-                }
-                if (credits!=null) CastAndCrewRow(Modifier.padding(top = 16.dp), credits.cast)
-                Row(Modifier.fillMaxWidth().padding(top = 24.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(text = stringResource(id = R.string.movie_gallery),
-                        style = CLBTypography.h4)
-                    Text(
-                        text = stringResource(id = R.string.home_see_all),
-                        style = CLBTypography.h4,
-                        color = clbLightExtraColors.BlueAccent)
-                }
-                if (gallery!=null) {
-                    LazyRow(Modifier.padding(top = 16.dp)){
-                        items(gallery.backdrops) { item ->
-                            AsyncImage(
-                                modifier = Modifier.height(90.dp),
-                                model = TMDB_IMAGE_PATH+item.file_path,
-                                contentDescription = "",
-                                contentScale = ContentScale.FillWidth)
-                            Spacer(Modifier.width(10.dp))
-                        }
+            Column(Modifier.padding(horizontal = 24.dp)) {
+                Box(contentAlignment = Alignment.TopCenter){
+                    Row(
+                        Modifier.fillMaxWidth().padding(top = 24.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Top,
+                    ) {
+                        Icon(painter = painterResource(id = R.drawable.ic_arrow_back),
+                            contentDescription = "",
+                            Modifier.clickable(onClick = {navController.popBackStack()}),
+                            tint = Color.White,)
+                        Text(text = movie.title, style = CLBTypography.h4)
+                        Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "", tint = Color.Red)
                     }
                 }
-                if (similar!=null) {
-                    Text(text = stringResource(id = R.string.movie_similar_movies),
-                        Modifier.padding(top = 24.dp),
-                        style = CLBTypography.h4)
-                    LazyRow(Modifier.padding(top = 16.dp)){
-                        items(similar.results) { item->
-                            MovieDefaultItem(item, navController)
-                            Spacer(Modifier.width(12.dp))
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Spacer(Modifier.height(24.dp))
+                    AsyncImage(
+                        model = TMDB_IMAGE_PATH+movie.poster_path,
+                        contentDescription = movie.title,
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 70.dp),
+                        contentScale = ContentScale.FillWidth,
+                        alignment = Alignment.TopCenter)
+                    InfoTab(movie)
+                    ButtonsTab(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp),
+                        share = { shareLinksVisibility = true }
+                    )
+                    Text(text = stringResource(id = R.string.movie_story_line), style = CLBTypography.h4)
+                    Text(text = movie.overview,
+                        Modifier.padding(top = 8.dp),
+                        style = CLBTypography.h5,
+                        color = LocalCLBExtraColors.current.Gray,
+                        maxLines = 5,
+                        overflow = TextOverflow.Clip)
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(text = stringResource(id = R.string.movie_cast_and_crew),
+                            style = CLBTypography.h4)
+                        Text(
+                            text = stringResource(id = R.string.home_see_all),
+                            style = CLBTypography.h4,
+                            color = clbLightExtraColors.BlueAccent)
+                    }
+                    if (credits!=null) CastAndCrewRow(Modifier.padding(top = 16.dp), credits.cast)
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(text = stringResource(id = R.string.movie_gallery),
+                            style = CLBTypography.h4)
+                        Text(
+                            text = stringResource(id = R.string.home_see_all),
+                            style = CLBTypography.h4,
+                            color = clbLightExtraColors.BlueAccent)
+                    }
+                    if (gallery!=null) {
+                        LazyRow(Modifier.padding(top = 16.dp)){
+                            items(gallery.backdrops) { item ->
+                                AsyncImage(
+                                    modifier = Modifier.height(90.dp),
+                                    model = TMDB_IMAGE_PATH+item.file_path,
+                                    contentDescription = "",
+                                    contentScale = ContentScale.FillWidth)
+                                Spacer(Modifier.width(10.dp))
+                            }
+                        }
+                    }
+                    if (similar!=null) {
+                        Text(text = stringResource(id = R.string.movie_similar_movies),
+                            Modifier.padding(top = 24.dp),
+                            style = CLBTypography.h4)
+                        LazyRow(Modifier.padding(top = 16.dp)){
+                            items(similar.results) { item->
+                                MovieDefaultItem(item, navController)
+                                Spacer(Modifier.width(12.dp))
+                            }
                         }
                     }
                 }

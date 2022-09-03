@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +35,7 @@ fun InfoTab(movie: Movie){
             InfoTabText(text = movie.release_date.dropLast(6))
             InfoTabSeparator()
             InfoTabIcon(painterResource(id = R.drawable.ic_clock), "")
-            InfoTabText(text = movie.runtime.toString() +" " + R.string.movie_minutes)
+            InfoTabText(text = movie.runtime.toString() +" " + stringResource(id = R.string.movie_minutes))
             InfoTabSeparator()
             InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
             InfoTabText(text = movie.genres[0].name)
