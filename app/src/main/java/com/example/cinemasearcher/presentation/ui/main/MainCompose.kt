@@ -19,7 +19,6 @@ import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val viewModel = hiltViewModel<HomeViewModel>()
 
     var showBottomBar by rememberSaveable { mutableStateOf(true) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -37,7 +36,6 @@ fun MainScreen() {
         Modifier.padding(it)
         NavHost(
             navController = navController,
-            viewModel = viewModel
         )
     }
 

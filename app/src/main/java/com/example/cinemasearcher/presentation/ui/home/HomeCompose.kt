@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.presentation.components.home.CategoriesItem
@@ -26,7 +27,8 @@ import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 import com.example.cinemasearcher.presentation.theme.clbLightExtraColors
 
 @Composable
-fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
+fun HomeScreen(navController: NavController) {
+    val viewModel = hiltViewModel<HomeViewModel>()
     val genres = viewModel.genres.observeAsState().value
     val popularMovies = viewModel.popularMovies.observeAsState().value
     val upcomingMovies = viewModel.upcomingMovies.observeAsState().value

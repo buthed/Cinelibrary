@@ -26,7 +26,7 @@ import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController, viewModel: HomeViewModel) {
+fun SplashScreen(navController: NavController) {
     var startAnimate by remember {
         mutableStateOf(false)
     }

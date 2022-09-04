@@ -14,7 +14,7 @@ import com.example.cinemasearcher.presentation.ui.movieDetails.MovieDetailsScree
 import com.example.cinemasearcher.presentation.ui.search.SearchScreen
 
 @Composable
-fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
+fun NavHost(navController: NavHostController) {
 
     NavHost(
         navController = navController,
@@ -24,10 +24,10 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
             MainScreen()
         }
         composable(NavItem.Splash.navRoute) {
-            SplashScreen(navController = navController,viewModel)
+            SplashScreen(navController = navController)
         }
         composable(NavItem.Home.navRoute) {
-            HomeScreen(navController = navController,viewModel)
+            HomeScreen(navController = navController)
         }
         composable(NavItem.Search.navRoute) {
             SearchScreen(navController = navController)
