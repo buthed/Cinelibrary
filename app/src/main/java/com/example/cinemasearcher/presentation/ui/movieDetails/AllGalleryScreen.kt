@@ -1,6 +1,7 @@
 package com.example.cinemasearcher.presentation.ui.movieDetails
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,18 +30,17 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_IMAGE_PATH
-import com.example.cinemasearcher.domain.models.entites.Image
-
-import com.example.cinemasearcher.domain.models.enumeration.ImageType
 import com.example.cinemasearcher.presentation.components.movieDetails.StaggeredVerticalGrid
-import com.example.cinemasearcher.presentation.components.search.SearchCategory
 import com.example.cinemasearcher.presentation.theme.CLBTypography
 import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
+import com.example.cinemasearcher.presentation.ui.ImageFullScreen
 
+@OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun AllGalleryScreen(movieId: String, navController: NavHostController) {
-    var chosenCategory by remember { mutableStateOf(ImageType.ALL.toString()) }
+    var fullScreenVisibility by remember { mutableStateOf(false) }
+    var linkForShare by remember { mutableStateOf("")}
     val viewModel = hiltViewModel<MovieDetailsViewModel>()
     viewModel.init(movieId.toInt())
     val movie =  viewModel.movie.observeAsState().value
@@ -80,38 +80,6 @@ fun AllGalleryScreen(movieId: String, navController: NavHostController) {
                     tint = Color.Transparent,
                 )
             }
-//            Column(Modifier.fillMaxWidth()) {
-//                Row(
-//                    Modifier.fillMaxWidth(),
-//                    horizontalArrangement = Arrangement.SpaceBetween,
-//                    verticalAlignment = Alignment.CenterVertically,
-//                ) {
-//                    SearchCategory(
-//                        text = ImageType.ALL.toString(),
-//                        chosenCategory = chosenCategory,
-//                        onClick = { chosenCategory = ImageType.ALL.toString() })
-//                    SearchCategory(
-//                        text = ImageType.BACKDROPS.toString(),
-//                        chosenCategory = chosenCategory,
-//                        onClick = { chosenCategory = ImageType.BACKDROPS.toString() })
-//                }
-//                Spacer(Modifier.height(10.dp))
-//                Row(
-//                    Modifier.fillMaxWidth(),
-//                    horizontalArrangement = Arrangement.SpaceAround,
-//                    verticalAlignment = Alignment.CenterVertically,
-//                ) {
-//                    SearchCategory(
-//                        text = ImageType.POSTERS.toString(),
-//                        chosenCategory = chosenCategory,
-//                        onClick = { chosenCategory = ImageType.POSTERS.toString() })
-//                    SearchCategory(
-//                        text = ImageType.LOGOS.toString(),
-//                        chosenCategory = chosenCategory,
-//                        onClick = { chosenCategory = ImageType.LOGOS.toString() })
-//                }
-//                Spacer(Modifier.height(10.dp))
-//            }
             if (gallery!=null) {
                 LazyColumn {
                     item {
@@ -124,13 +92,24 @@ fun AllGalleryScreen(movieId: String, navController: NavHostController) {
                                 AsyncImage(
                                     model = TMDB_IMAGE_PATH + image.file_path,
                                     contentDescription = "",
-                                    Modifier.padding(10.dp)
-                                )
+                                    Modifier
+                                        .padding(10.dp)
+                                        .clickable(onClick = {
+                                            fullScreenVisibility = true
+                                            linkForShare = image.file_path
+                                        }))
                             }
                         }
                     }
                 }
             }
+        }
+        AnimatedVisibility(visible = fullScreenVisibility,
+            enter = fadeIn() + scaleIn(),
+            exit = fadeOut() + scaleOut()
+        ) {
+            ImageFullScreen(imagePath = linkForShare,
+                closeAction = { fullScreenVisibility = false })
         }
     }
 }
