@@ -22,7 +22,7 @@ import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 @Composable
 fun SearchCategory(text: String, chosenCategory: String, onClick: () -> Unit) {
     if (text == chosenCategory) {
-        Card(Modifier.defaultMinSize(minWidth = 100.dp).clickable {
+        Card(Modifier.defaultMinSize(minWidth = 110.dp).clickable {
                 onClick
         },
             backgroundColor = LocalCLBExtraColors.current.Soft,

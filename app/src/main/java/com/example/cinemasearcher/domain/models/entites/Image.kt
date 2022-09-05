@@ -1,6 +1,6 @@
 package com.example.cinemasearcher.domain.models.entites
 
-data class Backdrop(
+data class Image(
     val aspect_ratio: Double,
     val file_path: String,
     val height: Int,

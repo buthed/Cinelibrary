@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cinemasearcher.R
 import com.example.cinemasearcher.domain.models.ApiConstants.TMDB_IMAGE_PATH
+import com.example.cinemasearcher.presentation.NavItem
 import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
 import com.example.cinemasearcher.presentation.components.movieDetails.*
 import com.example.cinemasearcher.presentation.theme.CLBTypography
@@ -51,13 +52,15 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
             Column(Modifier.padding(horizontal = 24.dp)) {
                 Box(contentAlignment = Alignment.TopCenter){
                     Row(
-                        Modifier.fillMaxWidth().padding(top = 24.dp),
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.Top,
                     ) {
                         Icon(painter = painterResource(id = R.drawable.ic_arrow_back),
                             contentDescription = "",
-                            Modifier.clickable(onClick = {navController.popBackStack()}),
+                            Modifier.clickable {navController.popBackStack()},
                             tint = Color.White,)
                         Text(text = movie.title, style = CLBTypography.h4)
                         Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "", tint = Color.Red)
@@ -117,6 +120,9 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                             style = CLBTypography.h4)
                         Text(
                             text = stringResource(id = R.string.home_see_all),
+                            Modifier.clickable{
+                                navController.navigate("MovieDetailsGallery/${movie.id}")
+                                              },
                             style = CLBTypography.h4,
                             color = clbLightExtraColors.BlueAccent)
                     }

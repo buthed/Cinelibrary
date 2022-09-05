@@ -10,6 +10,7 @@ import com.example.cinemasearcher.presentation.ui.SplashScreen
 import com.example.cinemasearcher.presentation.ui.home.HomeScreen
 import com.example.cinemasearcher.presentation.ui.main.MainScreen
 import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
+import com.example.cinemasearcher.presentation.ui.movieDetails.AllGalleryScreen
 import com.example.cinemasearcher.presentation.ui.movieDetails.MovieDetailsScreen
 import com.example.cinemasearcher.presentation.ui.search.SearchScreen
 
@@ -40,6 +41,10 @@ fun NavHost(navController: NavHostController) {
         }
         composable(route = "MovieDetails/{movieId}") { backStackEntry ->
             MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
+                navController = navController)
+        }
+        composable(route = "MovieDetailsGallery/{movieId}")  { backStackEntry ->
+            AllGalleryScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
                 navController = navController)
         }
     }
