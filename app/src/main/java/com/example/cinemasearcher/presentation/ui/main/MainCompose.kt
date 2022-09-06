@@ -10,6 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.cinemasearcher.navigation.NavHost
+import com.example.cinemasearcher.presentation.NAV_GALLERY
 import com.example.cinemasearcher.presentation.NAV_MOVIE
 import com.example.cinemasearcher.presentation.NAV_SEARCH
 import com.example.cinemasearcher.presentation.NavItem
@@ -19,12 +20,12 @@ import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val viewModel = hiltViewModel<HomeViewModel>()
 
     var showBottomBar by rememberSaveable { mutableStateOf(true) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     showBottomBar =  when (navBackStackEntry?.destination?.route) {
         NAV_MOVIE -> false
+        NAV_GALLERY -> false
         else -> true
     }
 
@@ -37,7 +38,6 @@ fun MainScreen() {
         Modifier.padding(it)
         NavHost(
             navController = navController,
-            viewModel = viewModel
         )
     }
 

@@ -10,11 +10,12 @@ import com.example.cinemasearcher.presentation.ui.SplashScreen
 import com.example.cinemasearcher.presentation.ui.home.HomeScreen
 import com.example.cinemasearcher.presentation.ui.main.MainScreen
 import com.example.cinemasearcher.presentation.ui.home.HomeViewModel
+import com.example.cinemasearcher.presentation.ui.movieDetails.AllGalleryScreen
 import com.example.cinemasearcher.presentation.ui.movieDetails.MovieDetailsScreen
 import com.example.cinemasearcher.presentation.ui.search.SearchScreen
 
 @Composable
-fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
+fun NavHost(navController: NavHostController) {
 
     NavHost(
         navController = navController,
@@ -24,10 +25,10 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
             MainScreen()
         }
         composable(NavItem.Splash.navRoute) {
-            SplashScreen(navController = navController,viewModel)
+            SplashScreen(navController = navController)
         }
         composable(NavItem.Home.navRoute) {
-            HomeScreen(navController = navController,viewModel)
+            HomeScreen(navController = navController)
         }
         composable(NavItem.Search.navRoute) {
             SearchScreen(navController = navController)
@@ -40,6 +41,10 @@ fun NavHost(navController: NavHostController, viewModel: HomeViewModel) {
         }
         composable(route = "MovieDetails/{movieId}") { backStackEntry ->
             MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
+                navController = navController)
+        }
+        composable(route = "MovieDetailsGallery/{movieId}")  { backStackEntry ->
+            AllGalleryScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
                 navController = navController)
         }
     }

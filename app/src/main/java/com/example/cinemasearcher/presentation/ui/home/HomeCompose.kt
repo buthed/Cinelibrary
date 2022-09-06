@@ -10,15 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.cinemasearcher.R
+import com.example.cinemasearcher.presentation.components.ContentSeeAll
+import com.example.cinemasearcher.presentation.components.ContentTitle
 import com.example.cinemasearcher.presentation.components.home.CategoriesItem
 import com.example.cinemasearcher.presentation.components.home.MovieDefaultItem
-import com.example.cinemasearcher.presentation.components.home.NewsSelector
+import com.example.cinemasearcher.presentation.components.home.UpcomingSelector
 import com.example.cinemasearcher.presentation.components.home.UpcomingViewPager
 import com.example.cinemasearcher.presentation.core.SearchField
 import com.example.cinemasearcher.presentation.theme.CLBTypography
@@ -26,7 +28,8 @@ import com.example.cinemasearcher.presentation.theme.LocalCLBExtraColors
 import com.example.cinemasearcher.presentation.theme.clbLightExtraColors
 
 @Composable
-fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
+fun HomeScreen(navController: NavController) {
+    val viewModel = hiltViewModel<HomeViewModel>()
     val genres = viewModel.genres.observeAsState().value
     val popularMovies = viewModel.popularMovies.observeAsState().value
     val upcomingMovies = viewModel.upcomingMovies.observeAsState().value
@@ -56,15 +59,21 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
                     )
                 }
                 Spacer(Modifier.height(12.dp))
-                NewsSelector()
+                UpcomingSelector()
             }
-            Column(Modifier.padding(horizontal = 24.dp)) {
-                Text(
-                    text = stringResource(id = R.string.home_categories),
-                    style = CLBTypography.h4,
-                    color = Color.White
-                    )
-                LazyRow(Modifier.padding(top = 15.dp)) {
+            Column() {
+                Row(Modifier.fillMaxWidth(),
+                    Arrangement.SpaceBetween,
+                    Alignment.CenterVertically
+                ) {
+                    ContentTitle(stringResource(id = R.string.home_categories))
+                    ContentSeeAll()
+                }
+                LazyRow(
+                    Modifier
+                        .padding(top = 15.dp)
+                        .absoluteOffset(x = 24.dp)
+                ) {
                     if (genres!=null) {
                         items(genres.genres) { item ->
                             CategoriesItem(item)
@@ -76,16 +85,10 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
                     Modifier
                         .fillMaxWidth()
                         .padding(top = 21.dp), Arrangement.SpaceBetween, Alignment.CenterVertically, ) {
-                    Text(
-                        text = stringResource(id = R.string.home_most_popular),
-                        style = CLBTypography.h4,
-                        color = Color.White)
-                    Text(
-                        text = stringResource(id = R.string.home_see_all),
-                        style = CLBTypography.h4,
-                        color = clbLightExtraColors.BlueAccent)
+                    ContentTitle(stringResource(id = R.string.home_most_popular))
+                    ContentSeeAll()
                 }
-                LazyRow(Modifier.padding(top = 16.dp)){
+                LazyRow(Modifier.padding(top = 16.dp, start = 24.dp)){
                     if (popularMovies != null) {
                         items(popularMovies.results) { item->
                             MovieDefaultItem(item,

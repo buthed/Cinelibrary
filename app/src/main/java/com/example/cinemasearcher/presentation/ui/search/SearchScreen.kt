@@ -1,5 +1,6 @@
 package com.example.cinemasearcher.presentation.ui.search
 
+import android.content.res.Resources
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -57,12 +59,13 @@ fun SearchScreen(navController: NavHostController) {
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
+                val context = LocalContext.current
                 SearchCategory(stringResource(id = R.string.search_category_all), chosenCategory,
-                    onClick = { chosenCategory = R.string.search_category_all.toString()})
+                    onClick = { chosenCategory = context.getString(R.string.search_category_all)})
                 SearchCategory(stringResource(id = R.string.search_category_movies), chosenCategory,
-                    onClick ={ chosenCategory = R.string.search_category_movies.toString()})
+                      onClick = { chosenCategory = context.getString(R.string.search_category_movies)})
                 SearchCategory(stringResource(id = R.string.search_category_actors), chosenCategory,
-                    onClick ={ chosenCategory = R.string.search_category_actors.toString()})
+                    onClick = { chosenCategory = context.getString(R.string.search_category_actors)})
             }
             Spacer(Modifier.height(32.dp))
             if (searchResult != null && query.isNotEmpty() ) {

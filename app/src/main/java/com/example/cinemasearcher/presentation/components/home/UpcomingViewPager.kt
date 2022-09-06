@@ -48,7 +48,7 @@ fun UpcomingViewPager(data: List<Result>, navController: NavController) {
 
         UpcomingItem(
             Modifier
-                .fillMaxWidth()
+                .fillMaxWidth().height(160.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .graphicsLayer {
                     val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
