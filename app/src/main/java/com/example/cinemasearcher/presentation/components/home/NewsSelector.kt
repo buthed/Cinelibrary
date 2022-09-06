@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.example.cinemasearcher.presentation.theme.CLBColors
 
 @Composable
-fun NewsSelector() {
+fun UpcomingSelector() {
     Row() {
         Surface(
             shape = CircleShape,
@@ -40,7 +40,7 @@ fun NewsSelector() {
 @Preview
 @Composable
 fun NewSelectorPreview(){
-    NewsSelector()
+    UpcomingSelector()
 }
 
 //TODO Add functional for buttons
