@@ -1,11 +1,8 @@
-package com.tematikhonov.cinelibrary.presentation.core
+package com.tematikhonov.cinelibrary.presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +29,8 @@ fun ComposableButtonsPreview() {
 
 @Composable
 fun ExtraLargePlayButton(text: String, onClick: () -> Unit){
-    RoundedPlayButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp))
+    RoundedPlayButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp),
+    colors = ButtonDefaults.buttonColors(backgroundColor =  LocalCLBExtraColors.current.Orange))
 }
 
 
@@ -88,13 +86,12 @@ fun RoundedPlayButton(
     text: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    colors: ButtonColors
 ){
     Button(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = LocalCLBExtraColors.current.BlueAccent,
-        )
+        colors = colors
     ) {
         Row(
             modifier = modifier,

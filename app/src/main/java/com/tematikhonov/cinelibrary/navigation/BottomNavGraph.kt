@@ -6,12 +6,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.tematikhonov.cinelibrary.AppScreen
 import com.tematikhonov.cinelibrary.presentation.NavItem
-import com.tematikhonov.cinelibrary.presentation.components.profile.ProfileScreen
 import com.tematikhonov.cinelibrary.presentation.ui.SplashScreen
 import com.tematikhonov.cinelibrary.presentation.ui.home.HomeScreen
 import com.tematikhonov.cinelibrary.presentation.ui.main.MainScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.AllGalleryScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.MovieDetailsScreen
+import com.tematikhonov.cinelibrary.presentation.ui.profile.ProfileScreen
 import com.tematikhonov.cinelibrary.presentation.ui.search.SearchScreen
 
 @Composable

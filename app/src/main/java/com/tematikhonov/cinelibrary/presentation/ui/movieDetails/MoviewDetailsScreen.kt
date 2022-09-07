@@ -1,5 +1,6 @@
 package com.tematikhonov.cinelibrary.presentation.ui.movieDetails
 
+import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -37,6 +38,7 @@ import com.tematikhonov.cinelibrary.presentation.theme.clbLightExtraColors
 @Composable
 fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
     var shareLinksVisibility by remember { mutableStateOf(false) }
+    var playerVisibility by remember { mutableStateOf(false) }
     var trailerLink by remember { mutableStateOf("") }
 
     val viewModel = hiltViewModel<MovieDetailsViewModel>()
@@ -46,10 +48,11 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
     val similar = viewModel.similar.observeAsState().value
     val gallery = viewModel.gallery.observeAsState().value
     val videos = viewModel.videos.observeAsState().value
+
     if (videos!=null) {
         for(i in 0..videos.results.size) {
-            if (videos.results[i].type == "Trailer") {
-                trailerLink = videos.results[i].type
+            if (videos.results[i].type == "Trailer" && videos.results[i].site == "YouTube") {
+                trailerLink = videos.results[i].key
                 break
             }
         }
@@ -94,6 +97,10 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                             .fillMaxWidth()
                             .padding(vertical = 24.dp),
                         share = { shareLinksVisibility = true },
+                        playTrailer = {
+                            playerVisibility = true
+                            Log.d("player", playerVisibility.toString())
+                        },
                         trailerLink = trailerLink
                     )
                     Text(text = stringResource(id = R.string.movie_story_line), style = CLBTypography.h4)
@@ -170,6 +177,12 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                     it.homepage
                 )
             }
+        }
+        AnimatedVisibility(visible = playerVisibility) {
+            YouTubeTrailerPlayer(trailerLink, close = {
+                playerVisibility = false
+                Log.d("player", "player $playerVisibility")
+            })
         }
     }
 }

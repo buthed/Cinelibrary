@@ -106,6 +106,6 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil-compose:2.2.0"
 
-    // Exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.18.0'
+    // YouTubePlayer
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 }
