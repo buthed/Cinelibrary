@@ -16,7 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tematikhonov.cinelibrary.R
-import com.tematikhonov.cinelibrary.domain.models.entites.*
+import com.tematikhonov.cinelibrary.domain.models.entites.Genre
+import com.tematikhonov.cinelibrary.domain.models.entites.Movie
+import com.tematikhonov.cinelibrary.domain.models.entites.ProductionCompany
+import com.tematikhonov.cinelibrary.domain.models.entites.ProductionCountry
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 

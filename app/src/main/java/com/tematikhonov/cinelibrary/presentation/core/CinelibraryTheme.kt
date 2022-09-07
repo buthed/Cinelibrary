@@ -10,8 +10,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tematikhonov.cinelibrary.R
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.tematikhonov.cinelibrary.R
 
 @Composable
 fun CLBTheme(

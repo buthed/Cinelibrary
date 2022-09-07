@@ -17,13 +17,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
-import com.tematikhonov.cinelibrary.domain.models.entites.Result
-import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.models.entites.Result
+import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import kotlin.math.absoluteValue
 
 

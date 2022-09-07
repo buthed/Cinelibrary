@@ -1,7 +1,7 @@
 package com.tematikhonov.cinelibrary.data.di
 
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
 import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
