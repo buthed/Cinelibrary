@@ -23,6 +23,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
+import com.tematikhonov.cinelibrary.presentation.theme.baseTextStyle
+import java.time.format.TextStyle
 
 @Composable
 fun BottomBar(navController: NavHostController) {
@@ -92,7 +94,7 @@ fun RowScope.AddItem(
             )
             AnimatedVisibility(visible = selected) {
                 Text(
-                    text = stringResource(id = screen.title),
+                    text = screen.title.replaceFirstChar { it.uppercase() },
                     color = textAndIconColor
                 )
             }

@@ -3,17 +3,24 @@ package com.tematikhonov.cinelibrary.presentation.core
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tematikhonov.cinelibrary.R
+import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Preview
@@ -41,7 +48,9 @@ fun SearchField(
         shape = RoundedCornerShape(100)
     ){
         Row(
-            Modifier.background(LocalCLBExtraColors.current.Soft).padding(horizontal = 20.dp),
+            Modifier
+                .background(LocalCLBExtraColors.current.Soft)
+                .padding(horizontal = 20.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -69,9 +78,8 @@ fun CustomTextField(
     onValueChange: (String) -> Unit,
     label: String,
 ) {
-    var inputs by remember { mutableStateOf(input) }
 
-    TextField(
+    OutlinedTextField(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
@@ -93,6 +101,78 @@ fun CustomTextField(
             focusedLabelColor = LocalCLBExtraColors.current.Gray,
             unfocusedLabelColor = LocalCLBExtraColors.current.Gray,
         ),
+    )
+}
+
+@Composable
+fun LoginTextField(
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .height(60.dp),
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+) {
+
+    OutlinedTextField(
+        modifier = modifier,
+        value = value,
+        onValueChange = onValueChange,
+        shape = RoundedCornerShape(100),
+        textStyle = TextStyle(fontStyle = FontStyle.Normal, color = LocalCLBExtraColors.current.Gray),
+        label = { Text(text = label, color =  LocalCLBExtraColors.current.WhiteGray) },
+        maxLines = 1,
+        singleLine = true,
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = LocalCLBExtraColors.current.Gray,
+            disabledTextColor = LocalCLBExtraColors.current.Gray,
+            backgroundColor = LocalCLBExtraColors.current.Dark,
+            placeholderColor = LocalCLBExtraColors.current.Gray,
+            disabledPlaceholderColor = LocalCLBExtraColors.current.Gray,
+            cursorColor = LocalCLBExtraColors.current.Gray,
+            focusedIndicatorColor = LocalCLBExtraColors.current.Soft,
+            unfocusedIndicatorColor = LocalCLBExtraColors.current.Soft,
+            focusedLabelColor = LocalCLBExtraColors.current.Whiter,
+            unfocusedLabelColor = LocalCLBExtraColors.current.Gray,
+        ),
+    )
+}
+
+@Composable
+fun PasswordTextField(
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .height(60.dp),
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+) {
+
+    OutlinedTextField(
+        modifier = modifier,
+        value = value,
+        onValueChange = onValueChange,
+        shape = RoundedCornerShape(100),
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        textStyle = TextStyle(fontStyle = FontStyle.Normal, color = LocalCLBExtraColors.current.Gray),
+        label = { Text(text = label, color =  LocalCLBExtraColors.current.WhiteGray) },
+        singleLine = true,
+        maxLines = 1,
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = LocalCLBExtraColors.current.Gray,
+            disabledTextColor = LocalCLBExtraColors.current.Gray,
+            backgroundColor = LocalCLBExtraColors.current.Dark,
+            placeholderColor = LocalCLBExtraColors.current.Gray,
+            disabledPlaceholderColor = LocalCLBExtraColors.current.Gray,
+            cursorColor = LocalCLBExtraColors.current.Gray,
+            focusedIndicatorColor = LocalCLBExtraColors.current.Soft,
+            unfocusedIndicatorColor = LocalCLBExtraColors.current.Soft,
+            trailingIconColor = LocalCLBExtraColors.current.Gray,
+            focusedLabelColor = LocalCLBExtraColors.current.Whiter,
+            unfocusedLabelColor = LocalCLBExtraColors.current.Gray,
+        ),
+        trailingIcon = { Icon(painter = painterResource(id = R.drawable.ic_eye_off), contentDescription = "") }
     )
 }
 
