@@ -8,6 +8,9 @@ import com.tematikhonov.cinelibrary.AppScreen
 import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.ui.SplashScreen
 import com.tematikhonov.cinelibrary.presentation.ui.home.HomeScreen
+import com.tematikhonov.cinelibrary.presentation.ui.login.LoginScreen
+import com.tematikhonov.cinelibrary.presentation.ui.login.SignUpScreen
+import com.tematikhonov.cinelibrary.presentation.ui.login.WelcomeScreen
 import com.tematikhonov.cinelibrary.presentation.ui.main.MainScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.AllGalleryScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.MovieDetailsScreen
@@ -26,6 +29,15 @@ fun NavHost(navController: NavHostController) {
         }
         composable(NavItem.Splash.navRoute) {
             SplashScreen(navController = navController)
+        }
+        composable(NavItem.Welcome.navRoute) {
+            WelcomeScreen(navController = navController)
+        }
+        composable(NavItem.SignUp.navRoute){
+            SignUpScreen(navController = navController)
+        }
+        composable(NavItem.Login.navRoute) {
+            LoginScreen(navController = navController)
         }
         composable(NavItem.Home.navRoute) {
             HomeScreen(navController = navController)

@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tematikhonov.cinelibrary.R
@@ -35,8 +36,8 @@ fun ExtraLargePlayButton(text: String, onClick: () -> Unit){
 
 
 @Composable
-fun ExtraLargeButton(text: String, onClick: () -> Unit){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp))
+fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp)){
+    RoundedButton(text = text, onClick = onClick, modifier = modifier)
 }
 
 @Composable
@@ -74,6 +75,7 @@ fun RoundedButton(
         ) {
             Text(
                 text = text,
+                textAlign = TextAlign.Center,
                 modifier = modifier,
                 style = CLBTypography.h4,
                 color = LocalCLBExtraColors.current.Whiter

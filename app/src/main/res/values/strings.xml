@@ -5,6 +5,7 @@
     // Categories
     <string name="home">Home</string>
     <string name="search">Search</string>
+    <string name="login">Login</string>
     <string name="downloads">Downloads</string>
     <string name="profile">Profile</string>
     <string name="movieDetails">movieDetails/$movieId</string>
