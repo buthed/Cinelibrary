@@ -7,10 +7,10 @@ import androidx.navigation.compose.composable
 import com.tematikhonov.cinelibrary.AppScreen
 import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.ui.SplashScreen
+import com.tematikhonov.cinelibrary.presentation.ui.auth.LoginScreen
+import com.tematikhonov.cinelibrary.presentation.ui.auth.SignUpScreen
+import com.tematikhonov.cinelibrary.presentation.ui.auth.WelcomeScreen
 import com.tematikhonov.cinelibrary.presentation.ui.home.HomeScreen
-import com.tematikhonov.cinelibrary.presentation.ui.login.LoginScreen
-import com.tematikhonov.cinelibrary.presentation.ui.login.SignUpScreen
-import com.tematikhonov.cinelibrary.presentation.ui.login.WelcomeScreen
 import com.tematikhonov.cinelibrary.presentation.ui.main.MainScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.AllGalleryScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.MovieDetailsScreen

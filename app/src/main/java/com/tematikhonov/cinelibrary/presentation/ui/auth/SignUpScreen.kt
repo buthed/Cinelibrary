@@ -1,8 +1,7 @@
-package com.tematikhonov.cinelibrary.presentation.ui.login
+package com.tematikhonov.cinelibrary.presentation.ui.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -19,7 +18,7 @@ import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun SignUpScreen(navController: NavHostController) {
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     Box(
@@ -31,7 +30,7 @@ fun LoginScreen(navController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)) {
             Spacer(Modifier.height(24.dp))
-            Text(text = "Login",
+            Text(text = "Sign Up",
                 Modifier.fillMaxWidth(),
                 style = CLBTypography.h2,
                 color = Color.White,
@@ -41,7 +40,7 @@ fun LoginScreen(navController: NavHostController) {
             Spacer(Modifier.height(24.dp))
             PasswordTextField(onValueChange = {password = it}, label = "PlaceHolder", value = password)
             Spacer(Modifier.height(24.dp))
-            ExtraLargeButton("Login", {},
+            ExtraLargeButton("Sign up", {},
                 Modifier
                     .fillMaxWidth()
                     .padding(vertical = 4.dp, horizontal = 24.dp))
@@ -53,7 +52,7 @@ fun LoginScreen(navController: NavHostController) {
 
 @Preview
 @Composable
-fun LoginScreenPreview() {
+fun SignUpScreenPreview() {
     val navController = rememberNavController()
-    LoginScreen(navController)
+    SignUpScreen(navController)
 }

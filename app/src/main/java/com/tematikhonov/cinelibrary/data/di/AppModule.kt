@@ -22,4 +22,5 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiTMDBService::class.java)
+
 }

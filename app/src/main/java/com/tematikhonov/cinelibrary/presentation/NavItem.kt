@@ -1,7 +1,6 @@
 package com.tematikhonov.cinelibrary.presentation
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import com.tematikhonov.cinelibrary.R
 
 sealed class NavItem(
