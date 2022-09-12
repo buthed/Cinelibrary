@@ -5,14 +5,18 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,11 +37,13 @@ import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.components.ExtraLargeButton
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
+import com.tematikhonov.cinelibrary.utils.Resource
 
 
 @Composable
 fun WelcomeScreen(navController: NavHostController) {
     val viewModel = hiltViewModel<AuthViewModel>()
+    val isSignIn =  viewModel.signInAnonymously.collectAsState()
     Box(
         Modifier
             .fillMaxSize()
@@ -53,7 +59,9 @@ fun WelcomeScreen(navController: NavHostController) {
         ) {
             Image(painter = painterResource(id = R.drawable.logo),
                 contentDescription = stringResource(id = R.string.app_name),
-                Modifier.width(170.dp).padding(bottom = 10.dp)
+                Modifier
+                    .width(170.dp)
+                    .padding(bottom = 10.dp)
             )
             Text(
                 text = stringResource(id = R.string.app_name),
@@ -83,7 +91,16 @@ fun WelcomeScreen(navController: NavHostController) {
                     color = LocalCLBExtraColors.current.BlueAccent)
             }
             Spacer(Modifier.height(16.dp))
-            Row(Modifier.fillMaxWidth().padding(vertical = 32.dp),
+            Text(text = stringResource(id = R.string.welcome_anonymously),
+                Modifier.clickable(onClick = {
+                    viewModel.signInAnonymously()
+                }),
+                style = CLBTypography.h5,
+                color = LocalCLBExtraColors.current.BlueAccent)
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 32.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -108,17 +125,38 @@ fun WelcomeScreen(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Image(painter = painterResource(id = R.drawable.icon_email), contentDescription = "",
-                    Modifier.size(70.dp).clickable(onClick = {}))
+                    Modifier
+                        .size(70.dp)
+                        .clickable(onClick = {}))
                 Image(painter = painterResource(id = R.drawable.icon_google), contentDescription = "",
-                    Modifier.size(70.dp).clickable(onClick = {}))
+                    Modifier
+                        .size(70.dp)
+                        .clickable(onClick = {}))
                 Image(painter = painterResource(id = R.drawable.icon_twitter), contentDescription = "",
-                    Modifier.size(70.dp).clickable(onClick = {}))
+                    Modifier
+                        .size(70.dp)
+                        .clickable(onClick = {}))
                 Image(painter = painterResource(id = R.drawable.icon_facebook), contentDescription = "",
-                    Modifier.size(70.dp).clickable(onClick = {}))
+                    Modifier
+                        .size(70.dp)
+                        .clickable(onClick = {}))
             }
         }
-
-
+    }
+    isSignIn.value?.let {
+        when (it) {
+            is Resource.Failure -> {
+                Toast.makeText(LocalContext.current, it.exception.message.toString(), Toast.LENGTH_LONG).show()
+            }
+            is Resource.Loading -> {
+                CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+            }
+            is Resource.Success -> {
+                LaunchedEffect(Unit) {
+                    navController.navigate(NavItem.MainScreen.navRoute)
+                }
+            }
+        }
     }
 }
 

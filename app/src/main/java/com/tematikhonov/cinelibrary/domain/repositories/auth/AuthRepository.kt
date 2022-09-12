@@ -6,9 +6,11 @@ import com.tematikhonov.cinelibrary.utils.Resource
 interface AuthRepository {
     val currentUser: FirebaseUser?
 
-    suspend fun firebaseSignInWithEmailAndPassword(login: String, password: String): Resource<FirebaseUser>
+    suspend fun signInWithEmailAndPassword(login: String, password: String): Resource<FirebaseUser>
 
     suspend fun createUserWithEmailAndPassword(email: String, password: String): Resource<FirebaseUser>
+
+    suspend fun signInAnonymously(): Resource<FirebaseUser>
 
     fun signOut()
 }

@@ -17,6 +17,7 @@
     <string name="welcome_or_sign_up">Or Sign up with</string>
     <string name="welcome_already_have_an_account">I already have an account? </string>
     <string name="welcome_login">Login</string>
+    <string name="welcome_anonymously">Continue anonymously</string>
 
     // Login Screen
     <string name="login_welcome_back">Welcome back! Please enter\nyour details.</string>
