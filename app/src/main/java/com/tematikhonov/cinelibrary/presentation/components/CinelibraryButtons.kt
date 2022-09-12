@@ -36,7 +36,7 @@ fun ExtraLargePlayButton(text: String, onClick: () -> Unit){
 
 
 @Composable
-fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp)){
+fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 24.dp)){
     RoundedButton(text = text, onClick = onClick, modifier = modifier)
 }
 
