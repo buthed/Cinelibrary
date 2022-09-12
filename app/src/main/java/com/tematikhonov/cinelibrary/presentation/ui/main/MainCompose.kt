@@ -22,7 +22,7 @@ fun MainScreen() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     showBottomBar =  when (navBackStackEntry?.destination?.route) {
         NAV_MOVIE -> false
-        NAV_GALLERY -> false
+
         else -> true
     }
 

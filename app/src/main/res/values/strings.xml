@@ -26,6 +26,12 @@
     <string name="login_title">Login</string>
     <string name="login_hi">Hi,</string>
 
+    // Reset Password Screen
+    <string name="reset_title">Reset Password</string>
+    <string name="reset_description">Recover your account password</string>
+    <string name="reset_email_label">Email Address</string>
+    <string name="reset_button">Next</string>
+
     // Home
     <string name="home_categories">Categories</string>
     <string name="home_most_popular">Most popular</string>
