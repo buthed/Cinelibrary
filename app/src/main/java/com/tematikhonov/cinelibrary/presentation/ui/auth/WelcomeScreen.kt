@@ -1,4 +1,4 @@
-package com.tematikhonov.cinelibrary.presentation.ui.login
+package com.tematikhonov.cinelibrary.presentation.ui.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tematikhonov.cinelibrary.presentation.NavItem
@@ -19,6 +20,7 @@ import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
 fun WelcomeScreen(navController: NavHostController) {
+    val viewModel = hiltViewModel<AuthViewModel>()
     Box(
         Modifier
             .fillMaxSize()
@@ -46,6 +48,11 @@ fun WelcomeScreen(navController: NavHostController) {
                 Text(text = "Sign UP")
             }
             Spacer(Modifier.height(24.dp))
+            Button(onClick = {
+                viewModel.signOut()
+            }) {
+                Text(text = "Log out")
+            }
         }
 
 
