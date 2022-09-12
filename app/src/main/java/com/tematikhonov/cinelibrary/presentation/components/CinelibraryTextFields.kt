@@ -1,6 +1,7 @@
 package com.tematikhonov.cinelibrary.presentation.core
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -14,6 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -143,6 +145,8 @@ fun PasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
+    passVisibility: () -> Unit,
+    visualTransformation: VisualTransformation = PasswordVisualTransformation()
 ) {
 
     OutlinedTextField(
@@ -150,7 +154,7 @@ fun PasswordTextField(
         value = value,
         onValueChange = onValueChange,
         shape = RoundedCornerShape(100),
-        visualTransformation = PasswordVisualTransformation(),
+        visualTransformation = visualTransformation,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         textStyle = TextStyle(fontStyle = FontStyle.Normal, color = LocalCLBExtraColors.current.Gray),
         label = { Text(text = label, color =  LocalCLBExtraColors.current.WhiteGray) },
@@ -169,7 +173,10 @@ fun PasswordTextField(
             focusedLabelColor = LocalCLBExtraColors.current.Whiter,
             unfocusedLabelColor = LocalCLBExtraColors.current.Gray,
         ),
-        trailingIcon = { Icon(painter = painterResource(id = R.drawable.ic_eye_off), contentDescription = "") }
+        trailingIcon = { Icon(painter = painterResource(id = R.drawable.ic_eye_off),
+            contentDescription = "",
+            Modifier.clickable(onClick = passVisibility)
+        ) }
     )
 }
 

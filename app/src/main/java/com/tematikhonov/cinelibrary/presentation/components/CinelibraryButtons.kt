@@ -36,34 +36,35 @@ fun ExtraLargePlayButton(text: String, onClick: () -> Unit){
 
 
 @Composable
-fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp)){
-    RoundedButton(text = text, onClick = onClick, modifier = modifier)
+fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 24.dp), enabled: Boolean = true){
+    RoundedButton(text = text, onClick = onClick, modifier = modifier, enabled = enabled)
 }
 
 @Composable
-fun LargeButton(text: String, onClick: () -> Unit){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 12.dp, horizontal = 24.dp))
+fun LargeButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
+    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 12.dp, horizontal = 24.dp), enabled = enabled)
 }
 
 @Composable
-fun MediumButton(text: String, onClick: () -> Unit){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 8.dp, horizontal = 24.dp))
+fun MediumButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
+    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 8.dp, horizontal = 24.dp), enabled = enabled)
 }
 
 @Composable
-fun SmallButton(text: String, onClick: () -> Unit){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp))
+fun SmallButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
+    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp), enabled = enabled)
 }
 
 @Composable
-fun ExtraSmallButton(text: String, onClick: () -> Unit){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(horizontal = 24.dp))
+fun ExtraSmallButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
+    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(horizontal = 24.dp), enabled = enabled)
 }
 
 @Composable
 fun RoundedButton(
     text: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean,
     onClick: () -> Unit,
 ){
         Button(
@@ -71,7 +72,8 @@ fun RoundedButton(
             shape = RoundedCornerShape(100),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = LocalCLBExtraColors.current.BlueAccent,
-            )
+            ),
+            enabled = enabled
         ) {
             Text(
                 text = text,

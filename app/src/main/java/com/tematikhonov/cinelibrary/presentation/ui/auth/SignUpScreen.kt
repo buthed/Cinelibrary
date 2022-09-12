@@ -6,6 +6,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,6 +21,7 @@ import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
 fun SignUpScreen(navController: NavHostController) {
+    var passVisibility by remember { mutableStateOf(false) }
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     Box(
@@ -38,15 +41,18 @@ fun SignUpScreen(navController: NavHostController) {
             Spacer(Modifier.height(24.dp))
             LoginTextField(onValueChange = {login = it}, label = "Login", value = login)
             Spacer(Modifier.height(24.dp))
-            PasswordTextField(onValueChange = {password = it}, label = "PlaceHolder", value = password)
+            PasswordTextField(
+                onValueChange = {password = it},
+                label = "PlaceHolder",
+                value = password,
+                visualTransformation = if (passVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+                passVisibility = { passVisibility = !passVisibility })
             Spacer(Modifier.height(24.dp))
             ExtraLargeButton("Sign up", {},
                 Modifier
                     .fillMaxWidth()
                     .padding(vertical = 4.dp, horizontal = 24.dp))
         }
-
-
     }
 }
 

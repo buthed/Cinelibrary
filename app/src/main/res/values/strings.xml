@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cinelibrary</string>
     <string name="splash">splash</string>
-    
+
     // Categories
     <string name="home">Home</string>
     <string name="search">Search</string>
@@ -11,12 +11,33 @@
     <string name="movieDetails">movieDetails/$movieId</string>
     <string name="movieDetailsGallery">movieDetailsGallery/$movieId</string>
 
+    // Welcome Screen
+    <string name="welcome_sign_up">Sign Up</string>
+    <string name="welcome_sign_up_enter">Enter your\ncredentials to Sign Up</string>
+    <string name="welcome_or_sign_up">Or Sign up with</string>
+    <string name="welcome_already_have_an_account">I already have an account? </string>
+    <string name="welcome_login">Login</string>
+
+    // Login Screen
+    <string name="login_welcome_back">Welcome back! Please enter\nyour details.</string>
+    <string name="login_email_label">Email Address</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_title">Login</string>
+    <string name="login_hi">Hi,</string>
+
+    // Reset Password Screen
+    <string name="reset_title">Reset Password</string>
+    <string name="reset_description">Recover your account password</string>
+    <string name="reset_email_label">Email Address</string>
+    <string name="reset_button">Next</string>
+
     // Home
     <string name="home_categories">Categories</string>
     <string name="home_most_popular">Most popular</string>
     <string name="home_see_all">See all</string>
 
-    
+
     // Movie
     <string name="movie_story_line">Story line</string>
     <string name="movie_cast_and_crew">Cast and crew</string>
