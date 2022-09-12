@@ -24,6 +24,16 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun createUserWithEmailAndPassword(email: String, password: String): Resource<FirebaseUser> {
+        return try {
+            val result = auth.createUserWithEmailAndPassword(email, password).await()
+            Resource.Success(result.user!!)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.Failure(e)
+        }
+    }
+
     override fun signOut() {
         auth.signOut()
     }

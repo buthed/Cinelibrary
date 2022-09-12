@@ -8,5 +8,7 @@ interface AuthRepository {
 
     suspend fun firebaseSignInWithEmailAndPassword(login: String, password: String): Resource<FirebaseUser>
 
+    suspend fun createUserWithEmailAndPassword(email: String, password: String): Resource<FirebaseUser>
+
     fun signOut()
 }

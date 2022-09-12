@@ -14,12 +14,14 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val repository: AuthRepository): ViewModel() {
 
+    val currentUser: FirebaseUser?
+        get() = repository.currentUser
+
     private val _firebaseSignInWithEmailAndPassword = MutableStateFlow<Resource<FirebaseUser>?>(null)
     val firebaseSignInWithEmailAndPassword: StateFlow<Resource<FirebaseUser>?> = _firebaseSignInWithEmailAndPassword
 
-
-    val currentUser: FirebaseUser?
-        get() = repository.currentUser
+    private val _createUserWithEmailAndPassword = MutableStateFlow<Resource<FirebaseUser>?>(null)
+    val createUserWithEmailAndPassword: StateFlow<Resource<FirebaseUser>?> = _createUserWithEmailAndPassword
 
     init {
         if (repository.currentUser != null) {
@@ -31,6 +33,12 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository):
         _firebaseSignInWithEmailAndPassword.value = Resource.Loading
         val result = repository.firebaseSignInWithEmailAndPassword(login, password)
         _firebaseSignInWithEmailAndPassword.value = result
+    }
+
+    fun createUserWithEmailAndPassword(email: String, password: String) = viewModelScope.launch {
+        _createUserWithEmailAndPassword.value = Resource.Loading
+        val result = repository.createUserWithEmailAndPassword(email, password)
+        _createUserWithEmailAndPassword.value = result
     }
 
 
