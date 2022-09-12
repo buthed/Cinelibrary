@@ -68,7 +68,7 @@ fun RoundedButton(
     onClick: () -> Unit,
 ){
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onClick,
             shape = RoundedCornerShape(100),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = LocalCLBExtraColors.current.BlueAccent,

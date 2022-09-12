@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -69,7 +70,8 @@ fun WelcomeScreen(navController: NavHostController) {
                 textAlign = TextAlign.Center)
             Spacer(Modifier.height(24.dp))
             ExtraLargeButton(text = stringResource(id = R.string.welcome_sign_up),
-                onClick = {navController.navigate(NavItem.SignUp.navRoute)})
+                onClick = { navController.navigate(NavItem.SignUp.navRoute)},
+                enabled = true)
             Spacer(Modifier.height(24.dp))
             Row() {
                 Text(text = stringResource(id = R.string.welcome_already_have_an_account),

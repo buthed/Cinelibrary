@@ -121,7 +121,7 @@ fun LoginScreen(navController: NavHostController) {
             }
             is Resource.Success -> {
                 LaunchedEffect(Unit) {
-                    navController.navigate(NavItem.Home.navRoute)
+                    navController.navigate(NavItem.MainScreen.navRoute)
                 }
             }
         }
