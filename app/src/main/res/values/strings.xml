@@ -11,12 +11,20 @@
     <string name="movieDetails">movieDetails/$movieId</string>
     <string name="movieDetailsGallery">movieDetailsGallery/$movieId</string>
 
-    // WelcomeScreen
+    // Welcome Screen
     <string name="welcome_sign_up">Sign Up</string>
     <string name="welcome_sign_up_enter">Enter your\ncredentials to Sign Up</string>
     <string name="welcome_or_sign_up">Or Sign up with</string>
     <string name="welcome_already_have_an_account">I already have an account? </string>
     <string name="welcome_login">Login</string>
+
+    // Login Screen
+    <string name="login_welcome_back">Welcome back! Please enter\nyour details.</string>
+    <string name="login_email_label">Email Address</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_title">Login</string>
+    <string name="login_hi">Hi,</string>
 
     // Home
     <string name="home_categories">Categories</string>
