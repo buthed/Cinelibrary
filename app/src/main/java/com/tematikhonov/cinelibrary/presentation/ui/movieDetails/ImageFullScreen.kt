@@ -2,6 +2,7 @@ package com.tematikhonov.cinelibrary.presentation.ui
 
 import android.util.Log
 import androidx.compose.animation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -17,12 +18,13 @@ import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.ShareLinkToSocialMedia
+import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun ImageFullScreen(imagePath: String,closeAction: () -> Unit,) {
     var shareImageLinkVisibility by remember { mutableStateOf(false) }
-    Column() {
+    Column(Modifier.background(LocalCLBExtraColors.current.Dark.copy(alpha = 0.9f))) {
         Row(
             Modifier
                 .fillMaxWidth()

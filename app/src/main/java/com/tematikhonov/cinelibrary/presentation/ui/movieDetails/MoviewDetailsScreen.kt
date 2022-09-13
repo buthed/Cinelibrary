@@ -33,10 +33,13 @@ import com.tematikhonov.cinelibrary.presentation.components.movieDetails.*
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 import com.tematikhonov.cinelibrary.presentation.theme.clbLightExtraColors
+import com.tematikhonov.cinelibrary.presentation.ui.ImageFullScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
+    var fullScreenImageVisibility by remember { mutableStateOf(false) }
+    var linkForShare by remember { mutableStateOf("")}
     var shareLinksVisibility by remember { mutableStateOf(false) }
     var playerVisibility by remember { mutableStateOf(false) }
     var trailerLink by remember { mutableStateOf("") }
@@ -146,7 +149,10 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                         LazyRow(Modifier.padding(top = 16.dp)){
                             items(gallery.backdrops) { item ->
                                 AsyncImage(
-                                    modifier = Modifier.height(90.dp),
+                                    modifier = Modifier.height(90.dp)                                        .clickable(onClick = {
+                                        fullScreenImageVisibility = true
+                                        linkForShare = item.file_path
+                                    }),
                                     model = TMDB_IMAGE_PATH+item.file_path,
                                     contentDescription = "",
                                     contentScale = ContentScale.FillWidth)
@@ -183,6 +189,13 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                 playerVisibility = false
                 Log.d("player", "player $playerVisibility")
             })
+        }
+        AnimatedVisibility(visible = fullScreenImageVisibility,
+            enter = fadeIn() + scaleIn(),
+            exit = fadeOut() + scaleOut()
+        ) {
+            ImageFullScreen(imagePath = linkForShare,
+                closeAction = { fullScreenImageVisibility = false })
         }
     }
 }
