@@ -14,9 +14,29 @@ class AuthRepositoryImpl @Inject constructor(
     override val currentUser: FirebaseUser?
         get() = auth.currentUser
 
-    override suspend fun firebaseSignInWithEmailAndPassword(login: String, password: String): Resource<FirebaseUser> {
+    override suspend fun signInWithEmailAndPassword(login: String, password: String): Resource<FirebaseUser> {
         return try {
             val result = auth.signInWithEmailAndPassword(login, password).await()
+            Resource.Success(result.user!!)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.Failure(e)
+        }
+    }
+
+    override suspend fun createUserWithEmailAndPassword(email: String, password: String): Resource<FirebaseUser> {
+        return try {
+            val result = auth.createUserWithEmailAndPassword(email, password).await()
+            Resource.Success(result.user!!)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.Failure(e)
+        }
+    }
+
+    override suspend fun signInAnonymously(): Resource<FirebaseUser> {
+        return try {
+            val result = auth.signInAnonymously().await()
             Resource.Success(result.user!!)
         } catch (e: Exception) {
             e.printStackTrace()

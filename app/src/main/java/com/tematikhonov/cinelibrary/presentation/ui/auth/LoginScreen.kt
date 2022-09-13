@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -40,7 +39,7 @@ import com.tematikhonov.cinelibrary.utils.Resource
 fun LoginScreen(navController: NavHostController) {
     val auth = Firebase.auth
     val viewModel = hiltViewModel<AuthViewModel>()
-    val isSignIn =  viewModel.firebaseSignInWithEmailAndPassword.collectAsState()
+    val isSignIn =  viewModel.signInWithEmailAndPassword.collectAsState()
     var passVisibility by remember { mutableStateOf(false) }
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -105,7 +104,7 @@ fun LoginScreen(navController: NavHostController) {
             ExtraLargeButton(text = stringResource(id = R.string.login_title),
                 onClick = {
                     Log.d("checkData", "UID is " + auth.currentUser?.uid.toString())
-                    viewModel.firebaseSignInWithEmailAndPassword(login, password)
+                    viewModel.signInWithEmailAndPassword(login, password)
                 },
                 enabled = login.isNotEmpty() && password.isNotEmpty()
             )
@@ -121,7 +120,7 @@ fun LoginScreen(navController: NavHostController) {
             }
             is Resource.Success -> {
                 LaunchedEffect(Unit) {
-                    navController.navigate(NavItem.Home.navRoute)
+                    navController.navigate(NavItem.MainScreen.navRoute)
                 }
             }
         }
