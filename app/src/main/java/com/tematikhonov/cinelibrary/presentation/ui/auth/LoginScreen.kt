@@ -61,7 +61,7 @@ fun LoginScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.Top,
                 ) {
-                    Icon(painter = painterResource(id = R.drawable.ic_arrow_back),
+                    Icon(painter = painterResource(id = R.drawable.ic_arrow_left),
                         contentDescription = "",
                         Modifier.clickable {navController.popBackStack()},
                         tint = Color.White,)

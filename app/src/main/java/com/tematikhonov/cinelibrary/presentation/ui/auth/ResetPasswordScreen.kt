@@ -1,8 +1,6 @@
 package com.tematikhonov.cinelibrary.presentation.ui.auth
 
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -13,18 +11,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.components.ExtraLargeButton
 import com.tematikhonov.cinelibrary.presentation.core.LoginTextField
-import com.tematikhonov.cinelibrary.presentation.core.PasswordTextField
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
@@ -50,7 +42,7 @@ fun ResetPasswordScreen() {
                     verticalAlignment = Alignment.Top,
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_back),
+                        painter = painterResource(id = R.drawable.ic_arrow_left),
                         contentDescription = "",
                         //Modifier.clickable {navController.popBackStack()},
                         tint = Color.White,

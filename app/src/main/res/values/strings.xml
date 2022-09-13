@@ -58,4 +58,9 @@
     <string name="search_category_actors">Actors</string>
     <string name="search_not_found_title">We are sorry, we can \nnot find the movie :(</string>
     <string name="search_not_found_description">Find your movie by Type title, \ncategories, years, etc</string>
+
+    // Profile
+    <string name="profile_log_out">Log Out</string>
+    <string name="profile_general">General</string>
+    <string name="profile_more">More</string>
 </resources>

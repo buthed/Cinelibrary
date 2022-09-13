@@ -55,7 +55,7 @@ fun AllGalleryScreen(movieId: String, navController: NavHostController) {
                 verticalAlignment = Alignment.Top,
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    painter = painterResource(id = R.drawable.ic_arrow_left),
                     contentDescription = "",
                     Modifier.clickable(onClick = { navController.popBackStack() }),
                     tint = Color.White,
