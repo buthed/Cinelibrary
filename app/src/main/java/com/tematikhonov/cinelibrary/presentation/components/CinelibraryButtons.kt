@@ -1,5 +1,6 @@
 package com.tematikhonov.cinelibrary.presentation.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -118,6 +119,36 @@ fun RoundedPlayButton(
         }
     }
 }
+
+@Composable
+fun OutlinedRoundedPlayButton(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    colors: ButtonColors,
+    border: BorderStroke
+){
+    OutlinedButton(
+        onClick = onClick,
+        shape = RoundedCornerShape(100),
+        colors = colors,
+        border = border
+    ) {
+        Row(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = text,
+                style = CLBTypography.h4,
+                color = LocalCLBExtraColors.current.BlueAccent
+            )
+        }
+    }
+}
+
+
 
 //TODO Add ...More to story line.
 //TODO Fix first row on scroll
