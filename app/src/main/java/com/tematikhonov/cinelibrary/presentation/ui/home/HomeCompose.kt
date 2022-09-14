@@ -108,6 +108,4 @@ fun HomeScreenPreview() {
 
 //TODO Add scroll HomeScreen
 //TODO Add All button for categories
-//TODO Add ViewPager on Upcoming Movies
-//TODO Optimize titles
 

@@ -53,11 +53,8 @@ fun MovieDefaultItem(movie: Result, navController: NavController) {
                 .align(Alignment.TopEnd)
                 .padding(8.dp)
         ) {
-            Card(
-                Modifier.padding(top = 8.dp),
-                backgroundColor = LocalCLBExtraColors.current.Soft,
-                contentColor = LocalCLBExtraColors.current.Soft,
-                shape = RoundedCornerShape(8.dp)
+            Box(Modifier.padding(top = 8.dp).clip(RoundedCornerShape(8.dp))
+                .background(LocalCLBExtraColors.current.Soft.copy(alpha = 0.8f))
             ) {
                 Row(Modifier.width(55.dp).height(24.dp),
                     horizontalArrangement = Arrangement.Center,
@@ -105,5 +102,4 @@ fun MovieDefaultItemPreview(){
     MovieDefaultItem(item, navController)
 }
 
-//TODO Add transparency to grades
 //TODO Mistake on scroll upcoming movies
