@@ -17,14 +17,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.entites.Genre
-import com.tematikhonov.cinelibrary.domain.models.entites.Movie
+import com.tematikhonov.cinelibrary.domain.models.entites.MovieDetails
 import com.tematikhonov.cinelibrary.domain.models.entites.ProductionCompany
 import com.tematikhonov.cinelibrary.domain.models.entites.ProductionCountry
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun InfoTab(movie: Movie){
+fun InfoTab(movie: MovieDetails){
     Column(
         Modifier
             .fillMaxWidth()
@@ -102,7 +102,7 @@ fun InfoTabSeparator(){
 @Preview
 @Composable
 fun InfoTabPreview(){
-    val item = Movie(
+    val item = MovieDetails(
         adult=false,
         backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
         belongs_to_collection = "1",

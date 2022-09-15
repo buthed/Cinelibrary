@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,12 +21,12 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
-import com.tematikhonov.cinelibrary.domain.models.entites.Result
+import com.tematikhonov.cinelibrary.domain.models.entites.Movie
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun MovieDefaultItem(movie: Result, navController: NavController) {
+fun MovieDefaultItem(movie: Movie, navController: NavController) {
     Box(Modifier.width(150.dp).clip(RoundedCornerShape(8.dp)).clickable {
         Log.d("checkDataM", "ID: ${movie.id} title: ${movie.original_title}")
         navController.navigate("MovieDetails/${movie.id}")
@@ -83,7 +82,7 @@ fun MovieDefaultItem(movie: Result, navController: NavController) {
 @Composable
 fun MovieDefaultItemPreview(){
     val navController = rememberNavController()
-    val item = Result(
+    val item = Movie(
         adult=false,
         backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
         genre_ids= listOf(28, 12, 14),

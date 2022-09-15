@@ -17,16 +17,16 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
 
     var movieId by Delegates.notNull<Int>()
 
-    private val _movie = MutableLiveData<Movie>()
-    val movie: LiveData<Movie>
+    private val _movie = MutableLiveData<MovieDetails>()
+    val movie: LiveData<MovieDetails>
         get() = _movie
 
     private val _credits = MutableLiveData<Credits>()
     val credits: LiveData<Credits>
         get() = _credits
 
-    private val _similar = MutableLiveData<MoviesListResult>()
-    val similar: LiveData<MoviesListResult>
+    private val _similar = MutableLiveData<ResultMovie>()
+    val similar: LiveData<ResultMovie>
         get() = _similar
 
     private val _gallery = MutableLiveData<Gallery>()

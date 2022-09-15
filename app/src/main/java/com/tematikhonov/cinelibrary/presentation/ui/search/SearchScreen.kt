@@ -16,20 +16,18 @@ import androidx.navigation.NavHostController
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.components.search.MovieNotFound
 import com.tematikhonov.cinelibrary.presentation.components.search.SearchCategory
-import com.tematikhonov.cinelibrary.presentation.components.search.SearchItem
+import com.tematikhonov.cinelibrary.presentation.components.search.PersonSearchItem
 import com.tematikhonov.cinelibrary.presentation.core.SearchField
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
-
-interface SearchScreenCallback{
-    fun onSearch(query: String)
-}
 
 @Composable
 fun SearchScreen(navController: NavHostController) {
     var query by remember { mutableStateOf("") }
-    var chosenCategory by remember { mutableStateOf("All") }
+    var chosenCategory by remember { mutableStateOf("Movies") }
     val viewModel = hiltViewModel<SearchViewModel>()
-    val searchResult = viewModel.search.observeAsState().value
+    val searchResult = viewModel.searchPerson.observeAsState().value
+    val searchResultMovie = viewModel.searchMovie.observeAsState().value
+    val searchResultPerson = viewModel.searchPerson.observeAsState().value
 
     Box(
         Modifier
@@ -47,7 +45,7 @@ fun SearchScreen(navController: NavHostController) {
                 input = query,
                 onValueChange = {
                     query = it
-                    if (query.isNotEmpty()) viewModel.init(query)
+                    if (query.isNotEmpty()) viewModel.initMovieAndPersonSearch(query)
                 }, label = stringResource(
                     id = R.string.search_input_label
                 ))
@@ -72,14 +70,13 @@ fun SearchScreen(navController: NavHostController) {
                 else {
                     LazyColumn{
                         items(searchResult.results) {item ->
-                            SearchItem(navController,item)
+                            PersonSearchItem(navController,item)
                             Spacer(Modifier.height(16.dp))
                         }
                     }
                 }
             }
         }
-
     }
 }
 //

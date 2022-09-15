@@ -22,14 +22,14 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
-import com.tematikhonov.cinelibrary.domain.models.entites.Result
+import com.tematikhonov.cinelibrary.domain.models.entites.Movie
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import kotlin.math.absoluteValue
 
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun UpcomingViewPager(data: List<Result>, navController: NavController) {
+fun UpcomingViewPager(data: List<Movie>, navController: NavController) {
 
     val pageCount = data.size
     val startIndex = data.size / 2
@@ -73,7 +73,7 @@ fun UpcomingViewPager(data: List<Result>, navController: NavController) {
 }
 
 @Composable
-fun UpcomingItem(modifier: Modifier, movie: Result) {
+fun UpcomingItem(modifier: Modifier, movie: Movie) {
     Card(modifier = modifier) {
         AsyncImage(
             model = ApiConstants.TMDB_IMAGE_PATH+movie.backdrop_path,
@@ -101,7 +101,7 @@ fun UpcomingItem(modifier: Modifier, movie: Result) {
 @Preview
 @Composable
 fun UpcomingItemPreview() {
-    val item = Result(
+    val item = Movie(
         adult=false,
         backdrop_path="/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg",
         genre_ids= listOf(28, 12, 14),
