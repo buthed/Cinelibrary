@@ -31,7 +31,7 @@ import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 fun PersonSearchItem(navController: NavHostController, person: Person) {
     Row(Modifier.fillMaxWidth().clickable {
         Log.d("checkDataM", "ID: ${person.id} title: ${person.name}")
-        navController.navigate("Person  /${person.id}")
+        navController.navigate("Person/${person.id}")
     }) {
         Box(
             Modifier

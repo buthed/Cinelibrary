@@ -10,19 +10,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.components.search.*
 import com.tematikhonov.cinelibrary.presentation.core.SearchField
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
-import javax.annotation.meta.When
+import com.tematikhonov.cinelibrary.domain.models.enumeration.SearchCategory.*
 
 @Composable
 fun SearchScreen(navController: NavHostController) {
     var query by remember { mutableStateOf("") }
-    var chosenCategory by remember { mutableStateOf("Movies") }
+    var chosenCategory by remember { mutableStateOf(ALL) }
     val viewModel = hiltViewModel<SearchViewModel>()
     val searchResultMovie = viewModel.searchMovie.observeAsState().value
     val searchResultPerson = viewModel.searchPerson.observeAsState().value
@@ -57,21 +59,34 @@ fun SearchScreen(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 val context = LocalContext.current
-                SearchCategory(stringResource(id = R.string.search_category_all), chosenCategory,
-                    onClick = { chosenCategory = context.getString(R.string.search_category_all) })
-                SearchCategory(stringResource(id = R.string.search_category_movies), chosenCategory,
-                    onClick = {
-                        chosenCategory = context.getString(R.string.search_category_movies)
-                    })
-                SearchCategory(stringResource(id = R.string.search_category_actors), chosenCategory,
-                    onClick = {
-                        chosenCategory = context.getString(R.string.search_category_actors)
-                    })
+                SearchCategory(ALL, chosenCategory) { chosenCategory = ALL }
+                SearchCategory(MOVIES, chosenCategory) { chosenCategory = MOVIES }
+                SearchCategory(ACTORS, chosenCategory) { chosenCategory = ACTORS }
             }
             Spacer(Modifier.height(32.dp))
             when (chosenCategory) {
-                "All" -> MovieNotFound()
-                "Movies" -> {
+                ALL  -> {
+                    if (searchResultMovie != null &&
+                        searchResultPerson != null &&
+                        query.isNotEmpty()) {
+                        if (searchResultMovie.results.isEmpty() &&
+                            searchResultPerson.results.isEmpty()) MovieNotFound()
+                        LazyColumn {
+                            items(searchResultMovie.results) { item ->
+                                MovieSearchItem(navController, item)
+                                Spacer(Modifier.height(16.dp))
+                            }
+                        }
+//                        LazyColumn {
+//                            items(searchResultPerson.results) { item ->
+//                                PersonSearchItem(navController, item)
+//                                Spacer(Modifier.height(16.dp))
+//                            }
+//                        }
+//                        //TODO Change SearchItem
+                    }
+                }
+                MOVIES -> {
                     if (searchResultMovie != null && query.isNotEmpty()) {
                         if (searchResultMovie.results.isEmpty()) MovieNotFound()
                         LazyColumn {
@@ -82,7 +97,7 @@ fun SearchScreen(navController: NavHostController) {
                         }
                     }
                 }
-                "Actors" -> {
+                ACTORS -> {
                     if (searchResultPerson != null && query.isNotEmpty()) {
                         if (searchResultPerson.results.isEmpty()) PersonNotFound()
                         LazyColumn {
@@ -97,10 +112,10 @@ fun SearchScreen(navController: NavHostController) {
         }
     }
 }
-//
-//@Preview
-//@Composable
-//fun SearchScreenPreview() {
-//    val navController = rememberNavController()
-//    SearchScreen(navController)
-//}
+
+@Preview
+@Composable
+fun SearchScreenPreview() {
+    val navController = rememberNavController()
+    SearchScreen(navController)
+}

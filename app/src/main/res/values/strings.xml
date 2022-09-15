@@ -56,6 +56,8 @@
     <string name="search_category_all">All</string>
     <string name="search_category_movies">Movies</string>
     <string name="search_category_actors">Actors</string>
+    <string name="search_not_found_title">We are sorry, we can \nnot find anything :(</string>
+    <string name="search_not_found_description">Find your movie or person by Type title, \ncategories, names, etc</string>
     <string name="search_not_found_movie_title">We are sorry, we can \nnot find the movie :(</string>
     <string name="search_not_found_movie_description">Find your movie by Type title, \ncategories, years, etc</string>
     <string name="search_not_found_person_title">We are sorry, we can \nnot find the person :(</string>
