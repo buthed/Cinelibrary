@@ -5,6 +5,7 @@ import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_GALLERY
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_GENRES
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_KEY
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_MOVIE
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_PERSON
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_POPULAR
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_SIMILAR_MOVIES
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_UPCOMING
@@ -43,4 +44,7 @@ interface ApiTMDBService {
 
     @GET("/3/search/movie?api_key=1cdc07942d44ead0f1079d449b6760a3&")
     suspend fun getMovieSearchResult(@Query("query") query: String): MoviesListResult
+
+    @GET(TMDB_API_PERSON+ TMDB_API_KEY)
+    suspend fun getPerson(@Path("person_id") person_id: Int): Person
 }

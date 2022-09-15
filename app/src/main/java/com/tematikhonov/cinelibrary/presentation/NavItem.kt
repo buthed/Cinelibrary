@@ -19,4 +19,5 @@ sealed class NavItem(
     object Profile: NavItem(NAV_PROFILE, R.drawable.ic_profile, NAV_PROFILE)
     object MovieDetails: NavItem(NAV_MOVIE, navRoute = NAV_MOVIE)
     object MovieDetailsGallery: NavItem(NAV_GALLERY, navRoute = NAV_GALLERY)
+    object Person: NavItem(NAV_PERSON, navRoute =  NAV_PERSON)
 }

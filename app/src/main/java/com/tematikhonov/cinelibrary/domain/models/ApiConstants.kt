@@ -10,6 +10,7 @@ object ApiConstants {
     const val TMDB_API_SIMILAR_MOVIES = "/3/movie/{movie_id}/similar?api_key="
     const val TMDB_API_GALLERY ="/3/movie/{movie_id}/images?api_key="
     const val TMDB_API_VIDEOS = "/3/movie/{movie_id}/videos?api_key="
+    const val TMDB_API_PERSON = "/3/person/{person_id}?api_key="
     const val TMDB_API_SEARCH = "/3/search/movie"
     const val TMDB_IMAGE_PATH = "https://image.tmdb.org/t/p/w500/"
     const val TMDB_API_NOW_PLAYING = "movie/now_playing?api_key="
