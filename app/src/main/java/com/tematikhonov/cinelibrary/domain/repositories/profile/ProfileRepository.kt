@@ -9,4 +9,8 @@ interface ProfileRepository  {
 
     fun clearCache(context: Context)
 
+    fun getNotificationBoolean(): Boolean
+
+    fun setNotificationBoolean(boolean: Boolean)
+
 }

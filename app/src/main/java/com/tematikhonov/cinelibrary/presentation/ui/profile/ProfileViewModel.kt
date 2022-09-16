@@ -11,4 +11,8 @@ class ProfileViewModel @Inject constructor(private val profileRepositoryImpl: Pr
 
     fun clearCache() =  profileRepositoryImpl.clearCache(profileRepositoryImpl.context)
 
+    fun setNotificationPref(boolean: Boolean) = profileRepositoryImpl.setNotificationBoolean(boolean)
+
+    fun getNotificationBoolean() = profileRepositoryImpl.getNotificationBoolean()
+
 }

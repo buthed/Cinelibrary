@@ -9,6 +9,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.ktx.auth
@@ -33,6 +37,7 @@ import com.tematikhonov.cinelibrary.presentation.ui.auth.AuthViewModel
 @Composable
 fun ProfileScreen(navController: NavHostController) {
     val viewModel = hiltViewModel<ProfileViewModel>()
+    val checkedState = remember { mutableStateOf(viewModel.getNotificationBoolean()) }
     val auth = Firebase.auth
     val viewModelAuth = hiltViewModel<AuthViewModel>()
     Box(
@@ -76,7 +81,15 @@ fun ProfileScreen(navController: NavHostController) {
                         color = LocalCLBExtraColors.current.Whiter,
                         style = CLBTypography.h3)
                     Spacer(Modifier.height(8.dp))
-                    ItemRow("Notification", painterResource(id = R.drawable.ic_notification),{})
+                    ItemSwitchRow("Notification",
+                        painterResource(id = R.drawable.ic_notification),
+                        {},
+                        checked = checkedState.value,
+                        onCheckedChange = {
+                            checkedState.value = it
+                            viewModel.setNotificationPref(it)
+                        }
+                    )
                     ProfileDivider()
                     ItemRow("Language", painterResource(id = R.drawable.ic_globe),{})
                     ProfileDivider()
@@ -162,6 +175,42 @@ fun ItemRow(text:String, painter: Painter, onClick: () -> Unit = {}){
         Icon(painter = painterResource(id = R.drawable.ic_arrow_right),
             contentDescription = "",
             tint = LocalCLBExtraColors.current.BlueAccent)
+    }
+}
+
+@Composable
+fun ItemSwitchRow(text:String, painter: Painter, onClick: () -> Unit = {},checked: Boolean, onCheckedChange: ((Boolean) -> Unit)){
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .clickable(onClick = onClick),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically,
+        ){
+            Box(
+                Modifier
+                    .clip(CircleShape)
+                    .background(LocalCLBExtraColors.current.Soft)
+                    .size(30.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(painter = painter,
+                    contentDescription = "",
+                    Modifier.size(24.dp),
+                    tint = LocalCLBExtraColors.current.Gray
+                )
+            }
+            Spacer(Modifier.width(20.dp))
+            Text(text = text,
+                style = CLBTypography.h5,
+                color = LocalCLBExtraColors.current.Whiter)
+        }
+        Switch(checked, onCheckedChange)
     }
 }
 
