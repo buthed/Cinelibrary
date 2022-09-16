@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tematikhonov.cinelibrary.navigation.NavHost
 import com.tematikhonov.cinelibrary.presentation.NAV_GALLERY
 import com.tematikhonov.cinelibrary.presentation.NAV_MOVIE
+import com.tematikhonov.cinelibrary.presentation.NAV_PERSON
 import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.components.BottomBar
 
@@ -22,7 +23,8 @@ fun MainScreen() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     showBottomBar =  when (navBackStackEntry?.destination?.route) {
         NAV_MOVIE -> false
-
+        NAV_GALLERY -> false
+        NAV_PERSON -> false
         else -> true
     }
 

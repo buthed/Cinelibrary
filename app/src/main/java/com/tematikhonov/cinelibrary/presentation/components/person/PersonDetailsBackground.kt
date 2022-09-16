@@ -1,4 +1,4 @@
-package com.tematikhonov.cinelibrary.presentation.components.movieDetails
+package com.tematikhonov.cinelibrary.presentation.components.person
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,13 +11,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
-import com.tematikhonov.cinelibrary.domain.models.entites.MovieDetails
+import com.tematikhonov.cinelibrary.domain.models.entites.Person
 
 @Composable
-fun MovieDetailsBackground(movie: MovieDetails) {
+fun PersonDetailsBackground(person: Person) {
     AsyncImage(
-        model = ApiConstants.TMDB_IMAGE_PATH +movie.poster_path,
-        contentDescription = movie.title,
+        model = ApiConstants.TMDB_IMAGE_PATH +person.profile_path,
+        contentDescription = person.name,
         Modifier.fillMaxSize(),
         contentScale = ContentScale.FillWidth,
         alignment = Alignment.TopCenter

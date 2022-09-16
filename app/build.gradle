@@ -116,4 +116,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
     implementation 'com.google.firebase:firebase-database:20.0.6'
     implementation('com.google.android.gms:play-services-auth:20.3.0')
+
+    // Preferences
+    implementation "androidx.preference:preference:1.2.0"
+    implementation "androidx.preference:preference-ktx:1.2.0"
 }

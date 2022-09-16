@@ -1,10 +1,13 @@
 package com.tematikhonov.cinelibrary.data.di
 
+import android.content.Context
 import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.repositories.profile.ProfileRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,4 +26,8 @@ object AppModule {
             .build()
             .create(ApiTMDBService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideRepository(@ApplicationContext context: Context): ProfileRepositoryImpl =
+        ProfileRepositoryImpl(context)
 }

@@ -14,6 +14,7 @@ import com.tematikhonov.cinelibrary.presentation.ui.home.HomeScreen
 import com.tematikhonov.cinelibrary.presentation.ui.main.MainScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.AllGalleryScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.MovieDetailsScreen
+import com.tematikhonov.cinelibrary.presentation.ui.person.PersonScreen
 import com.tematikhonov.cinelibrary.presentation.ui.profile.ProfileScreen
 import com.tematikhonov.cinelibrary.presentation.ui.search.SearchScreen
 
@@ -57,6 +58,10 @@ fun NavHost(navController: NavHostController) {
         }
         composable(route = "MovieDetailsGallery/{movieId}")  { backStackEntry ->
             AllGalleryScreen(movieId = backStackEntry.arguments?.getString("movieId")?: "555",
+                navController = navController)
+        }
+        composable(route = "Person/{personId}") { backStackEntry ->
+            PersonScreen(personId = backStackEntry.arguments?.getString("personId")?: "819",
                 navController = navController)
         }
     }

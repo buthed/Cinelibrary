@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tematikhonov.cinelibrary.domain.models.entites.MoviesListResult
+import com.tematikhonov.cinelibrary.domain.models.entites.ResultMovie
+import com.tematikhonov.cinelibrary.domain.models.entites.ResultPerson
 import com.tematikhonov.cinelibrary.domain.repositories.search.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flow
@@ -17,24 +18,51 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     var searchQuery by Delegates.notNull<String>()
 
-    private val _search = MutableLiveData<MoviesListResult>()
-    val search: LiveData<MoviesListResult>
-        get() = _search
+    private val _searchMovie = MutableLiveData<ResultMovie>()
+    val searchMovie: LiveData<ResultMovie>
+        get() = _searchMovie
 
-    private suspend fun fetchSearch(query: String) = flow {
+    private val _searchPerson = MutableLiveData<ResultPerson>()
+    val searchPerson: LiveData<ResultPerson>
+        get() = _searchPerson
+
+    private suspend fun fetchSearchMovie(query: String) = flow {
         emit(repository.getMovieSearchResult(query))
+    }
+
+    private suspend fun fetchSearchPerson(query: String) = flow {
+        emit(repository.getPersonSearchResult(query))
     }
 
     private fun getMovieSearchResult(query: String) {
         viewModelScope.launch {
-            fetchSearch(query).collect{
-                _search.postValue(it)
+            fetchSearchMovie(query).collect{
+                _searchMovie.postValue(it)
             }
         }
     }
 
-    fun init(query: String){
+    private fun getPersonSearchResult(query: String) {
+        viewModelScope.launch {
+            fetchSearchPerson(query).collect{
+                _searchPerson.postValue(it)
+            }
+        }
+    }
+
+    fun initMovieSearch(query: String){
         this.searchQuery = query
         getMovieSearchResult(query)
+    }
+
+    fun initPersonSearch(query: String){
+        this.searchQuery = query
+        getPersonSearchResult(query)
+    }
+
+    fun initMovieAndPersonSearch(query: String){
+        this.searchQuery = query
+        getMovieSearchResult(query)
+        getPersonSearchResult(query)
     }
 }

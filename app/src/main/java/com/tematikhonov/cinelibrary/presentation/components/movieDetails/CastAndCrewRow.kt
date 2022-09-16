@@ -1,5 +1,6 @@
 package com.tematikhonov.cinelibrary.presentation.components.movieDetails
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -11,24 +12,31 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.Cast
+import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 
 @Composable
-fun CastAndCrewRow(modifier: Modifier = Modifier, cast: List<Cast>) {
+fun CastAndCrewRow(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    cast: List<Cast>
+) {
     LazyRow(modifier = modifier){
         items(cast) { item ->
-            CastAndCrewRowItem(item)
+            CastAndCrewRowItem(item, navController)
         }
 
     }
 }
 
 @Composable
-fun CastAndCrewRowItem(person: Cast) {
-    Row(){
+fun CastAndCrewRowItem(person: Cast, navController: NavHostController) {
+     Row(Modifier.clickable(onClick = {navController.navigate("Person/${person.id}")})){
         AsyncImage(
             modifier = Modifier
                 .size(40.dp)

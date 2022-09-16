@@ -14,11 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tematikhonov.cinelibrary.domain.models.enumeration.SearchCategory
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun SearchCategory(text: String, chosenCategory: String, onClick: () -> Unit) {
+fun SearchCategory(text: SearchCategory, chosenCategory: SearchCategory, onClick: () -> Unit) {
     if (text == chosenCategory) {
         Card(Modifier.defaultMinSize(minWidth = 110.dp).clickable {
                 onClick
@@ -28,7 +29,7 @@ fun SearchCategory(text: String, chosenCategory: String, onClick: () -> Unit) {
             border = BorderStroke(2.dp, LocalCLBExtraColors.current.BlueAccent)
         ) {
             Text(
-                text = text,
+                text = text.toString(),
                 Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                 textAlign = TextAlign.Center,
                 style = CLBTypography.body2,
@@ -42,7 +43,7 @@ fun SearchCategory(text: String, chosenCategory: String, onClick: () -> Unit) {
             shape = RoundedCornerShape(8.dp)
         ) {
             Text(
-                text = text,
+                text = text.toString(),
                 Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                 textAlign = TextAlign.Center,
                 style = CLBTypography.body2,
@@ -58,7 +59,7 @@ fun SearchCategory(text: String, chosenCategory: String, onClick: () -> Unit) {
 @Composable
 fun CategoriesItemPreview(){
     Column() {
-        SearchCategory("Movie","1", {})
-        SearchCategory("Movie","Movie", {})
+        SearchCategory(SearchCategory.MOVIES,SearchCategory.MOVIES) {}
+        SearchCategory(SearchCategory.ACTORS,SearchCategory.ACTORS) {}
     }
 }

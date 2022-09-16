@@ -6,4 +6,6 @@ import javax.inject.Inject
 class SearchRepository @Inject constructor(private val apiService: ApiTMDBService) {
 
     suspend fun getMovieSearchResult(query: String) = apiService.getMovieSearchResult(query)
+
+    suspend fun getPersonSearchResult(query: String) = apiService.getPersonSearchResult(query)
 }

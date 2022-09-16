@@ -56,11 +56,24 @@
     <string name="search_category_all">All</string>
     <string name="search_category_movies">Movies</string>
     <string name="search_category_actors">Actors</string>
-    <string name="search_not_found_title">We are sorry, we can \nnot find the movie :(</string>
-    <string name="search_not_found_description">Find your movie by Type title, \ncategories, years, etc</string>
+    <string name="search_not_found_title">We are sorry, we can \nnot find anything :(</string>
+    <string name="search_not_found_description">Find your movie or person by Type title, \ncategories, names, etc</string>
+    <string name="search_not_found_movie_title">We are sorry, we can \nnot find the movie :(</string>
+    <string name="search_not_found_movie_description">Find your movie by Type title, \ncategories, years, etc</string>
+    <string name="search_not_found_person_title">We are sorry, we can \nnot find the person :(</string>
+    <string name="search_not_found_person_description">Find your person by Type name, \nplace of birth, years, etc</string>
 
     // Profile
     <string name="profile_log_out">Log Out</string>
     <string name="profile_general">General</string>
     <string name="profile_more">More</string>
+
+    // Person
+    <string name="person_personal_info">Personal Info</string>
+    <string name="person_known_for">Known For </string>
+    <string name="person_known_credits">Known Credits </string>
+    <string name="person_gender">Gender </string>
+    <string name="person_birthday">Birthday </string>
+    <string name="person_place_of_birth">Place of Birth </string>
+    <string name="person_biography">Biography</string>
 </resources>

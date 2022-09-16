@@ -127,7 +127,7 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                             style = CLBTypography.h4,
                             color = clbLightExtraColors.BlueAccent)
                     }
-                    if (credits!=null) CastAndCrewRow(Modifier.padding(top = 16.dp), credits.cast)
+                    if (credits!=null) CastAndCrewRow(Modifier.padding(top = 16.dp), navController, credits.cast)
                     Row(
                         Modifier
                             .fillMaxWidth()

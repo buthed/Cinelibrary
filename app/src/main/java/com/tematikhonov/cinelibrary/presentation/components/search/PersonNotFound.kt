@@ -17,18 +17,19 @@ import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
-fun MovieNotFound() {
-    Column(Modifier.fillMaxSize().background(LocalCLBExtraColors.current.Dark).padding(top = 100.dp),
+fun PersonNotFound() {
+    Column(
+        Modifier.fillMaxSize().background(LocalCLBExtraColors.current.Dark).padding(top = 100.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(painter = painterResource(id = R.drawable.ic_no_results_colored), contentDescription = "")
         Spacer(Modifier.height(16.dp))
-        Text(text = stringResource(id = R.string.search_not_found_movie_title),
+        Text(text = stringResource(id = R.string.search_not_found_person_title),
             style = CLBTypography.h4,
-        textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center)
         Spacer(Modifier.height(8.dp))
-        Text(text = stringResource(id = R.string.search_not_found_movie_description),
+        Text(text = stringResource(id = R.string.search_not_found_person_description),
             color = LocalCLBExtraColors.current.Gray,
             style = CLBTypography.body1,
             textAlign = TextAlign.Center)
@@ -37,6 +38,6 @@ fun MovieNotFound() {
 
 @Preview
 @Composable
-fun MovieNotFoundPreview() {
-    MovieNotFound()
+fun PersonNotFoundPreview() {
+    PersonNotFound()
 }

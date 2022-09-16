@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tematikhonov.cinelibrary.domain.models.entites.GenresResult
-import com.tematikhonov.cinelibrary.domain.models.entites.MoviesListResult
+import com.tematikhonov.cinelibrary.domain.models.entites.ResultMovie
 import com.tematikhonov.cinelibrary.domain.repositories.home.HomeRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,12 +20,12 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
     val genres: LiveData<GenresResult>
         get() = _genres
 
-    private val _upcomingMovies = MutableLiveData<MoviesListResult>()
-    val upcomingMovies: LiveData<MoviesListResult>
+    private val _upcomingMovies = MutableLiveData<ResultMovie>()
+    val upcomingMovies: LiveData<ResultMovie>
         get() = _upcomingMovies
 
-    private val _popularMovies = MutableLiveData<MoviesListResult>()
-    val popularMovies: LiveData<MoviesListResult>
+    private val _popularMovies = MutableLiveData<ResultMovie>()
+    val popularMovies: LiveData<ResultMovie>
         get() = _popularMovies
 
     init {
