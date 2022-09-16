@@ -8,7 +8,7 @@ import com.tematikhonov.cinelibrary.domain.models.Constants.PREF_NOTIFICATION
 class ProfileRepositoryImpl(override val context: Context): ProfileRepository {
 
     override fun clearCache(context: Context) {
-        context.cacheDir.deleteRecursively() //TODO Check work
+        context.cacheDir.deleteRecursively()
     }
 
     override fun getNotificationBoolean(): Boolean {
