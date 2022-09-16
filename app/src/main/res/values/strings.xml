@@ -67,6 +67,15 @@
     <string name="profile_log_out">Log Out</string>
     <string name="profile_general">General</string>
     <string name="profile_more">More</string>
+    <string name="profile_notification">Notification</string>
+    <string name="profile_language">Language</string>
+    <string name="profile_language_suggested">Suggested Languages</string>
+    <string name="profile_language_others">Others Languages</string>
+    <string name="profile_country">Country</string>
+    <string name="profile_clear_cache">Clear cache</string>
+    <string name="profile_policies">Legal and Policies</string>
+    <string name="profile_help">Help &amp; Feedback</string>
+    <string name="profile_about">About</string>
 
     // Person
     <string name="person_personal_info">Personal Info</string>

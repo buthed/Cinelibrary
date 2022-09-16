@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -29,6 +30,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.NavItem
+import com.tematikhonov.cinelibrary.presentation.components.ClbSwitch
 import com.tematikhonov.cinelibrary.presentation.components.OutlinedRoundedPlayButton
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
@@ -210,7 +212,7 @@ fun ItemSwitchRow(text:String, painter: Painter, onClick: () -> Unit = {},checke
                 style = CLBTypography.h5,
                 color = LocalCLBExtraColors.current.Whiter)
         }
-        Switch(checked, onCheckedChange)
+        ClbSwitch(checked, onCheckedChange)
     }
 }
 
