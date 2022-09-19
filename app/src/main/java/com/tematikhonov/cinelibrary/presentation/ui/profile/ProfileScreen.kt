@@ -1,5 +1,7 @@
 package com.tematikhonov.cinelibrary.presentation.ui.profile
 
+import android.util.Log
+import androidx.compose.animation.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -8,13 +10,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -29,13 +30,19 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.NavItem
+import com.tematikhonov.cinelibrary.presentation.components.ClbSwitch
 import com.tematikhonov.cinelibrary.presentation.components.OutlinedRoundedPlayButton
+import com.tematikhonov.cinelibrary.presentation.components.RoundedPlayButton
+import com.tematikhonov.cinelibrary.presentation.components.movieDetails.YouTubeTrailerPlayer
+import com.tematikhonov.cinelibrary.presentation.components.profile.LogOutAlert
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 import com.tematikhonov.cinelibrary.presentation.ui.auth.AuthViewModel
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun ProfileScreen(navController: NavHostController) {
+    var logoutAlertVisibility by remember { mutableStateOf(false) }
     val viewModel = hiltViewModel<ProfileViewModel>()
     val checkedState = remember { mutableStateOf(viewModel.getNotificationBoolean()) }
     val auth = Firebase.auth
@@ -124,10 +131,7 @@ fun ProfileScreen(navController: NavHostController) {
             }
 
             OutlinedRoundedPlayButton(text = stringResource(id = R.string.profile_log_out),
-                onClick = {
-                    viewModelAuth.signOut()
-                    navController.navigate(NavItem.Welcome.navRoute)
-                },
+                onClick = { logoutAlertVisibility = true },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 10.dp, horizontal = 24.dp),
@@ -138,7 +142,18 @@ fun ProfileScreen(navController: NavHostController) {
             )
         }
     }
+    AnimatedVisibility(visible = logoutAlertVisibility,
+        enter = fadeIn() + scaleIn(),
+        exit = fadeOut() + scaleOut()
+    ) {
+        LogOutAlert(closeAction = { logoutAlertVisibility = false },
+        logout = {
+            viewModelAuth.signOut()
+            navController.navigate(NavItem.Welcome.navRoute)
+        }) 
+    }
 }
+
 
 @Composable
 fun ItemRow(text:String, painter: Painter, onClick: () -> Unit = {}){
@@ -210,7 +225,7 @@ fun ItemSwitchRow(text:String, painter: Painter, onClick: () -> Unit = {},checke
                 style = CLBTypography.h5,
                 color = LocalCLBExtraColors.current.Whiter)
         }
-        Switch(checked, onCheckedChange)
+        ClbSwitch(checked, onCheckedChange)
     }
 }
 
@@ -229,10 +244,10 @@ fun ProfileDivider() {
         thickness = 1.dp)
 }
 
-
 @Preview
 @Composable
 fun ProfileScreenPreview() {
     val navController = rememberNavController()
     ProfileScreen(navController)
 }
+

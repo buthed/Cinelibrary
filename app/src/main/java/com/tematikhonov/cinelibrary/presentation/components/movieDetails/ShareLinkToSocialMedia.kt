@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -33,81 +34,98 @@ fun ShareLinkToSocialMedia(closeAction: () -> Unit, link: String) {
     Box(
         Modifier
             .fillMaxSize()
-            .background(LocalCLBExtraColors.current.Soft.copy(0.85f))
+            .background(LocalCLBExtraColors.current.Dark.copy(0.85f))
             .blur(40.dp)
-            .padding(horizontal = 24.dp)
             .clickable(onClick = closeAction),
         contentAlignment = Alignment.Center
     ){
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .background(LocalCLBExtraColors.current.Soft)
-                .heightIn(200.dp)
-                .clickable { }
-                .clip(RoundedCornerShape(16.dp)),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.End,
-        ) {
-            Image(painter = painterResource(id = R.drawable.ic_close),
-                contentDescription = "",
-                Modifier
-                    .padding(end = 24.dp)
-                    .clickable(onClick = closeAction),
-                alignment = Alignment.TopEnd)
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp)) {
-                Text(text = stringResource(id = R.string.movie_share_to),
-                    Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    style = CLBTypography.h3,
-                    color = Color.White)
-                Divider(color = LocalCLBExtraColors.current.Dark,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 32.dp),
-                    thickness = 1.dp)
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    val context = LocalContext.current
-                    val sendIntent = Intent(Intent.ACTION_SEND)
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, link)
-                    sendIntent.type = "text/plain"
+       Card(
+           Modifier
+               .fillMaxWidth()
+               .blur(40.dp)
+               .padding(horizontal = 24.dp)
+               .clickable(onClick = closeAction),
+           shape = RoundedCornerShape(16.dp),
+           backgroundColor = LocalCLBExtraColors.current.Soft.copy(0.85f)
+       ){
+           Column(
+               Modifier
+                   .fillMaxWidth()
+                   .background(LocalCLBExtraColors.current.Soft)
+                   .clickable { }
+                   .clip(RoundedCornerShape(16.dp)),
+               verticalArrangement = Arrangement.Center,
+               horizontalAlignment = Alignment.End,
+           ) {
+               Image(painter = painterResource(id = R.drawable.ic_close),
+                   contentDescription = "",
+                   Modifier
+                       .padding(top = 24.dp, end = 24.dp)
+                       .clickable(onClick = closeAction),
+                   alignment = Alignment.TopEnd)
+               Column(
+                   Modifier
+                       .fillMaxWidth()
+                       .padding(horizontal = 32.dp)
+               ) {
+                   Text(text = stringResource(id = R.string.movie_share_to),
+                       Modifier.fillMaxWidth(),
+                       textAlign = TextAlign.Center,
+                       style = CLBTypography.h3,
+                       color = Color.White)
+                   Divider(color = LocalCLBExtraColors.current.Dark,
+                       modifier = Modifier
+                           .fillMaxWidth()
+                           .padding(vertical = 32.dp),
+                       thickness = 1.dp)
+                   Row(
+                       Modifier.fillMaxWidth(),
+                       horizontalArrangement = Arrangement.SpaceAround,
+                       verticalAlignment = Alignment.CenterVertically,
+                   ) {
+                       val context = LocalContext.current
+                       val sendIntent = Intent(Intent.ACTION_SEND)
+                       sendIntent.putExtra(Intent.EXTRA_TEXT, link)
+                       sendIntent.type = "text/plain"
 
-                    Image(painter = painterResource(id = R.drawable.icon_share_link), contentDescription = "",
-                        Modifier
-                            .size(50.dp)
-                            .clickable(onClick = {
-                                val clipboardManager =
-                                    context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                val clipData: ClipData = ClipData.newPlainText("simple text", link)
-                                clipboardManager.setPrimaryClip(clipData)
-                                closeAction()
-                            }))
-                    Image(painter = painterResource(id = R.drawable.icon_facebook), contentDescription = "",
-                        Modifier.size(50.dp).clickable(onClick = {
-                            sendIntent.setPackage("com.facebook.katana")
-                            context.startActivity(sendIntent)
-                        }))
-                    Image(painter = painterResource(id = R.drawable.icon_instagram), contentDescription = "",
-                        Modifier.size(50.dp).clickable(onClick = {
-                            sendIntent.setPackage("com.instagram.android")
-                            context.startActivity(sendIntent)
-                        }))
-                    Image(painter = painterResource(id = R.drawable.icon_telegram), contentDescription = "",
-                        Modifier.size(50.dp).clickable(onClick = {
-                            sendIntent.setPackage("org.telegram.messenger")
-                            context.startActivity(sendIntent)
-                        }))
-                }
-            }
-        }
-    }
+                       Image(painter = painterResource(id = R.drawable.icon_share_link), contentDescription = "",
+                           Modifier
+                               .size(50.dp)
+                               .clickable(onClick = {
+                                   val clipboardManager =
+                                       context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                   val clipData: ClipData =
+                                       ClipData.newPlainText("simple text", link)
+                                   clipboardManager.setPrimaryClip(clipData)
+                                   closeAction()
+                               }))
+                       Image(painter = painterResource(id = R.drawable.icon_facebook), contentDescription = "",
+                           Modifier
+                               .size(50.dp)
+                               .clickable(onClick = {
+                                   sendIntent.setPackage("com.facebook.katana")
+                                   context.startActivity(sendIntent)
+                               }))
+                       Image(painter = painterResource(id = R.drawable.icon_instagram), contentDescription = "",
+                           Modifier
+                               .size(50.dp)
+                               .clickable(onClick = {
+                                   sendIntent.setPackage("com.instagram.android")
+                                   context.startActivity(sendIntent)
+                               }))
+                       Image(painter = painterResource(id = R.drawable.icon_telegram), contentDescription = "",
+                           Modifier
+                               .size(50.dp)
+                               .clickable(onClick = {
+                                   sendIntent.setPackage("org.telegram.messenger")
+                                   context.startActivity(sendIntent)
+                               }))
+                   }
+                   Spacer(Modifier.height(32.dp))
+               }
+           }
+       }
+   }
 }
 
 @Preview

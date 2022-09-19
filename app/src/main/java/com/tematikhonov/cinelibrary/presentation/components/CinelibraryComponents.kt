@@ -18,47 +18,23 @@ import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Preview
 @Composable
-fun ComposableButtonsPreview() {
+fun CinelibraryComponentsPreview() {
     Column() {
         ExtraLargeButton("Extra Large",{})
-        LargeButton(text = "Large",{})
-        MediumButton(text = "Medium",{})
-        SmallButton(text = "Small",{})
-        ExtraSmallButton(text = "ExtraSmall",{})
-        ExtraLargePlayButton("Play",{})
+        RoundedButton("Rounded Button",  enabled = true, onClick = {})
+        RoundedPlayButton("RoundedPlayButton", onClick = {}, colors = ButtonDefaults.buttonColors())
+        Row() {
+            ClbSwitch(true,{})
+            ClbSwitch(false,{})
+        }
     }
 }
 
 @Composable
-fun ExtraLargePlayButton(text: String, onClick: () -> Unit){
-    RoundedPlayButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp),
-    colors = ButtonDefaults.buttonColors(backgroundColor =  LocalCLBExtraColors.current.Orange))
-}
-
-
-@Composable
-fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 24.dp), enabled: Boolean = true){
+fun ExtraLargeButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier
+    .fillMaxWidth()
+    .padding(vertical = 10.dp, horizontal = 24.dp), enabled: Boolean = true){
     RoundedButton(text = text, onClick = onClick, modifier = modifier, enabled = enabled)
-}
-
-@Composable
-fun LargeButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 12.dp, horizontal = 24.dp), enabled = enabled)
-}
-
-@Composable
-fun MediumButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 8.dp, horizontal = 24.dp), enabled = enabled)
-}
-
-@Composable
-fun SmallButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(vertical = 4.dp, horizontal = 24.dp), enabled = enabled)
-}
-
-@Composable
-fun ExtraSmallButton(text: String, onClick: () -> Unit, enabled: Boolean = true){
-    RoundedButton(text = text, onClick = onClick, modifier = Modifier.padding(horizontal = 24.dp), enabled = enabled)
 }
 
 @Composable
@@ -67,13 +43,14 @@ fun RoundedButton(
     modifier: Modifier = Modifier,
     enabled: Boolean,
     onClick: () -> Unit,
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        backgroundColor = LocalCLBExtraColors.current.BlueAccent,
+    )
 ){
         Button(
             onClick = onClick,
             shape = RoundedCornerShape(100),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = LocalCLBExtraColors.current.BlueAccent,
-            ),
+            colors = colors,
             enabled = enabled
         ) {
             Text(
@@ -148,7 +125,18 @@ fun OutlinedRoundedPlayButton(
     }
 }
 
+@Composable
+fun ClbSwitch(checked: Boolean,onCheckedChange: ((Boolean) -> Unit)) {
+    Switch(checked, onCheckedChange,
+        colors = SwitchDefaults.colors(
+            checkedThumbColor = LocalCLBExtraColors.current.Whiter,
+            checkedTrackColor = LocalCLBExtraColors.current.BlueAccent,
+            uncheckedTrackColor = LocalCLBExtraColors.current.Gray,
+            disabledCheckedTrackColor = LocalCLBExtraColors.current.Gray,
+            disabledUncheckedThumbColor = LocalCLBExtraColors.current.DarkGray,
+        ))
 
+}
 
 //TODO Add ...More to story line.
 //TODO Fix first row on scroll
