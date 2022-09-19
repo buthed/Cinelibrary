@@ -87,4 +87,13 @@
     <string name="person_birthday">Birthday </string>
     <string name="person_place_of_birth">Place of Birth </string>
     <string name="person_biography">Biography</string>
+
+    // Legal and Policies
+    <string name="leagal_and_policies_title">Legal and Policies</string>
+
+    // Help and Feedback
+    <string name="help_and_feedback">Help &amp; Feedback</string>
+
+    // About us
+    <string name="about_us">About us</string>
 </resources>
