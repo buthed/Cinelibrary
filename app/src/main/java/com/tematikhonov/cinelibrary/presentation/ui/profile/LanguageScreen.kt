@@ -34,13 +34,12 @@ fun LanguageScreen(navController: NavController) {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(24.dp)
             .background(LocalCLBExtraColors.current.Dark),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         Row(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth().padding(24.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
         ) {
@@ -60,7 +59,7 @@ fun LanguageScreen(navController: NavController) {
 
         Card(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth().padding(horizontal = 24.dp),
             backgroundColor = LocalCLBExtraColors.current.Dark,
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(1.dp, LocalCLBExtraColors.current.Soft)
@@ -81,7 +80,7 @@ fun LanguageScreen(navController: NavController) {
 
         Card(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth().padding(horizontal = 24.dp),
             backgroundColor = LocalCLBExtraColors.current.Dark,
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(1.dp, LocalCLBExtraColors.current.Soft)

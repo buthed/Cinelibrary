@@ -98,7 +98,9 @@ fun ProfileScreen(navController: NavHostController) {
                         }
                     )
                     ProfileDivider()
-                    ItemRow("Language", painterResource(id = R.drawable.ic_globe),{})
+                    ItemRow("Language", painterResource(id = R.drawable.ic_globe)) {
+                        navController.navigate(NavItem.Language.navRoute)
+                    }
                     ProfileDivider()
                     ItemRow("Country", painterResource(id = R.drawable.ic_flag),{})
                     ProfileDivider()
@@ -122,11 +124,17 @@ fun ProfileScreen(navController: NavHostController) {
                         color = LocalCLBExtraColors.current.Whiter,
                         style = CLBTypography.h3)
                     Spacer(Modifier.height(8.dp))
-                    ItemRow("Legal and Policies", painterResource(id = R.drawable.ic_shield),{})
+                    ItemRow("Legal and Policies", painterResource(id = R.drawable.ic_shield)) {
+                        navController.navigate(NavItem.Policies.navRoute)
+                    }
                     ProfileDivider()
-                    ItemRow("Help & Feedback", painterResource(id = R.drawable.ic_question),{})
+                    ItemRow("Help & Feedback", painterResource(id = R.drawable.ic_question)) {
+                        navController.navigate(NavItem.Help.navRoute)
+                    }
                     ProfileDivider()
-                    ItemRow("About Us", painterResource(id = R.drawable.ic_alert),{})
+                    ItemRow("About Us", painterResource(id = R.drawable.ic_alert)) {
+                        navController.navigate(NavItem.About.navRoute)
+                    }
                 }
             }
 

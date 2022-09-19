@@ -15,7 +15,7 @@ import com.tematikhonov.cinelibrary.presentation.ui.main.MainScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.AllGalleryScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.MovieDetailsScreen
 import com.tematikhonov.cinelibrary.presentation.ui.person.PersonScreen
-import com.tematikhonov.cinelibrary.presentation.ui.profile.ProfileScreen
+import com.tematikhonov.cinelibrary.presentation.ui.profile.*
 import com.tematikhonov.cinelibrary.presentation.ui.search.SearchScreen
 
 @Composable
@@ -63,6 +63,18 @@ fun NavHost(navController: NavHostController) {
         composable(route = "Person/{personId}") { backStackEntry ->
             PersonScreen(personId = backStackEntry.arguments?.getString("personId")?: "819",
                 navController = navController)
+        }
+        composable(NavItem.Language.navRoute){
+            LanguageScreen(navController = navController)
+        }
+        composable(NavItem.Policies.navRoute){
+            LegalAndPoliciesScreen(navController = navController)
+        }
+        composable(NavItem.Help.navRoute){
+            HelpAndFeedbackScreen(navController = navController)
+        }
+        composable(NavItem.About.navRoute){
+            AboutUsScreen(navController = navController)
         }
     }
 }
