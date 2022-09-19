@@ -29,5 +29,5 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRepository(@ApplicationContext context: Context): ProfileRepositoryImpl =
-        ProfileRepositoryImpl(context)
+        ProfileRepositoryImpl(context, provideRetrofit())
 }

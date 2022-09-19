@@ -4,6 +4,7 @@ import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_CAST
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_GALLERY
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_GENRES
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_KEY
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_LANGUAGES
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_MOVIE
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_PERSON
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_API_POPULAR
@@ -47,9 +48,12 @@ interface ApiTMDBService {
     @GET(TMDB_API_SEARCH_MOVIE+TMDB_API_KEY)
     suspend fun getMovieSearchResult(@Query("query") query: String): ResultMovie
 
-    @GET(TMDB_API_SEARCH_PERSON+ TMDB_API_KEY)
+    @GET(TMDB_API_SEARCH_PERSON+TMDB_API_KEY)
     suspend fun getPersonSearchResult(@Query("query") query: String): ResultPerson
 
-    @GET(TMDB_API_PERSON+ TMDB_API_KEY)
+    @GET(TMDB_API_PERSON+TMDB_API_KEY)
     suspend fun getPerson(@Path("person_id") person_id: Int): Person
+
+    @GET(TMDB_API_LANGUAGES+TMDB_API_KEY)
+    suspend fun getLanguages(): LanguagesList
 }

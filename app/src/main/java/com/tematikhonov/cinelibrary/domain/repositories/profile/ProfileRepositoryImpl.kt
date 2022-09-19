@@ -2,10 +2,14 @@ package com.tematikhonov.cinelibrary.domain.repositories.profile
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
 import com.tematikhonov.cinelibrary.domain.models.Constants
 import com.tematikhonov.cinelibrary.domain.models.Constants.PREF_NOTIFICATION
+import com.tematikhonov.cinelibrary.domain.models.entites.LanguagesList
+import javax.inject.Inject
 
-class ProfileRepositoryImpl(override val context: Context): ProfileRepository {
+class ProfileRepositoryImpl @Inject constructor(override val context: Context, val apiService: ApiTMDBService): ProfileRepository {
+
 
     override fun clearCache(context: Context) {
         context.cacheDir.deleteRecursively()
@@ -22,4 +26,7 @@ class ProfileRepositoryImpl(override val context: Context): ProfileRepository {
             .putBoolean(Constants.PREF_NOTIFICATION,boolean)
             .apply()
     }
+
+    override suspend fun getLanguages() = apiService.getLanguages()
+
 }
