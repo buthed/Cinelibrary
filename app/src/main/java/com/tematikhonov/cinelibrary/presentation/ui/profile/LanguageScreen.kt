@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
@@ -32,12 +34,13 @@ fun LanguageScreen(navController: NavController) {
     Column(
         Modifier
             .fillMaxSize()
-            .background(LocalCLBExtraColors.current.Dark)
+            .padding(24.dp)
+            .background(LocalCLBExtraColors.current.Dark),
+        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         Row(
             Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
         ) {
@@ -54,14 +57,13 @@ fun LanguageScreen(navController: NavController) {
                 tint = Color.Transparent,
             )
         }
-        Box(
+
+        Card(
             Modifier
-                .fillMaxWidth()
-                .background(LocalCLBExtraColors.current.Dark)
-                .clip(
-                    RoundedCornerShape(12.dp)
-                )
-                .border(BorderStroke(1.dp, LocalCLBExtraColors.current.Soft))
+                .fillMaxWidth(),
+            backgroundColor = LocalCLBExtraColors.current.Dark,
+            shape = RoundedCornerShape(12.dp),
+            border = BorderStroke(1.dp, LocalCLBExtraColors.current.Soft)
         ) {
             Column() {
                 Text(text = stringResource(id = R.string.profile_language_suggested),
@@ -73,6 +75,26 @@ fun LanguageScreen(navController: NavController) {
                     LanguageRow("English", false)
                     LanguageDivider()
                     LanguageRow("English", false)
+                }
+            }
+        }
+
+        Card(
+            Modifier
+                .fillMaxWidth(),
+            backgroundColor = LocalCLBExtraColors.current.Dark,
+            shape = RoundedCornerShape(12.dp),
+            border = BorderStroke(1.dp, LocalCLBExtraColors.current.Soft)
+        ) {
+            Column() {
+                Text(text = stringResource(id = R.string.profile_language_others),
+                    Modifier.padding(start = 16.dp, top = 20.dp),
+                    style = CLBTypography.body1, color = LocalCLBExtraColors.current.DarkGray)
+                LazyColumn(Modifier.padding(20.dp)){
+                    items(listOf("English","English","English","English","English","English")) { item ->
+                        LanguageRow(item.toString(), false)
+                        LanguageDivider()
+                    }
                 }
             }
         }
