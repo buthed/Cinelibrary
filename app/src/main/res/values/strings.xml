@@ -65,6 +65,8 @@
 
     // Profile
     <string name="profile_log_out">Log Out</string>
+    <string name="profile_log_out_alert_title">Are you sure ?</string>
+    <string name="profile_log_out_alert_cancel">Cancel</string>
     <string name="profile_general">General</string>
     <string name="profile_more">More</string>
     <string name="profile_notification">Notification</string>

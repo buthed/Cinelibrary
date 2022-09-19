@@ -26,7 +26,6 @@ import androidx.navigation.compose.rememberNavController
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
-import org.intellij.lang.annotations.Language
 
 @Composable
 fun LanguageScreen(navController: NavController) {
@@ -64,15 +63,17 @@ fun LanguageScreen(navController: NavController) {
                 )
                 .border(BorderStroke(1.dp, LocalCLBExtraColors.current.Soft))
         ) {
-            Text(text = stringResource(id = R.string.profile_language_suggested),
-                Modifier.padding(start = 16.dp),
-                style = CLBTypography.body1, color = LocalCLBExtraColors.current.DarkGray)
-            Column(Modifier.padding(20.dp)) {
-                LanguageRow("English", true)
-                LanguageDivider()
-                LanguageRow("English", false)
-                LanguageDivider()
-                LanguageRow("English", false)
+            Column() {
+                Text(text = stringResource(id = R.string.profile_language_suggested),
+                    Modifier.padding(start = 16.dp, top = 20.dp),
+                    style = CLBTypography.body1, color = LocalCLBExtraColors.current.DarkGray)
+                Column(Modifier.padding(20.dp)) {
+                    LanguageRow("English", true)
+                    LanguageDivider()
+                    LanguageRow("English", false)
+                    LanguageDivider()
+                    LanguageRow("English", false)
+                }
             }
         }
     }
@@ -99,7 +100,10 @@ fun LanguageDivider() {
         thickness = 1.dp)
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFF1F1D2B
+)
 @Composable
 fun LanguageScreenPreview() {
     val navController = rememberNavController()
