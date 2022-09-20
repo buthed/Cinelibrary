@@ -3,6 +3,7 @@ package com.tematikhonov.cinelibrary.presentation.ui.search
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -68,22 +69,24 @@ fun SearchScreen(navController: NavHostController) {
                 ALL  -> {
                     if (searchResultMovie != null &&
                         searchResultPerson != null &&
-                        query.isNotEmpty()) {
+                        query.isNotEmpty()
+                    ) {
                         if (searchResultMovie.results.isEmpty() &&
                             searchResultPerson.results.isEmpty()) MovieNotFound()
-                        LazyColumn {
-                            items(searchResultMovie.results) { item ->
-                                MovieSearchItem(navController, item)
-                                Spacer(Modifier.height(16.dp))
+                        Column() {
+                            LazyRow {
+                                items(searchResultPerson.results) { item ->
+                                    PersonSearchItem(navController, item)
+                                    Spacer(Modifier.width(16.dp))
+                                }
+                            }
+                            LazyColumn {
+                                items(searchResultMovie.results) { item ->
+                                    MovieSearchItem(navController, item)
+                                    Spacer(Modifier.height(16.dp))
+                                }
                             }
                         }
-//                        LazyColumn {
-//                            items(searchResultPerson.results) { item ->
-//                                PersonSearchItem(navController, item)
-//                                Spacer(Modifier.height(16.dp))
-//                            }
-//                        }
-//                        //TODO Change SearchItem
                     }
                 }
                 MOVIES -> {

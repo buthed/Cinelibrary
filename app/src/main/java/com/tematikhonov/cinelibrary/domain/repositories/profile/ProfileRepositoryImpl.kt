@@ -2,7 +2,10 @@ package com.tematikhonov.cinelibrary.domain.repositories.profile
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.tematikhonov.cinelibrary.BuildConfig.API_KEY
 import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+
 import com.tematikhonov.cinelibrary.domain.models.Constants
 import com.tematikhonov.cinelibrary.domain.models.Constants.PREF_NOTIFICATION
 import com.tematikhonov.cinelibrary.domain.models.entites.LanguagesList
@@ -27,6 +30,5 @@ class ProfileRepositoryImpl @Inject constructor(override val context: Context, v
             .apply()
     }
 
-    override suspend fun getLanguages() = apiService.getLanguages()
-
+    override suspend fun getLanguages() = apiService.getLanguages(API_KEY)
 }
