@@ -107,7 +107,7 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                         trailerLink = trailerLink
                     )
                     Text(text = stringResource(id = R.string.movie_story_line), style = CLBTypography.h4)
-                    Text(text = movie.overview,
+                    Text(text = movie.overview ?: stringResource(id = R.string.no_data),
                         Modifier.padding(top = 8.dp),
                         style = CLBTypography.h5,
                         color = LocalCLBExtraColors.current.Gray,
@@ -149,10 +149,12 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                         LazyRow(Modifier.padding(top = 16.dp)){
                             items(gallery.backdrops) { item ->
                                 AsyncImage(
-                                    modifier = Modifier.height(90.dp)                                        .clickable(onClick = {
-                                        fullScreenImageVisibility = true
-                                        linkForShare = item.file_path
-                                    }),
+                                    modifier = Modifier
+                                        .height(90.dp)
+                                        .clickable(onClick = {
+                                            fullScreenImageVisibility = true
+                                            linkForShare = item.file_path
+                                        }),
                                     model = TMDB_IMAGE_PATH+item.file_path,
                                     contentDescription = "",
                                     contentScale = ContentScale.FillWidth)
@@ -179,9 +181,11 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
             exit = fadeOut() + scaleOut()
         ) {
             movie?.let {
-                ShareLinkToSocialMedia(closeAction = { shareLinksVisibility = false },
-                    it.homepage
-                )
+                it.homepage?.let { it1 ->
+                    ShareLinkToSocialMedia(closeAction = { shareLinksVisibility = false },
+                        it1  // TODO if null make Toast
+                    )
+                }
             }
         }
         AnimatedVisibility(visible = playerVisibility) {

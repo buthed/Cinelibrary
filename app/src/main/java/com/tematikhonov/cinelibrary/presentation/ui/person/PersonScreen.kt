@@ -85,21 +85,25 @@ fun PersonScreen(personId: String, navController: NavHostController) {
                         PersonalInfoRow(stringResource(id = R.string.person_known_for),person.known_for_department)
                         PersonalInfoRow(stringResource(id = R.string.person_known_credits),person.popularity.toString())
                         PersonalInfoRow(stringResource(id = R.string.person_gender),person.gender.toString())
-                        PersonalInfoRow(stringResource(id = R.string.person_birthday),person.birthday)
-                        PersonalInfoRow(stringResource(id = R.string.person_place_of_birth),person.place_of_birth)
+                        PersonalInfoRow(stringResource(id = R.string.person_birthday),
+                            person.birthday ?: stringResource(id = R.string.no_data))
+                        PersonalInfoRow(stringResource(id = R.string.person_place_of_birth),
+                            person.place_of_birth ?: stringResource(id = R.string.no_data))
                     }
-                    ContentTitle(text = stringResource(id = R.string.person_biography))
-                    if (fullBiographyVisibility) Text(text = person.biography,
-                        Modifier.clickable { fullBiographyVisibility = !fullBiographyVisibility })
-                    else {
+                    if (person.biography.isNotEmpty()) {
+                        ContentTitle(text = stringResource(id = R.string.person_biography))
+                        if (fullBiographyVisibility) Text(text = person.biography,
+                            Modifier.clickable { fullBiographyVisibility = !fullBiographyVisibility })
+                        else {
 //                        buildAnnotatedString{
 //                            append(text = person.biography)
 //                            append(text = "See all")
 //                            toAnnotatedString()
 //                        }
-                        Text(text = person.biography,
-                            Modifier.clickable { fullBiographyVisibility = !fullBiographyVisibility },
-                             maxLines = 5)
+                            Text(text = person.biography,
+                                Modifier.clickable { fullBiographyVisibility = !fullBiographyVisibility },
+                                maxLines = 5)
+                        }
                     }
                 }
             }
