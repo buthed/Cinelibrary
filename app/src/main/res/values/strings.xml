@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cinelibrary</string>
     <string name="splash">splash</string>
-
+    <string name="no_data">no data</string>
     // Categories
     <string name="home">Home</string>
     <string name="search">Search</string>

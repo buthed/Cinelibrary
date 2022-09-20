@@ -8,5 +8,4 @@ enum class ImageType(type: String) {
 
     POSTERS("Posters"),
 
-    LOGOS("Logos")
 }

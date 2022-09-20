@@ -13,6 +13,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,24 +24,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tematikhonov.cinelibrary.R
+import com.tematikhonov.cinelibrary.domain.models.entites.Language
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
 fun LanguageScreen(navController: NavController) {
+    val viewModel = hiltViewModel<ProfileViewModel>()
+    val languagesList = viewModel.languages.observeAsState().value
+
     Column(
         Modifier
             .fillMaxSize()
-            .padding(24.dp)
             .background(LocalCLBExtraColors.current.Dark),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         Row(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(24.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
         ) {
@@ -60,7 +66,8 @@ fun LanguageScreen(navController: NavController) {
 
         Card(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
             backgroundColor = LocalCLBExtraColors.current.Dark,
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(1.dp, LocalCLBExtraColors.current.Soft)
@@ -69,19 +76,22 @@ fun LanguageScreen(navController: NavController) {
                 Text(text = stringResource(id = R.string.profile_language_suggested),
                     Modifier.padding(start = 16.dp, top = 20.dp),
                     style = CLBTypography.body1, color = LocalCLBExtraColors.current.DarkGray)
-                Column(Modifier.padding(20.dp)) {
-                    LanguageRow("English", true)
-                    LanguageDivider()
-                    LanguageRow("English", false)
-                    LanguageDivider()
-                    LanguageRow("English", false)
+                LazyColumn(Modifier.padding(20.dp)) {
+                    items(listOf(
+                        Language("English", "en", "English"),
+                        Language("Russian","ru","Pусский")
+                    )) { item ->
+                        LanguageRow(if(item.name.isNotEmpty()) item.english_name +" (${item.name})" else item.english_name, false)
+                        LanguageDivider()
+                    }
                 }
             }
         }
 
         Card(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
             backgroundColor = LocalCLBExtraColors.current.Dark,
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(1.dp, LocalCLBExtraColors.current.Soft)
@@ -91,9 +101,11 @@ fun LanguageScreen(navController: NavController) {
                     Modifier.padding(start = 16.dp, top = 20.dp),
                     style = CLBTypography.body1, color = LocalCLBExtraColors.current.DarkGray)
                 LazyColumn(Modifier.padding(20.dp)){
-                    items(listOf("English","English","English","English","English","English")) { item ->
-                        LanguageRow(item.toString(), false)
-                        LanguageDivider()
+                    languagesList?.let {
+                        items(it) { item ->
+                            LanguageRow(if(item.name.isNotEmpty()) item.english_name +" (${item.name})" else item.english_name, false)
+                            LanguageDivider()
+                        }
                     }
                 }
             }

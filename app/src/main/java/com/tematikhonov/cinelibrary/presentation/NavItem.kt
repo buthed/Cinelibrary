@@ -20,4 +20,8 @@ sealed class NavItem(
     object MovieDetails: NavItem(NAV_MOVIE, navRoute = NAV_MOVIE)
     object MovieDetailsGallery: NavItem(NAV_GALLERY, navRoute = NAV_GALLERY)
     object Person: NavItem(NAV_PERSON, navRoute =  NAV_PERSON)
+    object Language: NavItem(NAV_LANGUAGE, navRoute = NAV_LANGUAGE)
+    object Policies: NavItem(NAV_POLICIES, navRoute = NAV_POLICIES)
+    object Help: NavItem(NAV_HELP, navRoute = NAV_HELP)
+    object About: NavItem(NAV_ABOUT, navRoute = NAV_ABOUT)
 }
