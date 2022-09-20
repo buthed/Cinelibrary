@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.CinemaSearcher" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.CineLibrary" parent="android:Theme.Material.Light.NoActionBar">
 
     </style>
 
     <!-- Splash Screen -->
-    <style name="Theme.CinemaSearcher.SplashScreen" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.CineLibrary.SplashScreen" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/logo</item>
     </style>
 </resources>
