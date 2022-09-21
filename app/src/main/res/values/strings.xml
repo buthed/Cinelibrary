@@ -78,6 +78,7 @@
     <string name="profile_policies">Legal and Policies</string>
     <string name="profile_help">Help &amp; Feedback</string>
     <string name="profile_about">About</string>
+    <string name="profile_anonymous">Anonymous</string>
 
     // Person
     <string name="person_personal_info">Personal Info</string>
