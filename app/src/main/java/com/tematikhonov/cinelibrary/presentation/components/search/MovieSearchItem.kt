@@ -24,6 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.*
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabIcon
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabSeparator
@@ -53,7 +54,8 @@ fun MovieSearchItem(navController: NavHostController, movie: Movie) {
                 .clip(RoundedCornerShape(8.dp))
         ) {
             Column() {
-                AsyncImage(model = ApiConstants.TMDB_IMAGE_PATH +movie.poster_path,
+                AsyncImage(model = if (movie.poster_path!=null && movie.poster_path.isNotEmpty()
+                    ) TMDB_IMAGE_PATH +movie.poster_path else R.drawable.image_not_available,
                     contentDescription = movie.title)
             }
             Box(
@@ -99,7 +101,7 @@ fun MovieSearchItem(navController: NavHostController, movie: Movie) {
                 overflow = TextOverflow.Ellipsis)
             Row() {
                 InfoTabIcon(painterResource(id = R.drawable.ic_calendar), "")
-                InfoTabText(text = if (movie.release_date.isNotEmpty()) movie.release_date.dropLast(6) else stringResource(id = R.string.no_data))
+                InfoTabText(text = if (movie.release_date!=null && movie.release_date.isNotEmpty()) movie.release_date else stringResource(id = R.string.no_data)) //TODO dropLast(6) error
             }
 //            Row() {
 //                InfoTabIcon(painterResource(id = R.drawable.ic_clock), "")

@@ -84,8 +84,8 @@ fun AllGalleryScreen(movieId: String, navController: NavHostController) {
                         ) {
                             val data = gallery.backdrops.plus(gallery.posters).shuffled()
                             data.forEach { image ->
-                                AsyncImage(
-                                    model = TMDB_IMAGE_PATH + image.file_path,
+                                AsyncImage(model = if (image.file_path!=null && image.file_path.isNotEmpty()
+                                    ) TMDB_IMAGE_PATH +image.file_path else R.drawable.image_not_available,
                                     contentDescription = "",
                                     Modifier
                                         .padding(10.dp)

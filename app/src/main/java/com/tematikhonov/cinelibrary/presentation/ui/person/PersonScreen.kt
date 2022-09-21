@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.Person
 import com.tematikhonov.cinelibrary.presentation.components.ContentTitle
 import com.tematikhonov.cinelibrary.presentation.components.person.PersonDetailsBackground
@@ -71,8 +72,8 @@ fun PersonScreen(personId: String, navController: NavHostController) {
                     verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
                     Spacer(Modifier.height(24.dp))
-                    AsyncImage(
-                        model = ApiConstants.TMDB_IMAGE_PATH + person.profile_path,
+                    AsyncImage(model = if (person.profile_path!=null && person.profile_path.isNotEmpty()
+                        ) TMDB_IMAGE_PATH+person.profile_path else R.drawable.image_not_available,
                         contentDescription = person.name,
                         Modifier
                             .fillMaxWidth()

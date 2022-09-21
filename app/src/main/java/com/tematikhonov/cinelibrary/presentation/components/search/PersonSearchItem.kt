@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.*
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabIcon
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabText
@@ -31,17 +32,21 @@ import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
 
 @Composable
 fun PersonSearchItem(navController: NavHostController, person: Person) {
-    Row(Modifier.fillMaxWidth().clickable {
-        Log.d("checkDataM", "ID: ${person.id} title: ${person.name}")
-        navController.navigate("Person/${person.id}")
-    }) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clickable {
+                Log.d("checkDataM", "ID: ${person.id} title: ${person.name}")
+                navController.navigate("Person/${person.id}")
+            }) {
         Box(
             Modifier
                 .width(70.dp)
                 .clip(RoundedCornerShape(8.dp))
         ) {
             Column() {
-                AsyncImage(model = ApiConstants.TMDB_IMAGE_PATH +person.profile_path,
+                AsyncImage(model = if (person.profile_path!=null && person.profile_path.isNotEmpty()
+                ) TMDB_IMAGE_PATH+person.profile_path else R.drawable.image_not_available,
                     contentDescription = person.name)
             }
         }
@@ -65,19 +70,25 @@ fun PersonSearchItem(navController: NavHostController, person: Person) {
 
 @Composable
 fun PersonSearchSmallItem(navController: NavHostController, person: Person) {
-    Column(Modifier.fillMaxWidth().clickable {
-        Log.d("checkDataM", "ID: ${person.id} title: ${person.name}")
-        navController.navigate("Person/${person.id}")
-        },
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .clickable {
+                Log.d("checkDataM", "ID: ${person.id} title: ${person.name}")
+                navController.navigate("Person/${person.id}")
+            },
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(Modifier
+        Box(
+            Modifier
                 .size(100.dp)
                 .clip(CircleShape)
         ) {
             Column() {
-                AsyncImage(model = ApiConstants.TMDB_IMAGE_PATH +person.profile_path,
+
+                AsyncImage(model = if (person.profile_path!=null && person.profile_path.isNotEmpty()
+                ) TMDB_IMAGE_PATH+person.profile_path else R.drawable.image_not_available,
                     contentDescription = person.name,
                     contentScale = ContentScale.FillWidth)
             }

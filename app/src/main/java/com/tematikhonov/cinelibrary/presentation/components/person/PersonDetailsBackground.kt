@@ -10,13 +10,15 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
+import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.Person
 
 @Composable
 fun PersonDetailsBackground(person: Person) {
-    AsyncImage(
-        model = ApiConstants.TMDB_IMAGE_PATH +person.profile_path,
+    AsyncImage(model = if (person.profile_path!=null && person.profile_path.isNotEmpty()
+        ) TMDB_IMAGE_PATH +person.profile_path else R.drawable.image_not_available,
         contentDescription = person.name,
         Modifier.fillMaxSize(),
         contentScale = ContentScale.FillWidth,

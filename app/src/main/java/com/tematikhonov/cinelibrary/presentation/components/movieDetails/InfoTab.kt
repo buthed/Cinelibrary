@@ -41,7 +41,7 @@ fun InfoTab(movie: MovieDetails){
             InfoTabText(text = movie.runtime.toString() +" " + stringResource(id = R.string.movie_minutes))
             InfoTabSeparator()
             InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
-            InfoTabText(text = movie.genres[0].name)
+            InfoTabText(text = if (movie.genres.isNotEmpty()) movie.genres[0].name else stringResource(id = R.string.no_data))
         }
         Card(
             Modifier.padding(top = 8.dp),

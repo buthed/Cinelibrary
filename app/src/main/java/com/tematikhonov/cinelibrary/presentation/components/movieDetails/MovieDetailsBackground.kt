@@ -10,13 +10,15 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
+import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.MovieDetails
 
 @Composable
 fun MovieDetailsBackground(movie: MovieDetails) {
-    AsyncImage(
-        model = ApiConstants.TMDB_IMAGE_PATH +movie.poster_path,
+    AsyncImage(model = if (movie.poster_path!=null && movie.poster_path.isNotEmpty()
+        ) TMDB_IMAGE_PATH+movie.poster_path else R.drawable.image_not_available,
         contentDescription = movie.title,
         Modifier.fillMaxSize(),
         contentScale = ContentScale.FillWidth,
