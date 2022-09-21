@@ -1,10 +1,8 @@
 package com.tematikhonov.cinelibrary.presentation.ui.profile
 
-import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -13,9 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.ktx.auth
@@ -32,8 +27,6 @@ import com.tematikhonov.cinelibrary.R
 import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.components.ClbSwitch
 import com.tematikhonov.cinelibrary.presentation.components.OutlinedRoundedPlayButton
-import com.tematikhonov.cinelibrary.presentation.components.RoundedPlayButton
-import com.tematikhonov.cinelibrary.presentation.components.movieDetails.YouTubeTrailerPlayer
 import com.tematikhonov.cinelibrary.presentation.components.profile.LogOutAlert
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors

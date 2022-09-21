@@ -23,9 +23,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
-import com.tematikhonov.cinelibrary.domain.models.entites.*
+import com.tematikhonov.cinelibrary.domain.models.entites.Movie
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabIcon
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabSeparator
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabText

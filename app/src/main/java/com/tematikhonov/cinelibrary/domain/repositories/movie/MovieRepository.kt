@@ -1,8 +1,7 @@
 package com.tematikhonov.cinelibrary.domain.repositories.movie
 
-import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
 import com.tematikhonov.cinelibrary.BuildConfig.API_KEY
+import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(private val apiService: ApiTMDBService) {

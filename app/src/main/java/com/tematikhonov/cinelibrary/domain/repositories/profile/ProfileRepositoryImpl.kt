@@ -4,11 +4,8 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.tematikhonov.cinelibrary.BuildConfig.API_KEY
 import com.tematikhonov.cinelibrary.data.network.ApiTMDBService
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
-
 import com.tematikhonov.cinelibrary.domain.models.Constants
 import com.tematikhonov.cinelibrary.domain.models.Constants.PREF_NOTIFICATION
-import com.tematikhonov.cinelibrary.domain.models.entites.LanguagesList
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(override val context: Context, val apiService: ApiTMDBService): ProfileRepository {

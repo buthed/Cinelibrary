@@ -22,7 +22,6 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
 import com.tematikhonov.cinelibrary.R
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
 import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.Movie
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
