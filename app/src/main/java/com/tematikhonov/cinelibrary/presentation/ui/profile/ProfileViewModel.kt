@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tematikhonov.cinelibrary.domain.models.entites.GenresResult
 import com.tematikhonov.cinelibrary.domain.models.entites.LanguagesList
 import com.tematikhonov.cinelibrary.domain.repositories.profile.ProfileRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel

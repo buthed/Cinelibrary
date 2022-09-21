@@ -21,7 +21,8 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
+import com.tematikhonov.cinelibrary.R
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
 import com.tematikhonov.cinelibrary.domain.models.entites.Movie
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import kotlin.math.absoluteValue
@@ -75,8 +76,8 @@ fun UpcomingViewPager(data: List<Movie>, navController: NavController) {
 @Composable
 fun UpcomingItem(modifier: Modifier, movie: Movie) {
     Card(modifier = modifier) {
-        AsyncImage(
-            model = ApiConstants.TMDB_IMAGE_PATH+movie.backdrop_path,
+        AsyncImage(model = if (movie.backdrop_path!=null && movie.backdrop_path.isNotEmpty()
+            ) TMDB_IMAGE_PATH+movie.backdrop_path else R.drawable.image_not_available,
             contentDescription = movie.title,
             Modifier.fillMaxWidth(),
             contentScale = ContentScale.FillWidth,

@@ -7,28 +7,42 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.tematikhonov.cinelibrary.R
-import com.tematikhonov.cinelibrary.domain.models.ApiConstants
-import com.tematikhonov.cinelibrary.domain.models.entites.*
+import com.tematikhonov.cinelibrary.domain.models.ApiConstants.TMDB_IMAGE_PATH
+import com.tematikhonov.cinelibrary.domain.models.entites.Movie
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabIcon
+import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabSeparator
 import com.tematikhonov.cinelibrary.presentation.components.movieDetails.InfoTabText
 import com.tematikhonov.cinelibrary.presentation.theme.CLBTypography
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
+import com.tematikhonov.cinelibrary.presentation.ui.home.HomeViewModel
 
 @Composable
 fun MovieSearchItem(navController: NavHostController, movie: Movie) {
+    val viewModel = hiltViewModel<HomeViewModel>()
+    val genres = viewModel.genres.observeAsState().value
+    var genre by remember { mutableStateOf("")}
+    if (genres!=null && movie.genre_ids.isNotEmpty()) {
+        genres.genres.forEach{
+            if (it.id == movie.genre_ids.first()) genre = it.name
+        }
+
+    }
     Row(Modifier.fillMaxWidth().clickable {
         Log.d("checkDataM", "ID: ${movie.id} title: ${movie.original_title}")
         navController.navigate("MovieDetails/${movie.id}")
@@ -39,7 +53,8 @@ fun MovieSearchItem(navController: NavHostController, movie: Movie) {
                 .clip(RoundedCornerShape(8.dp))
         ) {
             Column() {
-                AsyncImage(model = ApiConstants.TMDB_IMAGE_PATH +movie.poster_path,
+                AsyncImage(model = if (movie.poster_path!=null && movie.poster_path.isNotEmpty()
+                    ) TMDB_IMAGE_PATH +movie.poster_path else R.drawable.image_not_available,
                     contentDescription = movie.title)
             }
             Box(
@@ -78,28 +93,28 @@ fun MovieSearchItem(navController: NavHostController, movie: Movie) {
             }
         }
         Spacer(Modifier.width(16.dp))
-        Column() {
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(text = movie.title,
                 style = CLBTypography.h4,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis)
-            Spacer(Modifier.height(12.dp))
             Row() {
                 InfoTabIcon(painterResource(id = R.drawable.ic_calendar), "")
-                if (movie.release_date!=null) InfoTabText(text = movie.release_date.dropLast(6))
+                InfoTabText(text = if (movie.release_date!=null && movie.release_date.isNotEmpty()) movie.release_date else stringResource(id = R.string.no_data)) //TODO dropLast(6) error
             }
-            Spacer(Modifier.height(12.dp))
 //            Row() {
 //                InfoTabIcon(painterResource(id = R.drawable.ic_clock), "")
 //                InfoTabText(text = movie.runtime.toString() + " Minutes")
 //            }
-//            Spacer(Modifier.height(12.dp))
-//            Row() {
-//                InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
-//                InfoTabText(text = movie.genres[0].name)
-//                InfoTabSeparator()
-//                InfoTabText(text = "Movie")
-//            }
+            if (genre.isNotEmpty()) {
+                Row() {
+                    InfoTabIcon(painterResource(id = R.drawable.ic_film), "")
+                    InfoTabText(text = genre) //TODO add data with genres
+                    InfoTabSeparator()
+                    InfoTabText(text = "Movie")
+                }
+            }
+
         }
     }
 }

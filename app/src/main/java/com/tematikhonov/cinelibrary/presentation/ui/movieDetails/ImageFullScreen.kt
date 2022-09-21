@@ -46,7 +46,9 @@ fun ImageFullScreen(imagePath: String,closeAction: () -> Unit,) {
             .padding(horizontal = 24.dp)
             .clickable(onClick = closeAction),
             contentAlignment = Alignment.Center){
-            AsyncImage(model = TMDB_IMAGE_PATH + imagePath, contentDescription = "", Modifier.fillMaxSize())
+            AsyncImage(model = if (imagePath!=null && imagePath.isNotEmpty()
+                ) TMDB_IMAGE_PATH+imagePath else R.drawable.image_not_available,
+                contentDescription = "", Modifier.fillMaxSize())
         }
     }
     AnimatedVisibility(

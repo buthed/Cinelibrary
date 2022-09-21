@@ -52,7 +52,7 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
     val gallery = viewModel.gallery.observeAsState().value
     val videos = viewModel.videos.observeAsState().value
 
-    if (videos!=null) {
+    if (videos!=null && videos.results.isNotEmpty()) {
         for(i in 0..videos.results.size) {
             if (videos.results[i].type == "Trailer" && videos.results[i].site == "YouTube") {
                 trailerLink = videos.results[i].key
@@ -86,8 +86,8 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                         .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(Modifier.height(24.dp))
-                    AsyncImage(
-                        model = TMDB_IMAGE_PATH+movie.poster_path,
+                    AsyncImage(model = if (movie.poster_path!=null && movie.poster_path.isNotEmpty()
+                        ) TMDB_IMAGE_PATH +movie.poster_path else R.drawable.image_not_available,
                         contentDescription = movie.title,
                         Modifier
                             .fillMaxWidth()
@@ -101,8 +101,12 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                             .padding(vertical = 24.dp),
                         share = { shareLinksVisibility = true },
                         playTrailer = {
-                            playerVisibility = true
-                            Log.d("player", playerVisibility.toString())
+                            when {
+                                trailerLink.isNotEmpty() -> {
+                                    playerVisibility = true
+                                    Log.d("player", playerVisibility.toString())
+                                }
+                            }
                         },
                         trailerLink = trailerLink
                     )
@@ -155,7 +159,8 @@ fun MovieDetailsScreen(movieId: String, navController: NavHostController) {
                                             fullScreenImageVisibility = true
                                             linkForShare = item.file_path
                                         }),
-                                    model = TMDB_IMAGE_PATH+item.file_path,
+                                    model = if (item.file_path!=null && item.file_path.isNotEmpty()
+                                    ) TMDB_IMAGE_PATH +item.file_path else R.drawable.image_not_available,
                                     contentDescription = "",
                                     contentScale = ContentScale.FillWidth)
                                 Spacer(Modifier.width(10.dp))

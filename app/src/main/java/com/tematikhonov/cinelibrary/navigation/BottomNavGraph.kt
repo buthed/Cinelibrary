@@ -4,12 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.tematikhonov.cinelibrary.AppScreen
 import com.tematikhonov.cinelibrary.presentation.NavItem
 import com.tematikhonov.cinelibrary.presentation.ui.SplashScreen
 import com.tematikhonov.cinelibrary.presentation.ui.auth.LoginScreen
 import com.tematikhonov.cinelibrary.presentation.ui.auth.SignUpScreen
 import com.tematikhonov.cinelibrary.presentation.ui.auth.WelcomeScreen
+import com.tematikhonov.cinelibrary.presentation.ui.favorites.FavoritesScreen
 import com.tematikhonov.cinelibrary.presentation.ui.home.HomeScreen
 import com.tematikhonov.cinelibrary.presentation.ui.main.MainScreen
 import com.tematikhonov.cinelibrary.presentation.ui.movieDetails.AllGalleryScreen
@@ -46,8 +46,8 @@ fun NavHost(navController: NavHostController) {
         composable(NavItem.Search.navRoute) {
             SearchScreen(navController = navController)
         }
-        composable(NavItem.Downloads.navRoute){
-            AppScreen(text = "Downloads Screen")
+        composable(NavItem.Favorites.navRoute){
+            FavoritesScreen()
         }
         composable(NavItem.Profile.navRoute) {
             ProfileScreen(navController = navController)

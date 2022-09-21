@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,10 +16,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tematikhonov.cinelibrary.R
+import com.tematikhonov.cinelibrary.domain.models.enumeration.SearchCategory.*
+import com.tematikhonov.cinelibrary.presentation.components.ContentTitle
 import com.tematikhonov.cinelibrary.presentation.components.search.*
 import com.tematikhonov.cinelibrary.presentation.core.SearchField
 import com.tematikhonov.cinelibrary.presentation.theme.LocalCLBExtraColors
-import com.tematikhonov.cinelibrary.domain.models.enumeration.SearchCategory.*
 
 @Composable
 fun SearchScreen(navController: NavHostController) {
@@ -59,7 +59,6 @@ fun SearchScreen(navController: NavHostController) {
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                val context = LocalContext.current
                 SearchCategory(ALL, chosenCategory) { chosenCategory = ALL }
                 SearchCategory(MOVIES, chosenCategory) { chosenCategory = MOVIES }
                 SearchCategory(ACTORS, chosenCategory) { chosenCategory = ACTORS }
@@ -73,17 +72,17 @@ fun SearchScreen(navController: NavHostController) {
                     ) {
                         if (searchResultMovie.results.isEmpty() &&
                             searchResultPerson.results.isEmpty()) MovieNotFound()
-                        Column() {
-                            LazyRow {
+                        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                            ContentTitle(text = stringResource(id = R.string.search_category_actors))
+                            LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                                 items(searchResultPerson.results) { item ->
-                                    PersonSearchItem(navController, item)
-                                    Spacer(Modifier.width(16.dp))
+                                    PersonSearchSmallItem(navController, item)
                                 }
                             }
-                            LazyColumn {
+                            ContentTitle(text = stringResource(id = R.string.search_category_movies))
+                            LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                                 items(searchResultMovie.results) { item ->
                                     MovieSearchItem(navController, item)
-                                    Spacer(Modifier.height(16.dp))
                                 }
                             }
                         }

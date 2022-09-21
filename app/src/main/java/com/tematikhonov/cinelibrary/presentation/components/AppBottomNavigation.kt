@@ -17,7 +17,7 @@ import com.tematikhonov.cinelibrary.presentation.NavItem
 fun AppBottomNavigation(
     navController: NavController
 ) {
-    val navItems = listOf(NavItem.Home, NavItem.Search, NavItem.Downloads, NavItem.Profile)
+    val navItems = listOf(NavItem.Home, NavItem.Search, NavItem.Favorites, NavItem.Profile)
 
     BottomNavigation {
         val navBackStackEntry by navController.currentBackStackEntryAsState()

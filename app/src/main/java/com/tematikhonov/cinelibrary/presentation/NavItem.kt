@@ -15,7 +15,7 @@ sealed class NavItem(
     object SignUp: NavItem(NAV_SIGN_UP, navRoute = NAV_SIGN_UP)
     object Home: NavItem(NAV_HOME, R.drawable.ic_home, NAV_HOME)
     object Search: NavItem(NAV_SEARCH, R.drawable.ic_search, NAV_SEARCH)
-    object Downloads: NavItem(NAV_DOWNLOADS, R.drawable.ic_download, NAV_DOWNLOADS)
+    object Favorites: NavItem(NAV_FAVORITES, R.drawable.ic_heart, NAV_FAVORITES)
     object Profile: NavItem(NAV_PROFILE, R.drawable.ic_profile, NAV_PROFILE)
     object MovieDetails: NavItem(NAV_MOVIE, navRoute = NAV_MOVIE)
     object MovieDetailsGallery: NavItem(NAV_GALLERY, navRoute = NAV_GALLERY)
