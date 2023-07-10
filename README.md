@@ -22,7 +22,7 @@ Project Features
  LiveData<br>
  Firebase Auth<br>
  Room<br>
- YouTubePlayer(<a href="https://github.com/PierfrancescoSoffritti/android-youtube-player">Source</a>)<br>
+ YouTubePlayer(<a href="https://github.com/PierfrancescoSoffritti/android-youtube-player">Source</a>)<br><br>
  For Russian users only works with VPN<br>
 </h3><br><br><br><br><br><br>
 
