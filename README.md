@@ -23,6 +23,7 @@ Project Features
  Firebase Auth<br>
  Room<br>
  YouTubePlayer(<a href="https://github.com/PierfrancescoSoffritti/android-youtube-player">Source</a>)<br>
+ For Russian users only works with VPN<br>
 </h3><br><br><br><br><br><br>
 
  <h2 align="center">
